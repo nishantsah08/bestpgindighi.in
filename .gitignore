@@ -26,3 +26,6 @@ pip-wheel-metadata/
 .vscode/
 *.swp
 *.swo
+
+# Reference Directories
+bestpgindighi-ai/
