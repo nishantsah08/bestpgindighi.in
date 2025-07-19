@@ -1,0 +1,10 @@
+# Defines the rules for managing security deposits.
+# Version 1.0
+
+payment_rules:
+  - rule: 'installment_allowed'
+  - description: 'The security deposit can be paid in installments as per the agreement with the tenant.'
+
+transaction_types:
+  - rule: 'separate_refund_and_adjustment'
+  - description: 'The system must distinguish between a deposit_refund (a cash-out event during offboarding) and a credit_adjustment (a non-cash, on-ledger correction for billing).'

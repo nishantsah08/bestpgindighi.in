@@ -1,0 +1,23 @@
+# Defines rules for property access and security.
+# Version 1.0
+
+access_rules:
+  - subject: 'tenant'
+    access_level: '24x7'
+    description: 'Tenants have unrestricted access to the property.'
+  - subject: 'guest'
+    access_level: 'restricted'
+    description: 'Guests are prohibited from tenant rooms and only allowed in common areas during specified hours.'
+
+key_management:
+  - rule: 'key_issuance'
+    description: 'Tenants receive a room latch key and a wardrobe key upon move-in.'
+  - rule: 'duplicate_keys'
+    description: 'A full set of duplicate keys is held by the Caretaker for emergencies.'
+
+penalties:
+  - violation: 'key_loss'
+    action: 'dispatch_event.billable_charge.created'
+    details:
+      type: 'key_loss_fine'
+      amount_parameter: 'key_loss_fine_amount'

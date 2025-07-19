@@ -1,0 +1,25 @@
+# Defines the core logic for handling all complaints and violations.
+# Version 1.0
+
+intake_policy:
+  - type: 'centralized_intent_classification'
+  - description: 'All complaints, regardless of source, are processed by an Intake AI to determine intent.'
+
+routing_engine:
+  - rule: 'intent_based_routing'
+  - description: 'Complaints are routed to an initial owner based on their classified intent.'
+  - mapping:
+      - intent: 'request_maintenance'
+        owner: 'Caretaker'
+      - intent: 'dispute_billing'
+        owner: 'Sales'
+      - intent: 'interpersonal_conflict'
+        owner: 'Sales'
+
+escalation_path:
+  - from: 'Caretaker'
+    to: 'Sales'
+  - from: 'Sales'
+    to: 'CEO'
+  - condition: 'complaint_source == "staff"'
+    to: 'CEO'

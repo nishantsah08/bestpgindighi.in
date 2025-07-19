@@ -1,0 +1,6 @@
+# Defines the rules for managing tenant records.
+# Version 1.0
+
+storage_policy:
+  - rule: 'permanent_versioned_storage'
+  - description: 'All compliance-related documents (e.g., IDs, Police Verification, Signed Agreements) must be stored permanently in a version-controlled system to ensure immutability and auditability.'

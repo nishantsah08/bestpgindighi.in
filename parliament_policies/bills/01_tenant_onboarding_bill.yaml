@@ -1,0 +1,41 @@
+# Defines the core logic for tenant onboarding.
+# Version 1.0
+
+state_machine:
+  - 'lead'
+  - 'booking_secured'
+  - 'documents_submitted'
+  - 'ready_for_agreement'
+  - 'agreement_sent'
+  - 'moved_in'
+
+state_transitions:
+  - from: 'lead'
+    to: 'booking_secured'
+    trigger: 'event.rent_payment.received'
+    condition: 'payment.amount >= parameters.minimum_advance_rent'
+
+  - from: 'booking_secured'
+    to: 'documents_submitted'
+    trigger: 'event.documents.mandatory_submitted'
+    action: 'dispatch_event.rule_book.send'
+
+  - from: 'documents_submitted'
+    to: 'ready_for_agreement'
+    trigger: 'event.deposit_payment.full_received'
+
+  - from: 'ready_for_agreement'
+    to: 'agreement_sent'
+    trigger: 'event.e_sign.initiated'
+    action: 'dispatch_event.leegality.send_for_esign'
+
+documentation_rules:
+  - type: 'Aadhaar Card'
+    mandatory: true
+  - type: 'Photograph'
+    mandatory: true
+  - type: 'Police Verification Form'
+    mandatory: true
+  - type: 'Other Government ID'
+    mandatory: false
+    recommended: true

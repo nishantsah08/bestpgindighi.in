@@ -1,0 +1,15 @@
+# Defines the core logic for maintenance and service requests.
+# Version 1.0
+
+reporting_process:
+  - channel: 'Caretaker App'
+  - format: 'audio_visual_first'
+  - description: 'The primary method for reporting issues is via the Caretaker App, prioritizing photo/audio evidence over text.'
+
+required_data:
+  - 'category'
+  - 'evidence' # Photo or Audio
+
+routing_rules:
+  - condition: 'issue_is_complaint_about_service_quality'
+    action: 'route_to_complaints_and_violations_policy'

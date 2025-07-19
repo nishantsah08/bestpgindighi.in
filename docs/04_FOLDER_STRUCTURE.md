@@ -8,37 +8,42 @@ bestpgindighi-ai/
 ├── .github/                  # CI/CD workflows and automation.
 │
 ├── 📜 constitution/          # The "Why": Core mission, values, and goals.
-│   └── mission_statement.md
+│   └── 00_CONSTITUTION.md
 │
-├── 🏛️ parliament/             # The "What": Enforceable business policies.
-│   ├── policies/             # Tier 1 Foundational Policies (as YAML code).
-│   │   ├── billing_policy.yaml
-│   │   └── maintenance_policy.yaml
-│   └── tests/                # The bludeprint validation tool's test suite.
+├── 🏛️ parliament_policies/    # The "What": Enforceable business policies.
+│   ├── bills/                # Draft policies (proposals).
+│   ├── acts/                 # Ratified, live policies.
+│   └── 03_DEVELOPMENT_WORKFLOW.md # The legislative process document.
 │
 ├── 🚀 executive/             # The "How": AI agents that run the business.
-│   ├── cabinet_secretary_ai/   # The central coordinating AI.
-│   └── departments/          # Self-contained, deployable business units.
-│       └── billing/
-│           ├── secretary_ai/     # Source code for the department's AI.
-│           ├── secretariat/      # Resources (apps, cloud config, etc).
-│           ├── Dockerfile        # Isolated development environment.
-│           └── DEPLOYMENT.md     # Department-specific deployment guide.
+│   ├── growth_and_commerce/      # The "Hunter" Ministry (Sales-led).
+│   │   └── README.md
+│   ├── property_and_tenant_welfare/ # The "Farmer" Ministry (Caretaker-led).
+│   │   └── README.md
+│   ├── 02_AI_AGENT_ROLES.md    # Describes the roles of the AI "civil service".
+│   └── README.md             # Explains the two-ministry structure.
+│
+├── 🚀 executive/             # The "How": AI agents that run the business.
+│   ├── growth_and_commerce/      # The "Hunter" Ministry (Sales-led).
+│   │   └── README.md
+│   ├── property_and_tenant_welfare/ # The "Farmer" Ministry (Caretaker-led).
+│   │   └── README.md
+│   ├── 02_AI_AGENT_ROLES.md    # Describes the roles of the AI "civil service".
+│   └── README.md             # Explains the two-ministry structure.
 │
 ├── ⚖️ judiciary/             # Independent error and dispute resolution AI.
-│   └── src/
 │
-├── 👀 independent_bodies/    # Independent oversight AIs.
-│   ├── auditor_ai/
-│   └── vigilance_ai/
+├── 👀 independent_bodies/    # Independent oversight AIs (Auditor, Vigilance).
 │
 ├── 🧠 advisory/              # Strategic planning and analysis AI.
-│   └── strategy_and_planning_ai/
 │
 ├── 🌐 mcp/                   # Shared Model Context Protocol servers.
-│   └── src/
 │
 ├── 📚 docs/                   # System documentation (this folder).
+│   ├── 00_SYSTEM_OVERVIEW.md
+│   ├── 01_SYSTEM_ARCHITECTURE.md
+│   ├── 04_FOLDER_STRUCTURE.md (this file)
+│   └── 05_BUSINESS_OPERATIONS_MODEL.md
 │
 └── README.md                 # High-level project overview.
 ```

@@ -2,7 +2,9 @@
 
 ## Philosophy
 
-This system is designed as an autonomous, self-governing entity for managing a Paying Guest (PG) business. It is modeled after a democratic government to ensure a clear separation of powers, robust oversight, and operational integrity.
+This system is designed as an autonomous, self-governing entity. It is owned by the legal entity **"SVH Enterprise"** and the first implementation is for the **"Best PG in Dighi"** brand (bestpgindighi.in).
+
+It is modeled after a democratic government to ensure a clear separation of powers, robust oversight, and operational integrity.
 
 ## The Four Branches of Government
 

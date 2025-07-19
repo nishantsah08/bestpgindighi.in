@@ -1,0 +1,16 @@
+# Defines the core logic for the tenant offboarding process.
+# Version 1.0
+
+state_machine:
+  - 'active'
+  - 'notice_period'
+  - 'pending_damage_assessment'
+  - 'pending_final_settlement'
+  - 'completed'
+
+state_transitions:
+  - from: 'pending_damage_assessment'
+    to: 'pending_final_settlement'
+    trigger: 'event.manual_damage_fee.submitted'
+    condition: 'user.role == "Sales"'
+    description: 'The Sales role reviews evidence from the Caretaker and manually submits the final damage fee.'

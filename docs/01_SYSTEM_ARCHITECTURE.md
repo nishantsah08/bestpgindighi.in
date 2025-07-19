@@ -1,6 +1,6 @@
 # 01 - System Architecture
 
-This document outlines the high-level architecture of the autonomous PG management system.
+This document outlines the high-level architecture of the autonomous management system. The system is owned by **"SVH Enterprise"** and this specific implementation is for the **"Best PG in Dighi"** brand.
 
 ## Core Communication: Model Context Protocol (MCP)
 

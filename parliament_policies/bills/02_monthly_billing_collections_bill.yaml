@@ -1,0 +1,18 @@
+# Defines the core logic for monthly billing.
+# Version 1.0
+
+billing_logic:
+  - type: 'event_driven_consolidation'
+  - description: 'The bill generation process must query for all billable events that occurred in the previous month for a given tenant and add them as line items to the base rent.'
+
+overpayment_policy:
+  - type: 'credit_adjustment'
+  - description: 'Overpayments are handled as a credit adjustment to the next month\'s bill.'
+
+duplicate_payment_policy:
+  - type: 'prevent'
+  - description: 'The system should prevent the recording of duplicate payments.'
+
+adjustment_policy:
+  - type: 'manual_creation'
+  - description: 'Financial adjustments can only be created manually by a user with the Sales role.'
