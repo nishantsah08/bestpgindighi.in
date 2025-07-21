@@ -14,4 +14,5 @@ core_principles:
   - 'The storage system must guarantee immutability and provide a clear audit trail for all documents.'
   - 'Access to sensitive tenant records is restricted to authorized personnel, as defined in the parameters file.'
   - 'The police verification acknowledgement PDF is considered a critical compliance document and must be stored permanently and immutably alongside other tenant records.'
+  - 'Call recordings and their associated transcripts are subject to the retention rules defined in the Customer Interaction & Call Management policy.'
   - 'Compliance-related information must never be deleted from the system, even after a tenant has offboarded.'

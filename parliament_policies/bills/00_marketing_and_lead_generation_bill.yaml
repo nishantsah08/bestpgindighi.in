@@ -8,6 +8,8 @@ versioning_policy:
   - data_impact: 'Changes to this policy do not affect historical tenant data.'
 
 parameters_file: '00_marketing_and_lead_generation_parameters.md'
+depends_on:
+  - 'parliament_policies/bills/10_customer_interaction_and_call_management_bill.yaml'
 
 lead_capture_channels:
   - description: 'Defines the approved channels for capturing new leads.'

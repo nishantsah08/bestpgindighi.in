@@ -8,6 +8,9 @@ To ensure a clear separation of concerns and to manage risk effectively, the min
 
 ### 1. Development Department
 - **Mandate:** To innovate and build the future. This department is responsible for designing new architecture, developing shared services (MCPs), and creating the blueprints for new infrastructure. All work is done in a non-production environment.
+- **Core Responsibilities**:
+    - Development and maintenance of the real-time Contact Sync MCP.
+    - Development and maintenance of the WhatsApp MCP.
 
 ### 2. Production Department
 - **Mandate:** To ensure the stability, security, and reliability of the live system. This department is responsible for managing production servers, databases, CI/CD pipelines, and deploying validated blueprints from the Development Department.
