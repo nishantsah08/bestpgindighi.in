@@ -19,6 +19,7 @@ revenue_recognition:
   - process: Manual Revenue Recording
     description: >
       All revenue from non-integrated sources must be recorded manually.
+    external_interface: WhatsApp Business API
     workflows:
       - actor: CEO
         channel: Internal System Portal
@@ -31,6 +32,7 @@ expense_management:
   - process: Conversational Expense Filing
     description: >
       All expenses are filed via a conversational AI workflow on WhatsApp.
+    external_interface: WhatsApp Business API
     actors: ["Owner"]
     workflow_steps:
       - "Trigger: Owner sends WhatsApp message (text, image, or combined)."

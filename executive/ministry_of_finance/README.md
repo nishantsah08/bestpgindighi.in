@@ -14,3 +14,7 @@ This Ministry is responsible for the complete financial integrity of the autonom
 ## 3. Primary Agent
 
 The work of this Ministry is carried out by the **Financial AI Agent**. This agent is responsible for executing all the conversational workflows, data processing, and ledger entries required to fulfill the ministry's mandate.
+
+## 4. Technical Implementation
+
+The Financial AI Agent receives all external communications via a secure webhook from the official **WhatsApp Business API**. Upon receiving a message, it translates the data from the API's format into the internal **Model Context Protocol (MCP)** to begin its processing workflow. All internal actions are handled via MCP.

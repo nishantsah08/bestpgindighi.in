@@ -85,7 +85,7 @@ The system is built around a set of core data models that represent key business
 
 ### Key Interaction Flows
 
-1.  **Financial Management:** The **Ministry of Finance**, via its **Financial AI Agent**, handles all expense and revenue recording through conversational workflows on WhatsApp. It is the source of truth for all financial data.
+1.  **Financial Management:** The **Ministry of Finance**, via its **Financial AI Agent**, handles all expense and revenue recording. It receives data from the outside world via the official **WhatsApp Business API** and then processes it internally using the Model Context Protocol (MCP).
 2.  **Lead Generation:** The **Public Website** serves as the primary channel for attracting new leads. Information from prospective tenants is captured and fed directly to the Onboarding Department (Dept C).
 3.  **Command & Control:** The CEO provides strategic direction and manages the system via the **Internal System Portal** and the **Native Mobile Suite**. These interfaces act as the primary human-computer interaction points for system management. The detailed blueprint for the portal is defined in `04_INTERNAL_SYSTEM_PORTAL_BLUEPRINT.md`.
 4.  **Policy & Execution:** The Parliament publishes policies to the MCP. The Departments read these policies and execute their tasks accordingly.

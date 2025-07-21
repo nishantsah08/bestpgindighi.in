@@ -52,3 +52,4 @@ This document outlines the test cases for the new and updated system components.
 | FIN-02 | Expense Filing | Complete the clarification dialogue and provide final confirmation. | The expense transaction should be correctly filed in the ledger. |
 | FIN-03 | Revenue Recognition | Send a correctly formatted WhatsApp message as the Sales role to record a rent payment. | The Financial AI should initiate the final confirmation dialogue. |
 | FIN-04 | Revenue Recognition | Reply "CONFIRM" to the revenue confirmation dialogue. | The revenue transaction should be correctly filed in the ledger. |
+| FIN-05 | API Integration | Send a mock webhook request, formatted exactly like one from the WhatsApp Business API, to the system's endpoint. | The system should correctly parse the request and trigger the appropriate internal MCP workflow. |

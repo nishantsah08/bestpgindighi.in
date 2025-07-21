@@ -14,3 +14,6 @@ To ensure a clear separation of concerns and to manage risk effectively, the min
 
 ### 2. Production Department
 - **Mandate:** To ensure the stability, security, and reliability of the live system. This department is responsible for managing production servers, databases, CI/CD pipelines, and deploying validated blueprints from the Development Department.
+- **Core Responsibilities**:
+    - Monitor the operational status and uptime of all internal systems.
+    - Monitor the health and performance of all external, third-party API integrations, including the WhatsApp Business API.

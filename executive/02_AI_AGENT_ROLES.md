@@ -62,7 +62,7 @@ The CEO is the ultimate authority in the system, with unique responsibilities th
 
 3.  **Vigilance AI:**
     *   **Role:** The system's security and integrity officer.
-    *   **Responsibilities:** Monitors for security breaches or policy violations and alerts the CEO.
+    *   **Responsibilities:** Monitors for internal security breaches or policy violations. It is also responsible for monitoring the security and integrity of all external API endpoints, such as the WhatsApp Business API webhook, and alerts the CEO to any suspicious activity.
 
 ### The Advisory Body
 
