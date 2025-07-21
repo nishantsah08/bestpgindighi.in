@@ -87,7 +87,7 @@ The system is built around a set of core data models that represent key business
 
 1.  **Financial Management:** The **Ministry of Finance**, via its **Financial AI Agent**, handles all expense and revenue recording through conversational workflows on WhatsApp. It is the source of truth for all financial data.
 2.  **Lead Generation:** The **Public Website** serves as the primary channel for attracting new leads. Information from prospective tenants is captured and fed directly to the Onboarding Department (Dept C).
-3.  **Command & Control:** The CEO provides strategic direction and manages the system via the **Internal System Portal** and the **Native Mobile Suite**. These interfaces act as the primary human-computer interaction points for system management.
+3.  **Command & Control:** The CEO provides strategic direction and manages the system via the **Internal System Portal** and the **Native Mobile Suite**. These interfaces act as the primary human-computer interaction points for system management. The detailed blueprint for the portal is defined in `04_INTERNAL_SYSTEM_PORTAL_BLUEPRINT.md`.
 4.  **Policy & Execution:** The Parliament publishes policies to the MCP. The Departments read these policies and execute their tasks accordingly.
 5.  **Oversight & Reporting:** The independent Auditor and Vigilance AIs monitor the system and report directly to the CEO, ensuring unbiased oversight. The Auditor AI has a specific mandate to audit the new Ministry of Finance.
 6.  **Exception Handling:** When a Department encounters an error it cannot solve, it refers the issue to the independent Judiciary AI for a binding resolution.
