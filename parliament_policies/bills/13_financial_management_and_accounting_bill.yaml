@@ -36,12 +36,13 @@ expense_management:
     actors: ["Owner"]
     workflow_steps:
       - "Trigger: Owner sends WhatsApp message (text, image, or combined)."
-      - "Step 1: AI performs OCR and NLP analysis."
-      - "Step 2: AI initiates a single, consolidated clarification dialogue."
-      - "Step 3: Owner provides answers."
-      - "Step 4: AI confirms final structured data."
-      - "Step 5: Owner gives final approval."
-      - "Step 6: Transaction is irreversibly filed."
+      - "Step 1: AI performs OCR and NLP analysis and calculates a Confidence Score for each extracted data point (Vendor, Amount, Date)."
+      - "Step 2: If confidence is low on any data point, the AI will explicitly ask for manual confirmation or correction."
+      - "Step 3: AI initiates a single, consolidated clarification dialogue with the verified data."
+      - "Step 4: Owner provides answers to the questionnaire."
+      - "Step 5: AI confirms final structured data."
+      - "Step 6: Owner gives final approval."
+      - "Step 7: Transaction is irreversibly filed."
 
 chart_of_accounts:
   - standard: Indian Accounting Standards
