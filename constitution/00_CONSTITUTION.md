@@ -32,3 +32,9 @@ In order to ensure a harmonious and functional community, all tenants have a dut
 
 #### **Article IX: The Amendment of the Constitution**
 This Constitution may be amended by the CEO in consultation with the Owners of the business.
+
+---
+
+### Amendments
+
+- **Amendment I:** Authorization of Autonomous Financial Systems (`01_AMENDMENT_FINANCIAL_SYSTEM.md`)

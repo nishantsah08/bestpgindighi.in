@@ -23,6 +23,15 @@ It is modeled after a democratic government to ensure a clear separation of powe
 4.  **The Judiciary (The "Arbiter"):**
     *   An independent judicial branch responsible for resolving errors, disputes, and unforeseen edge cases that the Executive branch cannot handle on its own.
 
+## Core System Components
+
+In addition to the governing bodies, the system is comprised of several key technical components:
+
+- **Public Website:** The primary marketing and lead-generation asset, built on Firebase Hosting.
+- **Internal System Portal:** A secure, web-based command center for the CEO to manage the entire system.
+- **Native Mobile Suite:** A set of three, role-specific Android applications (CEO, Sales, Caretaker) built in Kotlin for on-the-go operations.
+- **Ministry of Finance:** A new, autonomous executive ministry responsible for all financial recording and reporting, driven by a Financial AI Agent.
+
 ## Independent & Advisory Bodies
 
 To ensure accountability and strategic growth, the system also includes:

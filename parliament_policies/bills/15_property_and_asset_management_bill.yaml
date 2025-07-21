@@ -1,0 +1,33 @@
+# Bill to Define and Manage Properties and Assets
+version: 1.0
+policy_type: foundational
+
+status: DRAFT
+
+description: >
+  This bill defines the physical structure of the business's managed properties,
+  serving as the single source of truth for all physical assets.
+
+property_definitions:
+  - property_name: "Dighi Hills PG"
+    total_flats: 6
+    flat_type: "2BHK"
+    flats:
+      - flat_number: 101
+        status: "Operational"
+        beds: ["101A", "101B", "101C", "101D", "101E", "101F"]
+      - flat_number: 102
+        status: "Operational"
+        beds: ["102A", "102B", "102C", "102D", "102E", "102F"]
+      - flat_number: 201
+        status: "Expansion Ready"
+        beds: ["201A", "201B", "201C", "201D", "201E", "201F"]
+      - flat_number: 202
+        status: "Expansion Ready"
+        beds: ["202A", "202B", "202C", "202D", "202E", "202F"]
+      - flat_number: 301
+        status: "Expansion Ready"
+        beds: ["301A", "301B", "301C", "301D", "301E", "301F"]
+      - flat_number: 302
+        status: "Expansion Ready"
+        beds: ["302A", "302B", "302C", "302D", "302E", "302F"]

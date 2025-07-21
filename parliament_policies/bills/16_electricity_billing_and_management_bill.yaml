@@ -1,0 +1,43 @@
+# Bill to Define Electricity Billing and Management
+version: 1.0
+policy_type: operational
+
+status: DRAFT
+
+description: >
+  This bill defines the complete workflow for tenant electricity billing and
+  internal utility reconciliation.
+
+# 1. Tenant Utility Billing
+tenant_billing:
+  - process: Sub-Meter Reading
+    description: >
+      Tenant electricity bills are calculated based solely on sub-meter readings.
+    schedule: "A task is assigned to the Caretaker on the last Saturday of every month."
+    ocr_confidence_threshold: 0.95
+    correction_loop: >
+      Low-confidence OCR readings trigger a re-submission request to the Caretaker.
+      Escalates to CEO after 3 consecutive failures.
+    cost_calculation:
+      rate: 10
+      unit: "INR per kWh"
+      allocation: "Total flat cost is divided equally among the number of active occupants for the billing month."
+    estimation_fallback:
+      trigger: "A verified sub-meter reading is not available by the billing date (1st of the month)."
+      logic: "The system will use the consumption from the same month of the previous year for that specific flat."
+      approval_required: "The estimated consumption must be approved by the CEO or Sales via the mobile app or internal portal before the bill is generated."
+
+# 2. Internal Utility Reconciliation
+internal_reconciliation:
+  - process: Main Meter Verification
+    description: >
+      An internal audit process to compare tenant billing with the actual utility provider bill.
+    schedule: "Attempts will be made on alternate days during the last 4 days of the month."
+    external_source: "https://wss.mahadiscom.in/wss/wss?uiActionName=getViewPayBill"
+    meter_ids:
+      - "160237196101"
+      - "160234917371"
+      - "160234917363"
+    fallback_logic: >
+      If the website is unavailable, the process stops and a notification is sent to the CEO.
+      No estimation is performed for the main bill.

@@ -34,6 +34,10 @@ The system loads configuration in layers to prevent conflicts:
 2.  **Overrides from Database:** It then loads the current values set by the GUI from a configuration database.
 3.  **Merge:** The database values always overwrite the file defaults.
 
+## Implementation-Level Design Documents
+
+For any new, non-trivial component (e.g., a new MCP server, a complex mobile app feature), a dedicated implementation-level design document must be created. This document will detail the specific code structure, algorithms, and data flows, serving as a guide for development and a reference for future maintenance.
+
 ## Automated Deployment (CI/CD)
 
 Any code or policy change that is successfully validated and merged into the `main` branch will automatically trigger a deployment pipeline.
