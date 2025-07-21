@@ -14,7 +14,8 @@ depends_on:
 lead_capture_channels:
   - description: 'Defines the approved channels for capturing new leads.'
   - channels:
-      - 'Website Form'
+      - 'Public Website (Primary)'
+      - 'Targeted Landing Pages (AIT & Tata Communications)'
       - 'Third-Party Listings'
       - 'Referrals'
 

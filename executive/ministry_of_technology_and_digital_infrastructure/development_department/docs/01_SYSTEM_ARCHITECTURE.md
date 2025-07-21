@@ -29,16 +29,26 @@ graph TD
         DEPT_C(🏢 Dept C: Onboarding)
     end
 
+    subgraph "External Interfaces & Applications"
+        PublicWebsite[🌐 Public Website]
+        SystemPortal[🔒 Internal System Portal]
+        MobileSuite[📱 Native Mobile Suite <br> CEO, Sales, Caretaker Apps]
+    end
+
     %% Core Communication Bus
     MCP((🌐 Model Context Protocol <br> Central Bus))
 
     %% Flows
     CEO -- "Strategic Direction" --> CAB_SEC
-    CEO -- "Receives Reports & Advice" --- STRAT
-    CEO -- "Receives Audit Reports" --- AUDIT
-    CEO -- "Receives Security Alerts" --- VIGIL
+    CEO -- "Manages via" --> SystemPortal
+    CEO -- "Manages via" --> MobileSuite
 
     PARLIAMENT -- "Publishes Policies" --> MCP
+
+    PublicWebsite -- "Generates Leads" --> DEPT_C
+
+    SystemPortal -- "Interacts with" --> MCP
+    MobileSuite -- "Interacts with" --> MCP
 
     CAB_SEC -- "Reads Policies" --> MCP
     CAB_SEC -- "Issues Commands" --> DEPT_A
@@ -60,9 +70,18 @@ graph TD
     VIGIL -- "Monitors Entire System" ..-> MCP
 ```
 
+### Core Data Models
+
+The system is built around a set of core data models that represent key business entities.
+
+1.  **Tenants:** Represents all prospective, current, and past tenants. This model holds all customer-related information, including contact details, billing history, and communication logs.
+2.  **Vendors:** Represents all third-party service providers (e.g., electricians, plumbers, suppliers). This model stores vendor contact information, service history, and financial records like invoices and quotes.
+
 ### Key Interaction Flows
 
-1.  **Command & Control:** The CEO provides strategic direction to the Cabinet Secretary AI, which in turn reads policies from the MCP and directs the various Executive Departments.
-2.  **Policy & Execution:** The Parliament publishes policies to the MCP. The Departments read these policies and execute their tasks accordingly.
-3.  **Oversight & Reporting:** The independent Auditor and Vigilance AIs monitor the system and report directly to the CEO, ensuring unbiased oversight.
-4.  **Exception Handling:** When a Department encounters an error it cannot solve, it refers the issue to the independent Judiciary AI for a binding resolution.
+1.  **Lead Generation:** The **Public Website** serves as the primary channel for attracting new leads. Information from prospective tenants is captured and fed directly to the Onboarding Department (Dept C).
+2.  **Command & Control:** The CEO provides strategic direction and manages the system via the **Internal System Portal** and the **Native Mobile Suite**. These interfaces act as the primary human-computer interaction points for system management.
+3.  **Policy & Execution:** The Parliament publishes policies to the MCP. The Departments read these policies and execute their tasks accordingly.
+4.  **Oversight & Reporting:** The independent Auditor and Vigilance AIs monitor the system and report directly to the CEO, ensuring unbiased oversight.
+5.  **Exception Handling:** When a Department encounters an error it cannot solve, it refers the issue to the independent Judiciary AI for a binding resolution.
+6.  **Vendor Management:** The CEO manages all vendor relationships, including adding new vendors and logging interactions, primarily through the **CEO Mobile App** and the **Internal System Portal**.

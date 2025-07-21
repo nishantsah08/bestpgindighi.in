@@ -7,8 +7,18 @@ This document defines the specific roles and responsibilities of each AI agent w
 The human roles of Sales and Caretaker are the primary leads for the two ministries of the Executive Branch. Their responsibilities are clearly separated to ensure focus and accountability.
 
 - **The Hunter (Sales Role):** Responsible for all commercial activities that drive business growth. This includes marketing, sales, negotiating contracts, and managing all financial aspects of the tenant relationship (billing, collections, adjustments, and final settlements).
+    - **Key Duty:** During tenant off-boarding, the Sales role is responsible for using the **Sales Mobile App** to generate a Google Business Listing review link and personally requesting feedback from the tenant.
 
 - **The Farmer (Caretaker Role):** Responsible for retaining tenants and ensuring a high-quality living experience. This includes managing the physical property, responding to maintenance requests, handling on-site issues, and ensuring the property is secure and well-maintained.
+
+## The CEO Role
+
+The CEO is the ultimate authority in the system, with unique responsibilities that bridge strategic oversight and direct operational control.
+
+- **Vendor Management:** The CEO is solely responsible for managing all third-party vendor relationships. This includes adding new vendors, logging interactions, and managing financial records via the **CEO Mobile App** and the **Internal System Portal**.
+- **GBL Review Generation:** The CEO also participates in the GBL Review Flywheel, using the **CEO Mobile App** to generate review links during the final deposit refund conversation with off-boarding tenants.
+- **Strategic Direction:** The CEO sets the high-level strategy and direction for the entire autonomous system.
+
 
 ## The AI Civil Service
 
@@ -23,6 +33,18 @@ The human roles of Sales and Caretaker are the primary leads for the two ministr
     *   **Reports to:** The Cabinet Secretary AI.
     *   **Role:** The lead AI agent for a specific business domain within a Ministry.
     *   **Responsibilities:** Executes the tasks defined in its assigned business logic blueprints, manages its own resources, and reports status and metrics upwards.
+
+3.  **Transcription Agent:**
+    *   **Ministry:** Technology & Digital Infrastructure
+    *   **Description:** A specialized agent responsible for converting raw audio from call recordings into text transcripts.
+
+4.  **Information Extraction Agent:**
+    *   **Ministry:** Growth & Commerce
+    *   **Description:** This agent processes raw text (e.g., call transcripts, WhatsApp messages) to extract structured information and insights. It identifies customer needs, preferences, and key data points to auto-populate customer profiles.
+
+5.  **Contact Sync Agent:**
+    *   **Ministry:** Technology & Digital Infrastructure
+    *   **Description:** This agent is responsible for the real-time synchronization of customer contact information across all relevant platforms and devices, ensuring that all personnel have access to the most up-to-date contact details.
 
 ### The Independent Bodies
 

@@ -35,3 +35,23 @@ The system enforces a clear and fair process for late payments.
 - **Grace Period:** A 5-day grace period is provided after the due date.
 - **Late Fee:** A flat fee of ₹100 per day is applied from the 6th to the 10th of the month, capped at a maximum of ₹500.
 - **Escalation:** A multi-level escalation process (Caretaker -> Sales -> CEO) is automatically triggered if payment is not received by the 11th of the month.
+
+## 5. SEO & GBL Review Flywheel
+
+This process is designed to turn positive customer experiences into a sustainable marketing asset.
+
+- **Trigger:** The process is initiated during the tenant off-boarding, specifically at the point of the manual security deposit refund.
+- **Execution:** The CEO or a member of the Sales team, during the final conversation with the tenant, will personally request feedback.
+- **Tooling:** Using the **"Generate GBL Review Link"** feature within the Sales or CEO Mobile App, the user will generate a direct link to the Google Business Listing review page.
+- **Action:** The user sends this link directly to the tenant via WhatsApp, making it easy for the tenant to leave a review.
+- **Goal:** To create a continuous cycle of positive reviews, which boosts local search ranking and attracts new, high-quality leads.
+
+## 6. Vendor Information Management
+
+This process outlines the simple, centralized method for managing all third-party vendor information.
+
+- **Primary Tool:** The **CEO Mobile App** is the primary tool for adding and managing vendor data on the go.
+- **Data Entry:** The CEO can create a profile for any new vendor, capturing contact details, service category, and financial information.
+- **Interaction Logging:** All interactions, payments, and notes related to a vendor are logged against their profile, creating a complete activity history.
+- **Document Storage:** Invoices, quotes, and contracts can be uploaded as files directly to a vendor's profile from the CEO's phone.
+- **Central Repository:** The **Internal System Portal** provides a web-based view of the Vendor Directory, serving as a centralized database and a desktop alternative for the CEO.

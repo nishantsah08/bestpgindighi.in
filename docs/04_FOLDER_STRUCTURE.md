@@ -45,5 +45,12 @@ bestpgindighi-ai/
 │   ├── 04_FOLDER_STRUCTURE.md (this file)
 │   └── 05_BUSINESS_OPERATIONS_MODEL.md
 │
+├── 🌐 website/               # Source code for the public-facing website.
+│
+├── 📱 mobile_apps/            # Source code for the native Android application suite.
+│   ├── ceo_app/
+│   ├── sales_app/
+│   └── caretaker_app/
+│
 └── README.md                 # High-level project overview.
 ```

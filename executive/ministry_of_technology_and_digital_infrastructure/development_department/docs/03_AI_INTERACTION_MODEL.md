@@ -21,3 +21,28 @@ Every response from the AI must end with one of the following two signals, forma
 
 *   `model validation passed`: This indicates that the user's request is logically consistent with the model.
 *   `model validation failed`: This indicates that the user's request creates a logical contradiction. The AI will provide a detailed explanation of the conflict.
+
+## 5. Key Human-Computer Interaction Flows
+
+This section documents the primary user flows for new system features.
+
+### 5.1 GBL Review Generation
+
+- **Actor:** CEO or Sales Role
+- **Trigger:** During the manual off-boarding process of a tenant.
+- **Flow:**
+    1.  User opens the tenant's profile in the corresponding Mobile App (CEO or Sales App).
+    2.  User taps the **"Generate GBL Review Link"** button.
+    3.  The app generates the unique Google Business Listing review link and copies it to the device clipboard.
+    4.  User pastes the link into a WhatsApp message to the tenant.
+
+### 5.2 Vendor Profile Management
+
+- **Actor:** CEO Role
+- **Trigger:** Need to add a new vendor or log an interaction.
+- **Flow:**
+    1.  User opens the **CEO Mobile App**.
+    2.  User navigates to the **Vendor Directory** section.
+    3.  To add a new vendor, user taps **"+ Add New Vendor"** and fills out the profile form.
+    4.  To log an interaction, user selects an existing vendor, taps **"Add Log Entry"**, and types the note.
+    5.  To add a document, user selects an existing vendor, taps **"Upload File"**, and selects the file (e.g., a photo of an invoice) from their phone.

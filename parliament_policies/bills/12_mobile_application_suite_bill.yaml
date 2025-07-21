@@ -1,0 +1,48 @@
+# Bill to Authorize the Native Mobile Application Suite
+version: 1.0
+policy_type: foundational
+
+status: DRAFT
+
+description: >
+  This bill authorizes the creation of a suite of native Android mobile applications
+  to serve as the primary operational tools for the CEO, Sales, and Caretaker roles.
+  It mandates the core technology and defines the specific purpose and feature set
+  for each application.
+
+technology_mandate:
+  platform: Native Android
+  language: Kotlin
+  authentication: Google Login
+
+application_definitions:
+  - app_name: CEO App
+    purpose: >
+      A high-level dashboard for monitoring business health, performing critical,
+      time-sensitive actions, and managing all vendor relationships on the go.
+    core_features:
+      - High-level business metrics dashboard
+      - Critical action/approval queue
+      - Full Vendor Directory (add, view, edit, upload files, log interactions)
+
+  - app_name: Sales App
+    purpose: >
+      A focused tool to monitor the automated sales pipeline and handle key human
+      touchpoints during the customer lifecycle.
+    core_features:
+      - Automated workflow monitoring (leads, onboarding)
+      - Exception handling and approval notifications
+      - Initiation of communication via WhatsApp
+      - GBL Review Link generation tool
+
+  - app_name: Caretaker App
+    purpose: >
+      A single-function tool for on-site visual documentation.
+    core_features:
+      - Geotagged and timestamped camera for photos and videos
+
+universal_features:
+  - description: >
+      Features that apply to all three applications.
+  - features:
+      - Automated background contact synchronization
