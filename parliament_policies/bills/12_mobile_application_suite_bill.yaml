@@ -21,9 +21,18 @@ application_definitions:
       A high-level dashboard for monitoring business health, performing critical,
       time-sensitive actions, and managing all vendor relationships on the go.
     core_features:
-      - High-level business metrics dashboard
-      - Critical action/approval queue
+      - Risk-Oriented Dashboard (Compliance, Financial, Reputation, Key Person)
       - Full Vendor Directory (add, view, edit, upload files, log interactions)
+      - Critical action/approval queue
+    required_mcp_capabilities:
+      - getPendingRentReport
+      - getComplianceStatusReport
+      - snoozeComplianceAlert
+      - getCustomerComplaintsReport
+      - snoozeComplaint
+      - getTotalCashAtHand
+      - getProjectedRevenueNextMonth
+      - getLeadFunnelReport
 
   - app_name: Sales App
     purpose: >

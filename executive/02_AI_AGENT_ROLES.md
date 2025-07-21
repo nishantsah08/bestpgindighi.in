@@ -64,8 +64,13 @@ The CEO is the ultimate authority in the system, with unique responsibilities th
     *   **Role:** The system's security and integrity officer.
     *   **Responsibilities:** Monitors for internal security breaches or policy violations. It is also responsible for monitoring the security and integrity of all external API endpoints, such as the WhatsApp Business API webhook, and alerts the CEO to any suspicious activity.
 
-### The Advisory Body
+### The Advisory Body (NITI-Aayog)
 
-1.  **Strategy & Planning AI:**
-    *   **Role:** The system's long-term strategic think tank.
-    *   **Responsibilities:** Analyzes long-term data, including the new financial statements from the **Ministry of Finance**, to forecast trends and propose new strategic goals to the human CEO.
+1.  **Independent Risk Advisory AI:**
+    *   **Role:** The system's independent strategic think tank, modeled after NITI Aayog. Its primary mandate is to identify, analyze, and propose mitigation strategies for the four critical inversion risks that could break the business.
+    *   **Responsibilities:**
+        - **Compliance Risk:** Monitors trends in pending compliance tasks.
+        - **Financial Risk:** Analyzes financial statements and rent payment trends to forecast cash flow issues.
+        - **Reputation Risk:** Monitors customer complaint trends and lead conversion rates to identify potential damage to the GBL reputation.
+        - **Key Person Risk:** Monitors operational load (e.g., complaint volume) as a proxy for caretaker stress.
+        - **Proactive Reporting:** Proactively alerts the CEO with strategic advisories when negative trends are detected.
