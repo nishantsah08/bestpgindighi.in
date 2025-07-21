@@ -1,31 +1,29 @@
 # 05 - Business Operations Model
 
-This document details key operational workflows and discretionary processes.
+This document outlines the core operational logic for the business, focusing on the customer lifecycle from onboarding to offboarding.
 
-## Complaint Escalation Hierarchy
+## 1. Tenant Onboarding & Initial Payments
 
-This defines the path for resolving all complaints to ensure timely and appropriate handling.
+The onboarding process is designed to be flexible while managing financial risk.
 
-1.  **Intake:** An Intake AI performs intent classification on all incoming complaints, regardless of channel (WhatsApp, App, etc.).
-2.  **Initial Assignment (Automated):**
-    *   If the intent is related to the physical property or on-site experience (e.g., maintenance, cleaning, noise), the complaint is assigned to the **Caretaker**.
-    *   If the intent is related to financial or contractual matters (e.g., billing, rent, agreements), the complaint is assigned to **Sales**.
-3.  **Manual Escalation Path:**
-    *   The initial owner (Caretaker or Sales) attempts to resolve the issue.
-    *   If they cannot, they can escalate it. A Caretaker-escalated issue goes to Sales.
-    *   If Sales cannot resolve an issue (either originally assigned or escalated), they can escalate it to the **CEO**.
-4.  **Staff Complaints:** Any complaint originating from a staff member (Caretaker or Sales) is assigned directly to the **CEO**.
+- **Ideal Scenario:** The booking is secured by collecting the full first month's rent and the full security deposit in advance.
+- **Standard Flexibility:** If the full deposit cannot be paid upfront, the system allows the collection of the full first month's rent to secure the booking. The deposit can then be paid in installments, with the full amount due by the 5th of the following month.
+- **Short-Term Holds:** In exceptional cases, the Sales team has the discretion to hold a booking for a short period with a minimum advance payment (e.g., ₹2000 for 1 day, ₹3000 for 2 days). The full rent must be paid within this hold period.
 
-## Discretionary Actions
+## 2. Monthly Billing & Collections
 
-Certain actions are not fully automated and require manual judgment from a specific, authorized role.
+The billing process is automated and designed for clarity and consistency.
 
-*   **Financial Adjustments:**
-    *   **Action:** Creating a non-cash credit/debit adjustment on a tenant's bill.
-    *   **Authorized Role:** Sales.
-    *   **Process:** The Sales role manually initiates the adjustment via the Admin Portal. The system then automatically applies this adjustment to the next billing cycle.
+- **Billing Cycle:** Bills are generated on the last day of each month and are due by the 5th of the following month.
+- **Proration:** For tenants who join mid-month, the first month's rent is collected in full. A credit for the unused days is automatically applied to the second month's bill.
+- **Rent Refunds:** Rent payments are non-refundable.
+- **Bill Composition:** Bills are itemized and can include base rent, electricity, fines, adjustments, discounts, and any outstanding balance from previous months.
+- **Communication:** All bills and payment reminders are delivered exclusively via WhatsApp.
 
-*   **Damage Assessment & Fees:**
-    *   **Action:** Assessing the cost of damages during tenant offboarding.
-    *   **Authorized Role:** Sales.
-    *   **Process:** The Caretaker provides photographic/audio evidence. The Sales role reviews the evidence and manually inputs the final damage fee into the system.
+## 3. Late Fees & Escalation
+
+The system enforces a clear and fair process for late payments.
+
+- **Grace Period:** A 5-day grace period is provided after the due date.
+- **Late Fee:** A flat fee of ₹100 per day is applied from the 6th to the 10th of the month, capped at a maximum of ₹500.
+- **Escalation:** A multi-level escalation process (Caretaker -> Sales -> CEO) is automatically triggered if payment is not received by the 11th of the month.

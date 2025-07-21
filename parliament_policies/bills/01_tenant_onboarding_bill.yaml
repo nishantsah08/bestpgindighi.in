@@ -1,18 +1,20 @@
 # Defines the core logic for tenant onboarding.
-version: 2.0
+version: 2.1 # Minor update to reflect new details
 policy_type: operational
 
 versioning_policy:
   - type: 'semantic_versioning_with_data_link'
-  - description: 'This policy follows semantic versioning. Each tenant record must be linked to the specific version of the onboarding policy that was active when they were onboarded.'
-  - data_impact: 'Changes to this policy require a new version. The system must be able to handle processes defined by previous versions for auditing purposes.'
+    description: 'This policy follows semantic versioning. Each tenant record must be linked to the specific version of the onboarding policy that was active when they were onboarded.'
+    data_impact: 'Changes to this policy require a new version. The system must be able to handle processes defined by previous versions for auditing purposes.'
 
 parameters_file: '01_tenant_onboarding_parameters.md'
+depends_on:
+  - 'parliament_policies/bills/02_monthly_billing_collections_bill.yaml'
 
 onboarding_process:
   - type: 'state_machine'
-  - description: 'The tenant onboarding process is managed as a state machine, with transitions triggered by specific events.'
-  - states:
+    description: 'The tenant onboarding process is managed as a state machine, with transitions triggered by specific events.'
+    states:
       - 'lead'
       - 'booking_secured'
       - 'documents_submitted'
@@ -21,5 +23,7 @@ onboarding_process:
       - 'moved_in'
 
 core_principles:
-  - 'A booking is only secured upon receipt of a minimum advance rent payment.'
-  - 'A tenant cannot move in until all mandatory documents are submitted, the full deposit is paid, and the rent agreement is signed.'
+  - 'A booking is considered secured when the conditions defined in the Booking & Initial Payment Flexibility Policy are met (e.g., minimum advance paid).'
+  - 'The transition to `ready_for_agreement` requires the full first month''s rent to be paid.'
+  - 'A tenant cannot move in until all mandatory documents are submitted, the full security deposit is paid (or a payment plan is approved), and the rent agreement is signed.'
+  - 'The specific amounts, deadlines, and tiers for initial payments are defined in the referenced Monthly Billing & Collections policy.'

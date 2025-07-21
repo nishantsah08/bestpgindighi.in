@@ -1,15 +1,19 @@
 # Defines the rules for managing security deposits.
-version: 2.0
+version: 2.1 # Minor update to reflect new details
 policy_type: financial
 
 versioning_policy:
   - type: 'semantic_versioning_with_data_link'
-  - description: 'This policy follows semantic versioning. Each tenant''s security deposit record must be linked to the policy version active during their tenancy.'
-  - data_impact: 'Changes to this policy require a new version. The system must be able to process refunds and adjustments based on the rules that were in place when the deposit was paid.'
+    description: 'This policy follows semantic versioning. Each tenant''s security deposit record must be linked to the policy version active during their tenancy.'
+    data_impact: 'Changes to this policy require a new version. The system must be able to process refunds and adjustments based on the rules that were in place when the deposit was paid.'
 
 parameters_file: '08_security_deposit_management_parameters.md'
+depends_on:
+  - 'parliament_policies/bills/02_monthly_billing_collections_bill.yaml'
+  - 'parliament_policies/bills/05_tenant_offboarding_bill.yaml'
 
 core_principles:
-  - 'The security deposit can be paid in installments, with the terms defined in the parameters file.'
+  - 'The collection of the security deposit is governed by the rules in the Booking & Initial Payment Flexibility Policy, including rules for installment payments and deadlines.'
   - 'The system must clearly distinguish between a cash-out refund of a deposit and a non-cash credit adjustment.'
-  - 'The conditions for deduction from the security deposit (e.g., for damages) are outlined in the parameters file and linked to the Tenant Offboarding policy.'
+  - 'The conditions for deduction from the security deposit (e.g., for damages) are determined during the offboarding process and are linked to the Tenant Offboarding policy.'
+  - 'Any outstanding deposit amount will be reflected as `pending_deposit` in the monthly billing cycle.'
