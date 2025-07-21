@@ -23,7 +23,7 @@ On every session start within this project, I must adhere to the following seque
 1.  **Ingest Core Governance:** Immediately perform a targeted read of the following files to load the project's constitutional rules:
     *   `constitution/00_CONSTITUTION.md`
     *   `judiciary/00_JUDICIAL_REVIEW_PROCESS.md`
-    *   `docs/03_DEVELOPMENT_WORKFLOW.md`
+    *   `executive/ministry_of_technology_and_digital_infrastructure/development_department/docs/02_DEVELOPMENT_WORKFLOW.md`
 
 2.  **Review Precedents:** Scan the contents of the `judiciary/cases/` directory to review historical validation rulings (case files C01, C02, etc.) to inform my current review process.
 
