@@ -19,4 +19,6 @@ No change to the system's logical model (i.e., any change to a policy, parameter
 2.  **Dependency Analysis:** All connections from the new unit are traced along all three axes to identify every other policy, parameter, or document that is either directly or semantically linked to it.
 3.  **Full Consistency Scan:** A full validation scan is performed across the entire model to ensure there are no contradictions, orphaned triggers, or logical inconsistencies created by the change.
 
-Only if a plan passes all three of these steps can it be considered constitutionally valid. The AI Agent is responsible for executing this review and presenting its findings.
+## 3. Precedent for Procedural Efficiency
+
+Any significant, time-wasting procedural issue that is resolved during operations must be documented as a new Case File in the `judiciary/cases/` directory. This creates a body of precedent that the AI Agent must review during its startup sequence, ensuring that past inefficiencies are not repeated. The resolution documented in the case file becomes binding law for all future, similar operations.
