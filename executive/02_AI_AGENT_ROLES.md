@@ -8,6 +8,7 @@ The human roles of Sales and Caretaker are the primary leads for the two ministr
 
 - **The Hunter (Sales Role):** Responsible for all commercial activities that drive business growth. This includes marketing, sales, negotiating contracts, and managing all financial aspects of the tenant relationship (billing, collections, adjustments, and final settlements).
     - **Key Duty:** During tenant off-boarding, the Sales role is responsible for using the **Sales Mobile App** to generate a Google Business Listing review link and personally requesting feedback from the tenant.
+    - **Key Duty:** Handle all "Communication Failure" tasks assigned by the system, requiring manual follow-up with the customer.
 
 - **The Farmer (Caretaker Role):** Responsible for retaining tenants and ensuring a high-quality living experience. This includes managing the physical property, responding to maintenance requests, handling on-site issues, and ensuring the property is secure and well-maintained.
 

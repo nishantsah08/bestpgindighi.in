@@ -26,6 +26,7 @@ This document is the central, technical registry for all MCP capabilities expose
 
 - **`getCustomerComplaintsReport`**: Returns a list of recent, unresolved customer complaints.
 - **`snoozeComplaint`**: Marks a specific complaint as snoozed for a given period.
+- **`sendMessage`**: Sends a message to a specified recipient using the appropriate channel and language.
 
 ## 5. Vendor Management Server
 

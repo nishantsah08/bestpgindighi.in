@@ -53,3 +53,11 @@ This document outlines the test cases for the new and updated system components.
 | FIN-03 | Revenue Recognition | Send a correctly formatted WhatsApp message as the Sales role to record a rent payment. | The Financial AI should initiate the final confirmation dialogue. |
 | FIN-04 | Revenue Recognition | Reply "CONFIRM" to the revenue confirmation dialogue. | The revenue transaction should be correctly filed in the ledger. |
 | FIN-05 | API Integration | Send a mock webhook request, formatted exactly like one from the WhatsApp Business API, to the system's endpoint. | The system should correctly parse the request and trigger the appropriate internal MCP workflow. |
+
+## 5. Communication Strategy
+
+| Test Case ID | Component | Test Description | Expected Result |
+| :--- | :--- | :--- | :--- |
+| COM-01 | Language Detection | Send an initial message in Hindi to the system. | The user's `language_preference` should be set to 'hi'. |
+| COM-02 | Language Detection | Send an ambiguous, mixed-language initial message. | The user's `language_preference` should default to 'en'. |
+| COM-03 | Failed Delivery | Simulate a failed message delivery from the WhatsApp API. | A "Communication Failure" task should be created in the Sales action queue in the portal. |

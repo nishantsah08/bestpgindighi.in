@@ -44,7 +44,7 @@ This document outlines the structural blueprint and feature set for the CEO's In
 
 #### 3.3 Ministry of Growth & Commerce (Sales)
 - **Purpose:** To monitor the performance of the sales and marketing functions.
-- **Components:** Lead Funnel Visual, Tenant Onboarding Status, Revenue Analytics, and the **GBL Review Link Generator** tool.
+- **Components:** Lead Funnel Visual, Tenant Onboarding Status, Revenue Analytics, the **GBL Review Link Generator** tool, and an **Action Queue** for handling tasks like "Communication Failure" alerts.
 
 #### 3.4 Ministry of Property & Tenant Welfare (Caretaker)
 - **Purpose:** To monitor the operational health of the physical properties.

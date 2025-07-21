@@ -30,6 +30,7 @@ This document defines the schema for the primary data collections stored in Fire
     - `flat_number` (String)
     - `bed_id` (String)
     - `status` (String: "Active", "Inactive", "Lead")
+    - `language_preference` (String: "en", "hi", "mr", optional)
     - `snoozed_alerts` (Map)
 
 ### `vendors`
