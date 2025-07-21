@@ -38,9 +38,9 @@ The system loads configuration in layers to prevent conflicts:
 
 For any new, non-trivial component (e.g., a new MCP server, a complex mobile app feature), a dedicated implementation-level design document must be created. This document will detail the specific code structure, algorithms, and data flows, serving as a guide for development and a reference for future maintenance.
 
-## Implementation-Level Design Documents
+## Cost Impact Analysis
 
-For any new, non-trivial component (e.g., a new MCP server, a complex mobile app feature), a dedicated implementation-level design document must be created. This document will detail the specific code structure, algorithms, and data flows, serving as a guide for development and a reference for future maintenance.
+All new architectural proposals must include a "Cost Impact Statement" that demonstrates adherence to the `17_COST_OPTIMIZATION_STRATEGY.yaml` policy.
 
 ## Automated Deployment (CI/CD)
 

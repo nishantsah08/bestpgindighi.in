@@ -1,0 +1,35 @@
+# Bill to Define the System-Wide Cost Optimization Strategy
+version: 1.0
+policy_type: foundational
+
+status: DRAFT
+
+description: >
+  This bill establishes the foundational economic principles for all architectural
+  and deployment decisions. The primary goal is to maintain a near-zero operational
+  cost while delivering full functionality.
+
+principles:
+  - principle: Free Tier First
+    description: >
+      For any new service, component, or dependency, solutions with a substantial
+      and sufficient free tier must be evaluated and prioritized over solutions
+      with immediate or fixed recurring costs.
+
+  - principle: Serverless Over Servers
+    description: >
+      On-demand, serverless architectures (e.g., Google Cloud Functions) shall be
+      the default choice over always-on, provisioned virtual machines. This minimizes
+      cost by eliminating payment for idle compute time.
+
+  - principle: Efficiency in Design
+    description: >
+      All new features and MCP capabilities must be designed to be resource-efficient.
+      This includes minimizing unnecessary database reads, optimizing data storage structures,
+      and writing efficient code.
+
+  - principle: Justification for Paid Services
+    description: >
+      Moving any component from a free tier to a paid tier requires a formal
+      cost-benefit analysis to be documented and approved by the CEO. The analysis
+      must prove that the expected business value significantly outweighs the new cost.

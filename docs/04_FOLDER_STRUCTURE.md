@@ -56,4 +56,3 @@ bestpgindighi-ai/
 │   └── caretaker_app/
 │
 └── README.md                 # High-level project overview.
-```

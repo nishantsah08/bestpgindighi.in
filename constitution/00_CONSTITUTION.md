@@ -38,9 +38,4 @@ This Constitution may be amended by the CEO in consultation with the Owners of t
 ### Amendments
 
 - **Amendment I:** Authorization of Autonomous Financial Systems (`01_AMENDMENT_FINANCIAL_SYSTEM.md`)
-
----
-
-### Amendments
-
-- **Amendment I:** Authorization of Autonomous Financial Systems (`01_AMENDMENT_FINANCIAL_SYSTEM.md`)
+- **Amendment II:** Authorization of Employee Data Analysis for Risk Management (`02_AMENDMENT_EMPLOYEE_DATA_ANALYSIS.md`)
