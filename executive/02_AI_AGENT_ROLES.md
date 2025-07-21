@@ -46,6 +46,10 @@ The CEO is the ultimate authority in the system, with unique responsibilities th
     *   **Ministry:** Technology & Digital Infrastructure
     *   **Description:** This agent is responsible for the real-time synchronization of customer contact information across all relevant platforms and devices, ensuring that all personnel have access to the most up-to-date contact details.
 
+6.  **Financial AI Agent:**
+    *   **Ministry:** Finance
+    *   **Description:** This agent is responsible for managing all financial transactions. It uses conversational AI to process expense and revenue reports via WhatsApp, ensuring all data is accurate and complete before committing it to the general ledger. It is the engine that drives the real-time financial statements.
+
 ### The Independent Bodies
 
 1.  **Judiciary AI:**
@@ -54,7 +58,7 @@ The CEO is the ultimate authority in the system, with unique responsibilities th
 
 2.  **Auditor AI:**
     *   **Role:** The system's independent performance and financial watchdog.
-    *   **Responsibilities:** Proactively audits departments for policy compliance, efficiency, and resource waste, reporting directly to the CEO.
+    *   **Responsibilities:** Proactively audits all executive departments and ministries, including the new **Ministry of Finance**, for policy compliance, efficiency, and resource waste, reporting directly to the CEO.
 
 3.  **Vigilance AI:**
     *   **Role:** The system's security and integrity officer.
@@ -64,4 +68,4 @@ The CEO is the ultimate authority in the system, with unique responsibilities th
 
 1.  **Strategy & Planning AI:**
     *   **Role:** The system's long-term strategic think tank.
-    *   **Responsibilities:** Analyzes long-term data, forecasts trends, and proposes new strategic goals to the human CEO.
+    *   **Responsibilities:** Analyzes long-term data, including the new financial statements from the **Ministry of Finance**, to forecast trends and propose new strategic goals to the human CEO.

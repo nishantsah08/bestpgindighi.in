@@ -1,0 +1,49 @@
+# Bill to Establish the Ministry of Finance and Define Financial Policy
+version: 1.0
+policy_type: foundational
+
+status: DRAFT
+
+description: >
+  This bill formally establishes the Ministry of Finance and defines the immutable
+  policies that govern all financial operations within the system.
+
+core_principles:
+  - principle: Controlled Correction via Reversal
+    description: >
+      No financial transaction can ever be deleted. Errors must be corrected via a
+      CEO-authorized, fully audited reversal process, which creates a new reversing
+      entry and a new correct entry, preserving a complete transaction history.
+
+revenue_recognition:
+  - process: Manual Revenue Recording
+    description: >
+      All revenue from non-integrated sources must be recorded manually.
+    workflows:
+      - actor: CEO
+        channel: Internal System Portal
+        methods: ["Manual UPI", "Manual Cash"]
+      - actor: Sales
+        channel: WhatsApp
+        methods: ["Manual UPI", "Manual Cash"]
+
+expense_management:
+  - process: Conversational Expense Filing
+    description: >
+      All expenses are filed via a conversational AI workflow on WhatsApp.
+    actors: ["Owner"]
+    workflow_steps:
+      - "Trigger: Owner sends WhatsApp message (text, image, or combined)."
+      - "Step 1: AI performs OCR and NLP analysis."
+      - "Step 2: AI initiates a single, consolidated clarification dialogue."
+      - "Step 3: Owner provides answers."
+      - "Step 4: AI confirms final structured data."
+      - "Step 5: Owner gives final approval."
+      - "Step 6: Transaction is irreversibly filed."
+
+chart_of_accounts:
+  - standard: Indian Accounting Standards
+  - description: >
+      The system will use a standard, best-practice Chart of Accounts for a property
+      management business, compliant with Indian accounting standards. The full chart
+      will be maintained as a separate configuration file.

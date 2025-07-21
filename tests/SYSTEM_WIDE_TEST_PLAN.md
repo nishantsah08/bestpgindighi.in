@@ -18,6 +18,8 @@ This document outlines the test cases for the new and updated system components.
 | PORTAL-01 | Login | Verify that only the designated CEO Google account can successfully log in. | Successful login for CEO; access denied for all other accounts. |
 | PORTAL-02 | GBL Tool | Test the "Generate GBL Review Link" button to ensure it produces a valid and correct URL. | A valid Google Business Listing review URL is generated. |
 | PORTAL-03 | Vendor Directory | Verify that the CEO can view the list of vendors. | Vendor list displays correctly. |
+| PORTAL-04 | Finance | Verify that the P&L, Balance Sheet, and Cash Flow statements load and display data. | Financial statements are visible and populated. |
+| PORTAL-05 | Finance | Test the Transaction Correction feature to ensure it creates a correct reversal entry. | A new, negative transaction is created, and the original is marked as corrected. |
 
 ## 3. Native Mobile Application Suite
 
@@ -41,3 +43,12 @@ This document outlines the test cases for the new and updated system components.
 | :--- | :--- | :--- | :--- |
 | CARE-APP-01 | Camera | Test the camera feature to ensure it captures photos and videos with the correct geotag and timestamp. | Media is captured and saved with the correct metadata. |
 | CARE-APP-02 | Role Access | Attempt to access features outside the Caretaker role's permissions (e.g., GBL Tool, Vendor Directory). | Access is denied. |
+
+## 4. Ministry of Finance (WhatsApp Workflow)
+
+| Test Case ID | Component | Test Description | Expected Result |
+| :--- | :--- | :--- | :--- |
+| FIN-01 | Expense Filing | Send a WhatsApp message with an invoice image to the system. | The Financial AI should initiate the clarification dialogue. |
+| FIN-02 | Expense Filing | Complete the clarification dialogue and provide final confirmation. | The expense transaction should be correctly filed in the ledger. |
+| FIN-03 | Revenue Recognition | Send a correctly formatted WhatsApp message as the Sales role to record a rent payment. | The Financial AI should initiate the final confirmation dialogue. |
+| FIN-04 | Revenue Recognition | Reply "CONFIRM" to the revenue confirmation dialogue. | The revenue transaction should be correctly filed in the ledger. |

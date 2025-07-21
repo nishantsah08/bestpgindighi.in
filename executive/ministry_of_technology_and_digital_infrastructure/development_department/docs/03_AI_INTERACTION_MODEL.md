@@ -46,3 +46,27 @@ This section documents the primary user flows for new system features.
     3.  To add a new vendor, user taps **"+ Add New Vendor"** and fills out the profile form.
     4.  To log an interaction, user selects an existing vendor, taps **"Add Log Entry"**, and types the note.
     5.  To add a document, user selects an existing vendor, taps **"Upload File"**, and selects the file (e.g., a photo of an invoice) from their phone.
+
+### 5.3 Financial Workflows (Conversational AI)
+
+- **Actor:** Financial AI Agent, CEO, Sales Role
+- **Channel:** WhatsApp
+
+#### Expense Filing Flow
+
+- **Trigger:** Owner sends a message (text, image, or combined) to the system.
+- **Flow:**
+    1.  Financial AI performs OCR/NLP analysis on the message.
+    2.  Financial AI responds with a single, consolidated clarification questionnaire.
+    3.  Owner replies to the questionnaire.
+    4.  Financial AI summarizes the structured data and asks for final confirmation.
+    5.  Owner confirms, and the transaction is filed.
+
+#### Revenue Recognition Flow
+
+- **Trigger:** CEO or Sales sends a structured message to record a rent payment.
+- **Flow:**
+    1.  Financial AI parses the message.
+    2.  Financial AI responds with a final confirmation message, stating the details and that the action is irreversible.
+    3.  User replies with "CONFIRM".
+    4.  The transaction is filed.

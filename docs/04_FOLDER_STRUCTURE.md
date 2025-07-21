@@ -16,14 +16,8 @@ bestpgindighi-ai/
 │   └── 03_DEVELOPMENT_WORKFLOW.md # The legislative process document.
 │
 ├── 🚀 executive/             # The "How": AI agents that run the business.
-│   ├── growth_and_commerce/      # The "Hunter" Ministry (Sales-led).
+│   ├── ministry_of_finance/      # The "Finance" Ministry.
 │   │   └── README.md
-│   ├── property_and_tenant_welfare/ # The "Farmer" Ministry (Caretaker-led).
-│   │   └── README.md
-│   ├── 02_AI_AGENT_ROLES.md    # Describes the roles of the AI "civil service".
-│   └── README.md             # Explains the two-ministry structure.
-│
-├── 🚀 executive/             # The "How": AI agents that run the business.
 │   ├── growth_and_commerce/      # The "Hunter" Ministry (Sales-led).
 │   │   └── README.md
 │   ├── property_and_tenant_welfare/ # The "Farmer" Ministry (Caretaker-led).

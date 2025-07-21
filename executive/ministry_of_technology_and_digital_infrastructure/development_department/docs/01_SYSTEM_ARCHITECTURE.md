@@ -24,6 +24,7 @@ graph TD
 
     subgraph "Executive Branch"
         CAB_SEC(🤖 Cabinet Secretary AI)
+        FIN_MIN(💰 Ministry of Finance)
         DEPT_A(🏢 Dept A: Billing)
         DEPT_B(🏢 Dept B: Maintenance)
         DEPT_C(🏢 Dept C: Onboarding)
@@ -54,11 +55,14 @@ graph TD
     CAB_SEC -- "Issues Commands" --> DEPT_A
     CAB_SEC -- "Issues Commands" --> DEPT_B
     CAB_SEC -- "Issues Commands" --> DEPT_C
+    CAB_SEC -- "Issues Commands" --> FIN_MIN
 
+    FIN_MIN -- "Executes Financial Tasks" --> MCP
     DEPT_A -- "Executes Tasks" --> MCP
     DEPT_B -- "Executes Tasks" --> MCP
     DEPT_C -- "Executes Tasks" --> MCP
 
+    FIN_MIN -- "Refers Edge Cases" --> JUD
     DEPT_A -- "Refers Edge Cases" --> JUD
     DEPT_B -- "Refers Edge Cases" --> JUD
     DEPT_C -- "Refers Edge Cases" --> JUD
@@ -67,6 +71,7 @@ graph TD
     AUDIT -- "Audits Departments" ..-> DEPT_A
     AUDIT -- "Audits Departments" ..-> DEPT_B
     AUDIT -- "Audits Departments" ..-> DEPT_C
+    AUDIT -- "Audits Ministry" ..-> FIN_MIN
     VIGIL -- "Monitors Entire System" ..-> MCP
 ```
 
@@ -76,12 +81,14 @@ The system is built around a set of core data models that represent key business
 
 1.  **Tenants:** Represents all prospective, current, and past tenants. This model holds all customer-related information, including contact details, billing history, and communication logs.
 2.  **Vendors:** Represents all third-party service providers (e.g., electricians, plumbers, suppliers). This model stores vendor contact information, service history, and financial records like invoices and quotes.
+3.  **General Ledger:** The central, immutable record of all financial transactions (revenue and expenses) within the system.
 
 ### Key Interaction Flows
 
-1.  **Lead Generation:** The **Public Website** serves as the primary channel for attracting new leads. Information from prospective tenants is captured and fed directly to the Onboarding Department (Dept C).
-2.  **Command & Control:** The CEO provides strategic direction and manages the system via the **Internal System Portal** and the **Native Mobile Suite**. These interfaces act as the primary human-computer interaction points for system management.
-3.  **Policy & Execution:** The Parliament publishes policies to the MCP. The Departments read these policies and execute their tasks accordingly.
-4.  **Oversight & Reporting:** The independent Auditor and Vigilance AIs monitor the system and report directly to the CEO, ensuring unbiased oversight.
-5.  **Exception Handling:** When a Department encounters an error it cannot solve, it refers the issue to the independent Judiciary AI for a binding resolution.
-6.  **Vendor Management:** The CEO manages all vendor relationships, including adding new vendors and logging interactions, primarily through the **CEO Mobile App** and the **Internal System Portal**.
+1.  **Financial Management:** The **Ministry of Finance**, via its **Financial AI Agent**, handles all expense and revenue recording through conversational workflows on WhatsApp. It is the source of truth for all financial data.
+2.  **Lead Generation:** The **Public Website** serves as the primary channel for attracting new leads. Information from prospective tenants is captured and fed directly to the Onboarding Department (Dept C).
+3.  **Command & Control:** The CEO provides strategic direction and manages the system via the **Internal System Portal** and the **Native Mobile Suite**. These interfaces act as the primary human-computer interaction points for system management.
+4.  **Policy & Execution:** The Parliament publishes policies to the MCP. The Departments read these policies and execute their tasks accordingly.
+5.  **Oversight & Reporting:** The independent Auditor and Vigilance AIs monitor the system and report directly to the CEO, ensuring unbiased oversight. The Auditor AI has a specific mandate to audit the new Ministry of Finance.
+6.  **Exception Handling:** When a Department encounters an error it cannot solve, it refers the issue to the independent Judiciary AI for a binding resolution.
+7.  **Vendor Management:** The CEO manages all vendor relationships, including adding new vendors and logging interactions, primarily through the **CEO Mobile App** and the **Internal System Portal**.
