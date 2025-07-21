@@ -1,15 +1,16 @@
 # Defines the core logic for maintenance and service requests.
-# Version 1.0
+version: 2.0
+policy_type: operational
 
-reporting_process:
-  - channel: 'Caretaker App'
-  - format: 'audio_visual_first'
-  - description: 'The primary method for reporting issues is via the Caretaker App, prioritizing photo/audio evidence over text.'
+versioning_policy:
+  - type: 'semantic_versioning_with_data_link'
+  - description: 'This policy follows semantic versioning. Each maintenance request must be linked to the policy version active when it was created.'
+  - data_impact: 'Changes to this policy require a new version to ensure consistent handling of requests over time.'
 
-required_data:
-  - 'category'
-  - 'evidence' # Photo or Audio
+parameters_file: '03_maintenance_and_service_requests_parameters.md'
 
-routing_rules:
-  - condition: 'issue_is_complaint_about_service_quality'
-    action: 'route_to_complaints_and_violations_policy'
+core_principles:
+  - 'The primary method for reporting maintenance issues is through the channels specified in the parameters file.'
+  - 'Issue reporting should prioritize verifiable evidence (photos, audio) over text.'
+  - 'All requests must be categorized to ensure proper routing.'
+  - 'Issues that are complaints about service quality, rather than requests for service, must be routed to the Complaints and Violations Policy.'

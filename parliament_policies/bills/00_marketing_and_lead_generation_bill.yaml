@@ -1,0 +1,21 @@
+# Defines the core logic for marketing and lead generation.
+version: 2.0
+policy_type: operational
+
+versioning_policy:
+  - type: 'semantic_versioning'
+  - description: 'This policy follows semantic versioning. Any change that alters the logical process requires a major version update.'
+  - data_impact: 'Changes to this policy do not affect historical tenant data.'
+
+parameters_file: '00_marketing_and_lead_generation_parameters.md'
+
+lead_capture_channels:
+  - description: 'Defines the approved channels for capturing new leads.'
+  - channels:
+      - 'Website Form'
+      - 'Third-Party Listings'
+      - 'Referrals'
+
+lead_qualification_process:
+  - description: 'A process to determine if a lead is a viable potential tenant.'
+  - rule: 'initial_contact_and_needs_assessment'

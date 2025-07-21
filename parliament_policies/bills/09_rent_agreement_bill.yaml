@@ -1,0 +1,16 @@
+# Defines the policy for generating and managing rent agreements.
+version: 2.0
+policy_type: legal
+
+versioning_policy:
+  - type: 'semantic_versioning_with_data_link'
+  - description: 'This policy follows semantic versioning. Every executed rent agreement is a legal document and must be versioned and stored immutably. The tenant record must link to the exact version of the agreement they signed.'
+  - data_impact: 'This is a cornerstone document. The system must ensure that the signed artifact is preserved perfectly.'
+
+parameters_file: '09_rent_agreement_parameters.md'
+
+core_principles:
+  - 'The rent agreement is a formal legal document executed digitally via a third-party e-sign provider.'
+  - 'The agreement process can only be initiated after all financial and documentation prerequisites from the Tenant Onboarding policy have been met.'
+  - 'The system must store a versioned, immutable copy of the exact agreement sent to the tenant for signing.'
+  - 'The content of the agreement, including all legal clauses, is managed outside of this policy, but its execution is governed by it.'

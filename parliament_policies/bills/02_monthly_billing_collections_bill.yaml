@@ -1,18 +1,21 @@
-# Defines the core logic for monthly billing.
-# Version 1.0
+# Defines the core logic for monthly billing and collections.
+version: 2.0
+policy_type: financial
 
-billing_logic:
-  - type: 'event_driven_consolidation'
-  - description: 'The bill generation process must query for all billable events that occurred in the previous month for a given tenant and add them as line items to the base rent.'
+versioning_policy:
+  - type: 'semantic_versioning_with_data_link'
+  - description: 'This policy follows semantic versioning. Each bill generated must be linked to the specific version of the billing policy active at the time of generation.'
+  - data_impact: 'Changes to this policy require a new version. The system must be able to process payments and adjustments for bills generated under previous policy versions.'
 
-overpayment_policy:
-  - type: 'credit_adjustment'
-  - description: 'Overpayments are handled as a credit adjustment to the next month\'s bill.'
+parameters_file: '02_monthly_billing_collections_parameters.md'
 
-duplicate_payment_policy:
-  - type: 'prevent'
-  - description: 'The system should prevent the recording of duplicate payments.'
+billing_principles:
+  - 'Bills are generated on the last day of the month and are due on the date specified in the parameters file.'
+  - 'Billing is event-driven, consolidating all billable charges from the preceding month.'
+  - 'Late payments will incur penalties as defined in the parameters file.'
+  - 'A multi-level escalation process will be initiated for overdue payments.'
 
-adjustment_policy:
-  - type: 'manual_creation'
-  - description: 'Financial adjustments can only be created manually by a user with the Sales role.'
+payment_handling:
+  - 'Overpayments will be credited to the next month's bill.'
+  - 'The system must prevent duplicate payment entries.'
+  - 'Manual financial adjustments are restricted to authorized roles specified in the parameters file.'

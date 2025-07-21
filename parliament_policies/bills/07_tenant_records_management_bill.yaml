@@ -1,6 +1,15 @@
 # Defines the rules for managing tenant records.
-# Version 1.0
+version: 2.0
+policy_type: compliance
 
-storage_policy:
-  - rule: 'permanent_versioned_storage'
-  - description: 'All compliance-related documents (e.g., IDs, Police Verification, Signed Agreements) must be stored permanently in a version-controlled system to ensure immutability and auditability.'
+versioning_policy:
+  - type: 'semantic_versioning'
+  - description: 'This policy follows semantic versioning. Changes reflect evolving legal or operational requirements.'
+  - data_impact: 'This policy mandates how data should be stored. Changes to this policy may trigger data migration or re-auditing processes.'
+
+parameters_file: '07_tenant_records_management_parameters.md'
+
+core_principles:
+  - 'All compliance-related documents must be stored permanently in a version-controlled system.'
+  - 'The storage system must guarantee immutability and provide a clear audit trail for all documents.'
+  - 'Access to sensitive tenant records is restricted to authorized personnel, as defined in the parameters file.'

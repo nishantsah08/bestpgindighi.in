@@ -1,10 +1,15 @@
 # Defines the rules for managing security deposits.
-# Version 1.0
+version: 2.0
+policy_type: financial
 
-payment_rules:
-  - rule: 'installment_allowed'
-  - description: 'The security deposit can be paid in installments as per the agreement with the tenant.'
+versioning_policy:
+  - type: 'semantic_versioning_with_data_link'
+  - description: 'This policy follows semantic versioning. Each tenant''s security deposit record must be linked to the policy version active during their tenancy.'
+  - data_impact: 'Changes to this policy require a new version. The system must be able to process refunds and adjustments based on the rules that were in place when the deposit was paid.'
 
-transaction_types:
-  - rule: 'separate_refund_and_adjustment'
-  - description: 'The system must distinguish between a deposit_refund (a cash-out event during offboarding) and a credit_adjustment (a non-cash, on-ledger correction for billing).'
+parameters_file: '08_security_deposit_management_parameters.md'
+
+core_principles:
+  - 'The security deposit can be paid in installments, with the terms defined in the parameters file.'
+  - 'The system must clearly distinguish between a cash-out refund of a deposit and a non-cash credit adjustment.'
+  - 'The conditions for deduction from the security deposit (e.g., for damages) are outlined in the parameters file and linked to the Tenant Offboarding policy.'

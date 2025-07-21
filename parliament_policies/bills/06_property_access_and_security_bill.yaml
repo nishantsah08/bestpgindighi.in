@@ -1,23 +1,16 @@
 # Defines rules for property access and security.
-# Version 1.0
+version: 2.0
+policy_type: security
 
-access_rules:
-  - subject: 'tenant'
-    access_level: '24x7'
-    description: 'Tenants have unrestricted access to the property.'
-  - subject: 'guest'
-    access_level: 'restricted'
-    description: 'Guests are prohibited from tenant rooms and only allowed in common areas during specified hours.'
+versioning_policy:
+  - type: 'semantic_versioning'
+  - description: 'This policy follows semantic versioning. Changes to these rules may have immediate effect on all tenants.'
+  - data_impact: 'Historical access logs are not affected, but current access rights are governed by the latest version.'
 
-key_management:
-  - rule: 'key_issuance'
-    description: 'Tenants receive a room latch key and a wardrobe key upon move-in.'
-  - rule: 'duplicate_keys'
-    description: 'A full set of duplicate keys is held by the Caretaker for emergencies.'
+parameters_file: '06_property_access_and_security_parameters.md'
 
-penalties:
-  - violation: 'key_loss'
-    action: 'dispatch_event.billable_charge.created'
-    details:
-      type: 'key_loss_fine'
-      amount_parameter: 'key_loss_fine_amount'
+core_principles:
+  - 'Access levels for tenants and guests are defined to ensure both convenience and security.'
+  - 'Specific rules for guest access, including allowed areas and hours, are defined in the parameters file.'
+  - 'A strict key management policy is in place to control property access.'
+  - 'Penalties for violations, such as key loss, are defined as billable events, with amounts specified in the parameters file.'

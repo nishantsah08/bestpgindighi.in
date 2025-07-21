@@ -1,16 +1,25 @@
 # Defines the core logic for the tenant offboarding process.
-# Version 1.0
+version: 2.0
+policy_type: operational
 
-state_machine:
-  - 'active'
-  - 'notice_period'
-  - 'pending_damage_assessment'
-  - 'pending_final_settlement'
-  - 'completed'
+versioning_policy:
+  - type: 'semantic_versioning_with_data_link'
+  - description: 'This policy follows semantic versioning. Each tenant''s offboarding process must be linked to the policy version active when their notice period began.'
+  - data_impact: 'Changes to this policy require a new version. The system must be able to handle processes defined by previous versions for auditing.'
 
-state_transitions:
-  - from: 'pending_damage_assessment'
-    to: 'pending_final_settlement'
-    trigger: 'event.manual_damage_fee.submitted'
-    condition: 'user.role == "Sales"'
-    description: 'The Sales role reviews evidence from the Caretaker and manually submits the final damage fee.'
+parameters_file: '05_tenant_offboarding_parameters.md'
+
+offboarding_process:
+  - type: 'state_machine'
+  - description: 'The tenant offboarding process is managed as a state machine, with transitions triggered by specific events.'
+  - states:
+      - 'active'
+      - 'notice_period'
+      - 'pending_damage_assessment'
+      - 'pending_final_settlement'
+      - 'completed'
+
+core_principles:
+  - 'The offboarding process is formally initiated when a tenant gives notice, as per the terms of their agreement.'
+  - 'A damage assessment must be completed before the final financial settlement can be calculated.'
+  - 'The final settlement, including any damage charges and security deposit refunds, must be approved by an authorized role defined in the parameters file.'

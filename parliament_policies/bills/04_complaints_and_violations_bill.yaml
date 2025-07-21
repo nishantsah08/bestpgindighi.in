@@ -1,25 +1,16 @@
 # Defines the core logic for handling all complaints and violations.
-# Version 1.0
+version: 2.0
+policy_type: governance
 
-intake_policy:
-  - type: 'centralized_intent_classification'
-  - description: 'All complaints, regardless of source, are processed by an Intake AI to determine intent.'
+versioning_policy:
+  - type: 'semantic_versioning_with_data_link'
+  - description: 'This policy follows semantic versioning. Each complaint record must be linked to the policy version active when it was filed.'
+  - data_impact: 'Changes to this policy require a new version to ensure consistent handling and auditing of all complaints.'
 
-routing_engine:
-  - rule: 'intent_based_routing'
-  - description: 'Complaints are routed to an initial owner based on their classified intent.'
-  - mapping:
-      - intent: 'request_maintenance'
-        owner: 'Caretaker'
-      - intent: 'dispute_billing'
-        owner: 'Sales'
-      - intent: 'interpersonal_conflict'
-        owner: 'Sales'
+parameters_file: '04_complaints_and_violations_parameters.md'
 
-escalation_path:
-  - from: 'Caretaker'
-    to: 'Sales'
-  - from: 'Sales'
-    to: 'CEO'
-  - condition: 'complaint_source == "staff"'
-    to: 'CEO'
+core_principles:
+  - 'All complaints and reported violations, regardless of source, must be centrally processed and classified.'
+  - 'An initial owner for a complaint will be determined by intent-based routing, as defined in the parameters file.'
+  - 'A formal escalation path exists for all complaints, with triggers and responsible roles defined in the parameters file.'
+  - 'Complaints originating from staff have an accelerated escalation path.'

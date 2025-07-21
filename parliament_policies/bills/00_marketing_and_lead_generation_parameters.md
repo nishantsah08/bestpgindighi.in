@@ -1,6 +1,3 @@
-# Operational Parameters for Marketing & Lead Generation
+# Parameters for Marketing and Lead Generation Policy
 
-### Referral Program
-
-*   **`referral_bonus_amount`**: The credit amount (in INR) given to a referrer after a new tenant completes one month of paid stay.
-    *   **value**: 1000
+This document contains the operational parameters for the Marketing and Lead Generation Policy.
