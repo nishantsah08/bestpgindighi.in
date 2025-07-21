@@ -8,11 +8,12 @@ This document outlines the structural blueprint and feature set for the CEO's In
 
 ### 1. Main Dashboard (Landing Page)
 
-- **Purpose:** To provide a single-glance overview of the entire business's health and status.
-- **Components:**
-    - **Key Performance Indicators (KPIs) Bar:** Occupancy, Revenue MTD, Expenses MTD, Net Profit MTD, Open Maintenance Tickets, New Leads (7 days).
-    - **Recent Activity Feed:** A live-updating list of important system events.
-    - **Action Required Queue:** A list of items that require the CEO's direct attention.
+- **Purpose:** To provide a single-glance overview of the business, framed around the four critical inversion risks.
+- **Structure:** The dashboard will be divided into four main quadrants:
+    1.  **Compliance Risk:** Displays the output of the `getComplianceStatusReport` (pending verifications, agreements, etc.).
+    2.  **Financial Risk:** Displays the outputs of `getPendingRentReport`, `getTotalCashAtHand`, and `getProjectedRevenueNextMonth`.
+    3.  **Reputation Risk (GBL):** Displays the outputs of `getCustomerComplaintsReport` and `getLeadFunnelReport`.
+    4.  **Key Person Risk (Caretaker):** Also displays the `getCustomerComplaintsReport` as a proxy for operational stress.
 
 ---
 
