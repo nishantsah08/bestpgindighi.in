@@ -1,5 +1,5 @@
 # Defines the core logic for tenant onboarding.
-version: 2.1 # Minor update to reflect new details
+version: 2.2 # Major revision for compliance workflow
 policy_type: operational
 
 versioning_policy:
@@ -10,6 +10,7 @@ versioning_policy:
 parameters_file: '01_tenant_onboarding_parameters.md'
 depends_on:
   - 'parliament_policies/bills/02_monthly_billing_collections_bill.yaml'
+  - 'parliament_policies/bills/09_rent_agreement_bill.yaml'
 
 onboarding_process:
   - type: 'state_machine'
@@ -17,13 +18,18 @@ onboarding_process:
     states:
       - 'lead'
       - 'booking_secured'
-      - 'documents_submitted'
+      - 'moved_in'
+      - 'police_verification_pending'
+      - 'rule_book_sent'
+      - 'deposit_pending'
       - 'ready_for_agreement'
       - 'agreement_sent'
-      - 'moved_in'
+      - 'onboarding_complete'
 
 core_principles:
-  - 'A booking is considered secured when the conditions defined in the Booking & Initial Payment Flexibility Policy are met (e.g., minimum advance paid).'
-  - 'The transition to `ready_for_agreement` requires the full first month''s rent to be paid.'
-  - 'A tenant cannot move in until all mandatory documents are submitted, the full security deposit is paid (or a payment plan is approved), and the rent agreement is signed.'
-  - 'The specific amounts, deadlines, and tiers for initial payments are defined in the referenced Monthly Billing & Collections policy.'
+  - 'A booking is considered secured when the conditions in the Booking & Initial Payment Flexibility Policy are met.'
+  - 'Upon move-in, the caretaker must complete the move-in checklist.'
+  - 'Immediately after move-in, the system must send the police verification link to the tenant.'
+  - 'Upon successful submission of the police verification form, the system must automatically send the Rule Book.'
+  - 'The tenant transitions to `ready_for_agreement` only after the full first month''s rent and the full security deposit have been paid.'
+  - 'The rent agreement process is the final step of the compliance workflow.'

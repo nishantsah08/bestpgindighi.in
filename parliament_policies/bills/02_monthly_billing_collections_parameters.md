@@ -30,9 +30,10 @@
     *   maintenance_charges
     *   police_verification_charges
     *   agreement_charges
+    *   e_signing_charges
     *   adjustments
-    *   **previous_outstanding**
-    *   **discount_amount**
+    *   previous_outstanding
+    *   discount_amount
 
 ### Payment Methods
 *   **accepted_methods**:

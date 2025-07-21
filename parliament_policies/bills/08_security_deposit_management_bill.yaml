@@ -1,5 +1,5 @@
 # Defines the rules for managing security deposits.
-version: 2.1 # Minor update to reflect new details
+version: 2.2 # Minor update for clarity
 policy_type: financial
 
 versioning_policy:
