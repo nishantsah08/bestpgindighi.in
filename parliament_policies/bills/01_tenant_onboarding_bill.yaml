@@ -31,5 +31,6 @@ core_principles:
   - 'Upon move-in, the caretaker must complete the move-in checklist.'
   - 'Immediately after move-in, the system must send the police verification link to the tenant.'
   - 'Upon successful submission of the police verification form, the system must automatically send the Rule Book.'
+  - 'The system shall use an automated agent (e.g., a Puppeteer MCP) to fill the online police verification form using the data collected from the tenant. Upon successful submission, the system must download the acknowledgement receipt (PDF), store it, and share it with the tenant.'
   - 'The tenant transitions to `ready_for_agreement` only after the full first month''s rent and the full security deposit have been paid.'
   - 'The rent agreement process is the final step of the compliance workflow.'

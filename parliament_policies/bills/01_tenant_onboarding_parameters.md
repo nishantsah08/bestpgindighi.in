@@ -36,6 +36,8 @@
         - `tenant_photo`: (Mandatory, Image Upload)
         - `aadhaar_document`: (Mandatory, Image/PDF Upload)
         - `other_government_id`: (Optional, Image/PDF Upload)
+    - **Section: System Generated**
+        - `acknowledgement_pdf_path`: (System-generated, Path)
 
 ### Rule Book / Code of Conduct
 - **Content**:
