@@ -1,0 +1,77 @@
+# Chart of Accounts
+version: 1.0
+policy_type: foundational
+
+status: DRAFT
+
+description: >
+  This document defines the official Chart of Accounts for the business, compliant
+  with Indian accounting standards. It serves as the foundational framework for all
+  financial recording and reporting.
+
+# 1. Assets
+assets:
+  - category: Current Assets
+    accounts:
+      - "Bank of Baroda Current Account"
+      - "Cash on Hand"
+  - category: Investments
+    accounts:
+      - "Fixed Deposits"
+      - "Demat Account"
+  - category: Fixed Assets (Capital Expenditures)
+    accounts:
+      - "Furniture & Fixtures"
+      - "Appliances"
+      - "Kitchenware"
+      - "Linens"
+      - "Bathroom Fittings"
+      - "Lighting"
+
+# 2. Liabilities
+liabilities:
+  - category: Current Liabilities
+    accounts:
+      - "Security Deposits"
+
+# 3. Equity
+equity:
+  - category: Owner's Equity
+    accounts:
+      - "Owner's Capital"
+      - "Retained Earnings"
+
+# 4. Income
+income:
+  - category: Operating Income
+    accounts:
+      - "Monthly Rent"
+      - "Police Verification Charges"
+      - "Parking Fees"
+      - "WiFi Fees"
+      - "Late Fees"
+
+# 5. Expenses
+expenses:
+  - category: Operating Expenses
+    accounts:
+      - "Maintenance & Repairs"
+      - "Property Tax"
+      - "Utilities"
+      - "Internet & Cable Bills"
+      - "Advertising & Marketing"
+      - "Bank Charges"
+      - "Legal & Professional Fees"
+      - "Office Supplies"
+      - "Printing & Stationery"
+      - "Salary"
+      - "Salary Advance"
+      - "Commission for Referrals"
+      - "Bonus"
+      - "Painting & Decorating Supplies"
+      - "Petrol"
+      - "Technology Maintenance"
+      - "Software Subscriptions"
+      - "Telecommunication"
+      - "Food & Sustenance"
+      - "Transport"

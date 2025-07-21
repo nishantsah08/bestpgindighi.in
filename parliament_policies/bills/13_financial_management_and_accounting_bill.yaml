@@ -46,6 +46,5 @@ expense_management:
 chart_of_accounts:
   - standard: Indian Accounting Standards
   - description: >
-      The system will use a standard, best-practice Chart of Accounts for a property
-      management business, compliant with Indian accounting standards. The full chart
-      will be maintained as a separate configuration file.
+      The system will use the official Chart of Accounts as defined in the
+      `14_chart_of_accounts.yaml` policy document.
