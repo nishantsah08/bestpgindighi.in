@@ -54,4 +54,7 @@ universal_features:
   - description: >
       Features that apply to all three applications.
   - features:
-      - Automated background contact synchronization
+      - Phased Contact Synchronization: This is a complex feature that will be implemented
+        incrementally. Phase 1 will focus on a simple, manual "Sync Contacts" button
+        within the apps. Future phases will explore more robust, automated background
+        synchronization, requiring a dedicated technical design document.

@@ -34,7 +34,9 @@ This document outlines the structural blueprint and feature set for the CEO's In
 
 #### 3.1 Cabinet Secretary (Query Interface)
 - **Purpose:** A powerful, LLM-driven interface for the CEO to ask complex questions that span across internal system data and the open internet.
-- **Interface:** A single, prominent text input box for natural language queries.
+- **Implementation:** This is a highly complex feature that will be implemented in phases.
+    - **Phase 1:** The initial version will support a limited set of structured queries (e.g., "show me all expenses in the Maintenance category for last month").
+    - **Future Phases:** Will progressively add more complex, natural language capabilities and integration with external data sources, requiring a dedicated technical design document.
 
 #### 3.2 Ministry of Finance
 - **Purpose:** The deep-dive section for all financial data and control.
