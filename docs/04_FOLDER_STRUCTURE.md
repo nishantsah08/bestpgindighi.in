@@ -37,7 +37,16 @@ bestpgindighi-ai/
 │   ├── 00_SYSTEM_OVERVIEW.md
 │   ├── 01_SYSTEM_ARCHITECTURE.md
 │   ├── 04_FOLDER_STRUCTURE.md (this file)
-│   └── 05_BUSINESS_OPERATIONS_MODEL.md
+│   ├── 05_BUSINESS_OPERATIONS_MODEL.md
+│   ├── 06_DATABASE_SCHEMA.md
+│   ├── 07_DISASTER_RECOVERY_PLAN.md
+│   ├── 08_SYSTEM_MONITORING_AND_ALERTING_PLAN.md
+│   ├── 09_SECURITY_MODEL.md
+│   └── user_manuals/
+│
+├──  src/                    # Source code for MCP servers and other backend logic.
+│   └── database/
+│       └── 00_DATA_MIGRATION_PLAN.md
 │
 ├── 🌐 website/               # Source code for the public-facing website.
 │

@@ -39,5 +39,5 @@ To ensure accountability and strategic growth, the system also includes:
 *   **Independent Bodies:**
     *   **Auditor AI:** Proactively audits the performance and resource usage of the Executive departments.
     *   **Vigilance AI:** Monitors for internal and external security threats and integrity violations.
-*   **Advisory Body:**
-    *   **Strategy & Planning AI:** Analyzes long-term data and proposes future strategies to the human CEO.
+*   **Advisory Body (NITI-Aayog):**
+    *   **Independent Risk Advisory AI:** Analyzes long-term data to identify and advise on the four critical inversion risks (Compliance, Financial, Reputation, Key Person).

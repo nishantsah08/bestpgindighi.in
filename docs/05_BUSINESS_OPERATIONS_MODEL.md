@@ -71,3 +71,30 @@ This process allows for the secure, manual recording of received rent payments.
 - **Actors:** The CEO (via the Internal System Portal) and the Sales team (via WhatsApp).
 - **Process:** The user provides the tenant identifier, the amount received, and the payment method (`Manual UPI` or `Manual Cash`).
 - **Irreversible Confirmation:** The system requires a final, explicit confirmation from the user before permanently filing the revenue transaction in the general ledger. This action cannot be undone.
+
+## 9. Automated Utility Billing
+
+This section describes the decoupled workflow for billing tenants for electricity and performing internal reconciliation.
+
+- **Tenant Billing:** Based solely on verified sub-meter readings. The process is triggered on the last Saturday of the month and includes a re-submission loop for the Caretaker if OCR confidence is low. Bills are generated on the 1st.
+- **Internal Reconciliation:** A separate, internal audit process to compare tenant billing with the main Mahadiscom utility bill. This process runs at the end of the month and does not block tenant billing.
+
+## 10. Payroll & Compensation
+
+- **Caretaker Salary:** Calculated on the last Saturday of the month. The calculation is retrospective for the previous month's performance and includes Base Salary, Operational Bonus, and a Performance Bonus based on paid tenants. The CEO has the final, manual approval step to adjust for any salary advances.
+
+## 7. Expense Filing Workflow
+
+This process is designed for the Owner to report business expenses with accuracy and certainty, managed by the Financial AI.
+
+- **Trigger:** The Owner sends a WhatsApp message, which can include text, an image of a receipt/invoice, or both, to the designated system number.
+- **AI-led Clarification:** The Financial AI analyzes the message and initiates a single, consolidated clarification dialogue to confirm all necessary details (Vendor, Amount, Category, Capex Status, Inventory, Payment Method).
+- **Irreversible Filing:** Once the Owner provides final confirmation, the expense is permanently filed in the general ledger.
+
+## 8. Revenue Recognition Workflow
+
+This process allows for the secure, manual recording of received rent payments.
+
+- **Actors:** The CEO (via the Internal System Portal) and the Sales team (via WhatsApp).
+- **Process:** The user provides the tenant identifier, the amount received, and the payment method (`Manual UPI` or `Manual Cash`).
+- **Irreversible Confirmation:** The system requires a final, explicit confirmation from the user before permanently filing the revenue transaction in the general ledger. This action cannot be undone.

@@ -7,8 +7,8 @@ status: DRAFT
 description: >
   This bill authorizes the creation of a suite of native Android mobile applications
   to serve as the primary operational tools for the CEO, Sales, and Caretaker roles.
-  It mandates the core technology and defines the specific purpose and feature set
-  for each application.
+  It mandates the core technology and high-level features. Specific MCP capabilities
+  are defined in the MCP Capability Registry.
 
 technology_mandate:
   platform: Native Android
@@ -24,15 +24,6 @@ application_definitions:
       - Risk-Oriented Dashboard (Compliance, Financial, Reputation, Key Person)
       - Full Vendor Directory (add, view, edit, upload files, log interactions)
       - Critical action/approval queue
-    required_mcp_capabilities:
-      - getPendingRentReport
-      - getComplianceStatusReport
-      - snoozeComplianceAlert
-      - getCustomerComplaintsReport
-      - snoozeComplaint
-      - getTotalCashAtHand
-      - getProjectedRevenueNextMonth
-      - getLeadFunnelReport
 
   - app_name: Sales App
     purpose: >
