@@ -7,7 +7,6 @@ This document defines the specific roles and responsibilities of each AI agent w
 The human roles of Sales and Caretaker are the primary leads for the two ministries of the Executive Branch. Their responsibilities are clearly separated to ensure focus and accountability.
 
 - **The Hunter (Sales Role):** Responsible for all commercial activities that drive business growth. This includes marketing, sales, negotiating contracts, and managing all financial aspects of the tenant relationship (billing, collections, adjustments, and final settlements).
-    - **Key Duty:** During tenant off-boarding, the Sales role is responsible for using the **Sales Mobile App** to generate a Google Business Listing review link and personally requesting feedback from the tenant.
     - **Key Duty:** Handle all "Communication Failure" tasks assigned by the system, requiring manual follow-up with the customer.
 
 - **The Farmer (Caretaker Role):** Responsible for retaining tenants and ensuring a high-quality living experience. This includes managing the physical property, responding to maintenance requests, handling on-site issues, and ensuring the property is secure and well-maintained.
@@ -17,7 +16,7 @@ The human roles of Sales and Caretaker are the primary leads for the two ministr
 The CEO is the ultimate authority in the system, with unique responsibilities that bridge strategic oversight and direct operational control.
 
 - **Vendor Management:** The CEO is solely responsible for managing all third-party vendor relationships. This includes adding new vendors, logging interactions, and managing financial records via the **CEO Mobile App** and the **Internal System Portal**.
-- **GBL Review Generation:** The CEO also participates in the GBL Review Flywheel, using the **CEO Mobile App** to generate review links during the final deposit refund conversation with off-boarding tenants.
+- **GBL Review Generation:** The CEO is solely responsible for the GBL Review Flywheel, using the **CEO Mobile App** to generate review links during the final deposit refund conversation with off-boarding tenants.
 - **Strategic Direction:** The CEO sets the high-level strategy and direction for the entire autonomous system.
 
 
