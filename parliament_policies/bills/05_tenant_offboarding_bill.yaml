@@ -1,5 +1,5 @@
 # Defines the core logic for the tenant offboarding process.
-version: 2.1 # Minor update to reflect new details
+version: 3.0 # Major revision for financial control
 policy_type: operational
 
 versioning_policy:
@@ -7,10 +7,10 @@ versioning_policy:
     description: 'This policy follows semantic versioning. Each tenant''s offboarding process must be linked to the policy version active when their notice period began.'
     data_impact: 'Changes to this policy require a new version. The system must be able to handle processes defined by previous versions for auditing.'
 
-parameters_file: '05_tenant_offboarding_parameters.md'
 depends_on:
   - 'parliament_policies/bills/02_monthly_billing_collections_bill.yaml'
   - 'parliament_policies/bills/08_security_deposit_management_bill.yaml'
+  - 'parliament_policies/bills/13_financial_management_and_accounting_bill.yaml'
 
 offboarding_process:
   - type: 'state_machine'
@@ -26,4 +26,4 @@ core_principles:
   - 'The offboarding process is formally initiated when a tenant gives notice, as per the terms of their agreement.'
   - 'A damage assessment must be completed before the final financial settlement can be calculated.'
   - 'The final settlement must account for all outstanding financial obligations, including any `previous_outstanding` balance or `pending_deposit` payments, and may include a `discount_amount` as per Sales discretion.'
-  - 'The final settlement, including any damage charges and the final security deposit refund amount, must be approved by an authorized role defined in the parameters file.'
+  - 'The final settlement, including the security deposit refund, is subject to the `Cash-Out Authorization` policy in the `13_financial_management_and_accounting_bill.yaml`, which requires exclusive CEO approval for the final transaction.'

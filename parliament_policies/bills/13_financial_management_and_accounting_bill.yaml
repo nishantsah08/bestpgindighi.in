@@ -1,5 +1,5 @@
 # Bill to Establish the Ministry of Finance and Define Financial Policy
-version: 1.0
+version: 2.0 # Major revision for cash-out authorization
 policy_type: foundational
 
 status: ACTIVE
@@ -14,6 +14,15 @@ core_principles:
       No financial transaction can ever be deleted. Errors must be corrected via a
       CEO-authorized, fully audited reversal process, which creates a new reversing
       entry and a new correct entry, preserving a complete transaction history.
+
+cash_out_authorization:
+  - principle: "CEO-Exclusive Cash-Out Authority"
+    description: >
+      The final authorization for any outgoing transfer of funds from the business
+      (e.g., security deposit refunds, vendor payments) is the exclusive responsibility
+      of the CEO. The Financial AI is authorized to prepare all necessary calculations
+      and documentation, but the final execution of the payment can only be performed
+      by the CEO.
 
 revenue_recognition:
   - process: Automated Revenue Recognition
