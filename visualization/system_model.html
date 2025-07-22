@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,8 +29,8 @@
 <div id="3d-graph"></div>
 <div id="info-box"></div>
 
-<script src="//unpkg.com/three"></script>
-<script src="//unpkg.com/3d-force-graph"></script>
+<script src="https://unpkg.com/three"></script>
+<script src="https://unpkg.com/3d-force-graph"></script>
 
 <script>
     const graphData = {
@@ -113,7 +115,6 @@
                 content += `<p><strong>Details:</strong> ${node.details}</p>`;
             }
             if (node.failure) {
-                // CORRECTED: Used a template literal and standard CSS for styling
                 content += `<p style="color: #ff8a80;"><strong>LOGICAL FAILURE:</strong> ${node.failure}</p>`;
             }
             infoBox.innerHTML = content;
