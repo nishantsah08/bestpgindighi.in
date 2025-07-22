@@ -1,5 +1,5 @@
 # Defines the policy for generating and managing rent agreements.
-version: 2.2 # Minor update for clarity
+version: 3.0 # Major revision for template and e-signing
 policy_type: legal
 
 versioning_policy:
@@ -13,8 +13,8 @@ depends_on:
   - 'parliament_policies/bills/02_monthly_billing_collections_bill.yaml'
 
 core_principles:
-  - 'The rent agreement is a formal legal document executed digitally via a third-party e-sign provider.'
+  - 'The official source for the rent agreement is the version-controlled template located at `templates/rent_agreement_v1.md`.'
+  - 'The rent agreement must be executed digitally via a third-party e-sign provider that supports Aadhar-based e-signatures.'
   - 'The agreement process can only be initiated after the tenant has reached the `ready_for_agreement` state in the Tenant Onboarding policy, which requires the payment of both the full first month''s rent AND the full security deposit.'
   - 'The cost of the e-signing service is a billable event and will be added to the tenant''s next monthly bill.'
   - 'The system must store a versioned, immutable copy of the exact agreement sent to the tenant for signing.'
-  - 'The content of the agreement, including all legal clauses, is managed outside of this policy, but its execution is governed by it.'
