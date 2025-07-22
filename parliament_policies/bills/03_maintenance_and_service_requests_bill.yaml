@@ -1,21 +1,21 @@
-# Defines the core logic for maintenance and service requests.
-version: 3.0 # Major revision for end-to-end workflow
+# Defines the unified logic for all service requests and complaints.
+version: 4.0 # Major revision for unified workflow
 policy_type: operational
 
 versioning_policy:
   - type: 'semantic_versioning_with_data_link'
-  - description: 'This policy follows semantic versioning. Each maintenance request must be linked to the policy version active when it was created.'
+  - description: 'This policy follows semantic versioning. Each service request or complaint must be linked to the policy version active when it was created.'
   - data_impact: 'Changes to this policy require a new version to ensure consistent handling of requests over time.'
 
 parameters_file: '03_maintenance_and_service_requests_parameters.md'
 
-maintenance_request_workflow:
-  - description: "Defines the end-to-end, automated workflow for handling tenant maintenance requests."
-  - trigger: "A message is identified as a maintenance request by the Intelligent Router in the 'Customer Interaction and Call Management Bill'."
+unified_service_request_workflow:
+  - description: "Defines the end-to-end, automated workflow for handling all tenant service requests and complaints."
+  - trigger: "A message is identified as a service request or complaint by the Intelligent Router in the 'Customer Interaction and Call Management Bill'."
   - workflow_steps:
-      - "Step 1: A new maintenance task is created in the system."
+      - "Step 1: A new service task is created in the system."
       - "Step 2: The task is immediately assigned to the Caretaker."
       - "Step 3: The task is delivered to the Caretaker's app as an audio message."
-      - "Step 4: The system immediately sends an automated acknowledgement to the tenant on WhatsApp, including a unique 'maintenance_request_id'."
+      - "Step 4: The system immediately sends an automated acknowledgement to the tenant on WhatsApp, including a unique 'service_request_id'."
       - "Step 5: The task is made visible and actionable on the CEO's internal dashboard."
       - "Step 6: The task remains active until explicitly closed by either the Caretaker (via the Caretaker App) or the CEO (via the internal dashboard)."

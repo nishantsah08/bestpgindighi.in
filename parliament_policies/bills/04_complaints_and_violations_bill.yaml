@@ -1,6 +1,11 @@
 # Defines the core logic for handling all complaints and violations.
 version: 2.0
 policy_type: governance
+status: DEPRECATED
+
+description: >
+  This policy is no longer in use. All complaints and service requests are now handled
+  by the unified workflow defined in the `03_maintenance_and_service_requests_bill.yaml`.
 
 versioning_policy:
   - type: 'semantic_versioning_with_data_link'
