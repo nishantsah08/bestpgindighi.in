@@ -102,16 +102,11 @@
     const Graph = ForceGraph3D()
         (document.getElementById('3d-graph'))
         .graphData(graphData)
+        .nodeLabel('name')
         .nodeAutoColorBy('group')
         .linkDirectionalArrowLength(3.5)
         .linkDirectionalArrowRelPos(1)
         .linkCurvature(0.25)
-        .nodeThreeObject(node => {
-            const sprite = new window.SpriteText(node.name);
-            sprite.color = 'white';
-            sprite.textHeight = 4;
-            return sprite;
-        })
         .onNodeClick(node => {
             const infoBox = document.getElementById('info-box');
             let content = `<h2>${node.name}</h2><p>${node.description}</p>`;
