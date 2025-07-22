@@ -58,7 +58,7 @@ This section documents the primary user flows for new system features.
 - **Flow:**
     1.  Financial AI performs OCR/NLP analysis on the message.
     2.  Financial AI responds with a single, consolidated clarification questionnaire.
-    3.  Owner replies to the questionnaire.
+    3.  CEO replies to the questionnaire.
     4.  Financial AI summarizes the structured data and asks for final confirmation.
     5.  CEO confirms, and the transaction is filed.
 

@@ -11,7 +11,7 @@
 
 ### Contact & Linking
 - **contact_format**: `"F-name L-name SVH-XX"`
-- **deep_link_scheme**: `pgowner://customer/{svh_id}`
+- **deep_link_scheme**: `pgceo://customer/{svh_id}`
 
 ### Automated New Lead Welcome Message (WhatsApp)
 - **Description**: This two-part message is automatically sent to any new lead upon creation of their SVH-ID.

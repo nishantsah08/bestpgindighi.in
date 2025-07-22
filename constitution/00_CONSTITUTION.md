@@ -31,7 +31,7 @@ The system shall operate in strict compliance with all applicable local, state, 
 In order to ensure a harmonious and functional community, all tenants have a duty to remit payments in a timely manner as per their agreement, to reasonably maintain their living space, to respect the rights and property of other tenants, and to adhere to the policies established by the Parliament.
 
 #### **Article IX: The Amendment of the Constitution**
-This Constitution may be amended by the CEO in consultation with the Owners of the business.
+This Constitution may be amended by the CEO only.
 
 ---
 

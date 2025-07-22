@@ -13,7 +13,7 @@ A critical conflict exists between a technical specification and a system policy
 
 The Supreme Court review has identified a functional paralysis in the system, termed the "Deaf Financial AI" problem.
 
-1.  The webhook specification, a core technical document, explicitly states that the **Financial AI Agent** is the sole subscriber to the WhatsApp message queue. This is the designated channel for the CEO and Owners to file expenses.
+1.  The webhook specification, a core technical document, explicitly states that the **Financial AI Agent** is the sole subscriber to the WhatsApp message queue. This is the designated channel for the CEO to file expenses.
 2.  Simultaneously, the customer interaction bill, an active policy, mandates that **all** inbound WhatsApp communications be routed to the **Sales Agent Queue**.
 
 This creates a direct and irreconcilable conflict. The system's policy layer is actively preventing the technical infrastructure from functioning as designed. As a result, the Financial AI is cut off from its primary input channel, rendering the entire expense filing process inoperable.

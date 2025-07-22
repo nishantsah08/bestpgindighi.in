@@ -29,9 +29,9 @@ expense_management:
     description: >
       All expenses are filed via a conversational AI workflow on WhatsApp.
     external_interface: WhatsApp Business API
-    actors: ["Owner"]
+    actors: ["CEO"]
     workflow_steps:
-      - "Trigger: Owner sends WhatsApp message (text, image, or combined)."
+      - "Trigger: CEO sends WhatsApp message (text, image, or combined)."
       - "Step 1: AI performs OCR and NLP analysis and calculates a Confidence Score for each extracted data point (Vendor, Amount, Date)."
       - "Step 2: If confidence is low on any data point, the AI will explicitly ask for manual confirmation or correction."
       - "Step 3: AI initiates a single, consolidated clarification dialogue with the verified data."
