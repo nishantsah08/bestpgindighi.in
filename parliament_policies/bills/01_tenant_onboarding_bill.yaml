@@ -1,5 +1,5 @@
 # Defines the core logic for tenant onboarding.
-version: 2.2 # Major revision for compliance workflow
+version: 3.0 # Major revision for financial logic
 policy_type: operational
 
 versioning_policy:
@@ -11,6 +11,7 @@ parameters_file: '01_tenant_onboarding_parameters.md'
 depends_on:
   - 'parliament_policies/bills/02_monthly_billing_collections_bill.yaml'
   - 'parliament_policies/bills/09_rent_agreement_bill.yaml'
+  - 'parliament_policies/bills/19_booking_and_initial_payment_flexibility_bill.yaml'
 
 onboarding_process:
   - type: 'state_machine'
@@ -21,16 +22,16 @@ onboarding_process:
       - 'moved_in'
       - 'police_verification_pending'
       - 'rule_book_sent'
-      - 'deposit_pending'
+      - 'financials_pending' # New consolidated state
       - 'ready_for_agreement'
       - 'agreement_sent'
       - 'onboarding_complete'
 
 core_principles:
-  - 'A booking is considered secured when the conditions in the Booking & Initial Payment Flexibility Policy are met.'
+  - 'A booking is considered secured when the conditions in the `19_booking_and_initial_payment_flexibility_bill.yaml` are met.'
   - 'Upon move-in, the caretaker must complete the move-in checklist.'
   - 'Immediately after move-in, the system must send the police verification link to the tenant.'
   - 'Upon successful submission of the police verification form, the system must automatically send the Rule Book.'
   - 'The system shall use an automated agent (e.g., a Puppeteer MCP) to fill the online police verification form using the data collected from the tenant. Upon successful submission, the system must download the acknowledgement receipt (PDF), store it, and share it with the tenant.'
-  - 'The tenant transitions to `ready_for_agreement` only after the full first month''s rent and the full security deposit have been paid.'
+  - 'The tenant transitions to `ready_for_agreement` only when all financial prerequisites defined in the `19_booking_and_initial_payment_flexibility_bill.yaml` (i.e., first month''s rent and security deposit) are fully paid.'
   - 'The rent agreement process is the final step of the compliance workflow.'

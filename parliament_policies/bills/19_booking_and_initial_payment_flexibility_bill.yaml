@@ -1,0 +1,24 @@
+# Defines the policy for booking, initial payments, and financial prerequisites for onboarding.
+version: 1.0
+policy_type: financial
+
+status: ACTIVE
+
+description: >
+  This bill codifies the rules for securing a booking and fulfilling the financial requirements
+  (first month's rent and security deposit) necessary to become a fully onboarded tenant.
+
+core_principles:
+  - principle: "Minimum Booking Amount"
+    description: "A tenant can secure a provisional booking by making a minimum initial payment of ₹2000."
+    minimum_amount: 2000
+
+  - principle: "Cumulative Rent Definition"
+    description: "The 'first month's rent' is considered fully paid only when the cumulative total of all payments from the tenant reaches ₹5000."
+    rent_amount: 5000
+
+  - principle: "Payment Allocation Logic"
+    description: "All initial payments from a new tenant will be allocated first towards the 'first month's rent' until the ₹5000 threshold is met. Any subsequent payments will then be allocated towards the 'security deposit'."
+
+  - principle: "Onboarding Prerequisite"
+    description: "A tenant is considered 'ready_for_agreement' only when both the 'first month's rent' and the full 'security deposit' have been paid."
