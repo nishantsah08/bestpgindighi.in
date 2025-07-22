@@ -29,9 +29,7 @@
 <div id="3d-graph"></div>
 <div id="info-box"></div>
 
-<script src="https://unpkg.com/three"></script>
-<script src="https://unpkg.com/three-spritetext"></script>
-<script src="https://unpkg.com/3d-force-graph"></script>
+<script src="https://unpkg.com/3d-force-graph@1.70.5/dist/3d-force-graph.min.js"></script>
 
 <script>
     const graphData = {
@@ -109,7 +107,7 @@
         .linkDirectionalArrowRelPos(1)
         .linkCurvature(0.25)
         .nodeThreeObject(node => {
-            const sprite = new SpriteText(node.name);
+            const sprite = new window.SpriteText(node.name);
             sprite.color = 'white';
             sprite.textHeight = 4;
             return sprite;
