@@ -28,6 +28,7 @@
 <div id="info-box"></div>
 
 <script src="https://unpkg.com/3d-force-graph@1.70.5/dist/3d-force-graph.min.js"></script>
+<script src="//unpkg.com/three-spritetext"></script>
 
 <script>
     const data = {
@@ -94,7 +95,7 @@
         .linkWidth(link => highlightLinks.has(link) ? 4 : 1)
         .linkDirectionalParticles(link => highlightLinks.has(link) ? 4 : 0)
         .linkDirectionalParticleWidth(4)
-        .nodeCanvasObject((node, ctx) => {
+        .nodeThreeObject((node, ctx) => {
             const label = node.name;
             const fontSize = 12;
             ctx.font = `${fontSize}px Sans-Serif`;
