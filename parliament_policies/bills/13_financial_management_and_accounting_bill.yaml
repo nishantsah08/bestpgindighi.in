@@ -16,13 +16,23 @@ core_principles:
       entry and a new correct entry, preserving a complete transaction history.
 
 revenue_recognition:
-  - process: Automated Revenue Recognition from Sales Channel
+  - process: Automated Revenue Recognition
     description: >
-      The system will passively monitor the main WhatsApp channel. When a message
-      from a customer contains evidence of a payment (e.g., a payment screenshot
-      or text confirming payment), the system will automatically fork this information
-      to the Financial AI to be recorded as revenue. The Sales agent does not need
-      to take any special action.
+      The system will use an intelligent router to identify and process all incoming payments.
+    workflow_steps:
+      - "Step 1: The Financial AI receives a payment message from the intelligent router."
+      - "Step 2: The AI processes the payment and records it as revenue."
+      - "Step 3: Upon successful recording, the Financial AI immediately sends an automated acknowledgement message to the customer on WhatsApp. This message must include the amount received and a unique, internal `transaction_reference_id`."
+
+ambiguous_payment_clarification:
+  - process: AI-Assisted Clarification
+    description: >
+      If the Financial AI cannot confidently break down a payment into its component parts (e.g., rent, electricity, late fees), it will enqueue a task for the Sales Agent to provide a manual breakdown.
+    workflow_steps:
+      - "Step 1: The Financial AI identifies a payment that requires a manual breakdown."
+      - "Step 2: The AI enqueues a 'Clarification Required' task for the Sales Agent in the Sales App, including the transaction details and the `transaction_reference_id`."
+      - "Step 3: The Sales Agent provides the breakdown in the Sales App."
+      - "Step 4: The Financial AI updates the transaction record with the breakdown provided by the Sales Agent."
 
 expense_management:
   - process: Conversational Expense Filing
