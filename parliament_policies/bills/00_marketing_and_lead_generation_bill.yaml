@@ -1,5 +1,5 @@
-# Defines the core logic for marketing and lead generation.
-version: 2.0
+# Defines the autonomous logic for marketing, lead generation, and nurturing.
+version: 3.0
 policy_type: operational
 
 versioning_policy:
@@ -11,14 +11,30 @@ parameters_file: '00_marketing_and_lead_generation_parameters.md'
 depends_on:
   - 'parliament_policies/bills/10_customer_interaction_and_call_management_bill.yaml'
 
-lead_capture_channels:
-  - description: 'Defines the approved channels for capturing new leads.'
-  - channels:
-      - 'Public Website (Primary)'
-      - 'Targeted Landing Pages (AIT & Tata Communications)'
-      - 'Third-Party Listings'
-      - 'Referrals'
+lead_capture_and_initial_contact_process:
+  - description: 'Defines the automated process from initial inquiry to the first contact.'
+  - steps:
+      - 'Step 1: A new inquiry is received via a phone call.'
+      - 'Step 2: The call recording is automatically transcribed and analyzed by the Information Extraction Agent.'
+      - 'Step 3: A new lead profile is created and the contact information is saved.'
+      - 'Step 4: The system automatically sends a standardized WhatsApp message to the lead, containing property details, pricing, location, and caretaker contact information.'
 
-lead_qualification_process:
-  - description: 'A process to determine if a lead is a viable potential tenant.'
-  - rule: 'initial_contact_and_needs_assessment'
+lead_nurturing_process:
+  - description: 'An automated, multi-stage follow-up process to convert leads into site visits.'
+  - baseline_cadence:
+      - 'Rule 1: If `visit_status` is not `completed` within 3 days of initial contact, trigger a follow-up message.'
+      - 'Rule 2: If `visit_status` is not `completed` within 10 days of initial contact, trigger a second follow-up message.'
+      - 'Rule 3: If `visit_status` is not `completed` within 30 days of initial contact, trigger a final follow-up message.'
+  - exit_condition: 'The nurturing sequence for a lead terminates immediately if the lead indicates they are no longer interested.'
+
+dynamic_nurturing_optimization:
+  - description: 'Authorizes the autonomous optimization of the lead nurturing cadence.'
+  - authorized_agent: 'Independent Risk Advisory AI'
+  - objective: 'To maximize the `lead_to_visit_conversion_rate`.'
+  - methodology:
+      - 'The authorized agent will continuously analyze the performance of the baseline nurturing cadence.'
+      - 'The agent is authorized to propose and, with CEO approval, implement controlled A/B tests to experiment with alternative follow-up intervals.'
+      - 'All proposed changes must be justified by a data-driven hypothesis based on historical performance.'
+  - safety_rails:
+      - 'Follow-up intervals may not be shorter than 2 days.'
+      - 'Follow-up intervals may not be longer than 45 days.'
