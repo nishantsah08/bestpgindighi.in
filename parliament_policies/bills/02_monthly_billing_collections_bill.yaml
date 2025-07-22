@@ -1,5 +1,5 @@
 # Defines the core logic for monthly billing and collections.
-version: 3.0 # Major revision for eviction process
+version: 4.0 # Major revision for judicial escalation
 policy_type: financial
 
 versioning_policy:
@@ -27,3 +27,11 @@ payment_handling:
   - 'Overpayments will be credited to the next month's bill.'
   - 'The system must prevent duplicate payment entries.'
   - 'Manual financial adjustments are restricted to authorized roles specified in the parameters file.'
+
+partial_payment_protocol:
+  - principle: "Judicial Escalation for all Partial Payments"
+    description: "To prevent ambiguity and ensure fair resolution, any partial payment of a bill will be treated as a formal financial dispute."
+    workflow_steps:
+      - "Step 1: A partial payment is received."
+      - "Step 2: The system immediately files a 'FinancialDispute' case with the Judiciary."
+      - "Step 3: The Judiciary resolves the case according to the tiered monetary authority defined in the Doctrine of Judicial Preemption."
