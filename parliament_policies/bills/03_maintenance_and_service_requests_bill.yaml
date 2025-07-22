@@ -1,5 +1,5 @@
 # Defines the core logic for maintenance and service requests.
-version: 2.0
+version: 3.0 # Major revision for end-to-end workflow
 policy_type: operational
 
 versioning_policy:
@@ -9,8 +9,13 @@ versioning_policy:
 
 parameters_file: '03_maintenance_and_service_requests_parameters.md'
 
-core_principles:
-  - 'The primary method for reporting maintenance issues is through the channels specified in the parameters file.'
-  - 'Issue reporting should prioritize verifiable evidence (photos, audio) over text.'
-  - 'All requests must be categorized to ensure proper routing.'
-  - 'Issues that are complaints about service quality, rather than requests for service, must be routed to the Complaints and Violations Policy.'
+maintenance_request_workflow:
+  - description: "Defines the end-to-end, automated workflow for handling tenant maintenance requests."
+  - trigger: "A message is identified as a maintenance request by the Intelligent Router in the 'Customer Interaction and Call Management Bill'."
+  - workflow_steps:
+      - "Step 1: A new maintenance task is created in the system."
+      - "Step 2: The task is immediately assigned to the Caretaker."
+      - "Step 3: The task is delivered to the Caretaker's app as an audio message."
+      - "Step 4: The system immediately sends an automated acknowledgement to the tenant on WhatsApp, including a unique 'maintenance_request_id'."
+      - "Step 5: The task is made visible and actionable on the CEO's internal dashboard."
+      - "Step 6: The task remains active until explicitly closed by either the Caretaker (via the Caretaker App) or the CEO (via the internal dashboard)."
