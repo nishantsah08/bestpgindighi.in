@@ -35,6 +35,16 @@ The system loads configuration in layers to prevent conflicts:
 2.  **Overrides from Database:** It then loads the current values set by the GUI from a configuration database.
 3.  **Merge:** The database values always overwrite the file defaults.
 
+## Policy Enforcement Engine
+
+The system will use a standardized, open-source YAML-based rules engine (e.g., Arta, py-rules-engine) to enforce the policies defined in the `parliament_policies/acts/` directory.
+
+### Rule Development Lifecycle
+
+1.  **Rule Creation:** Business logic rules are defined in human-readable `.yaml` files.
+2.  **Rule Testing:** Each rule must be accompanied by a set of unit tests that validate its logic against a predefined set of inputs and expected outputs.
+3.  **Promotion:** Once tested, the rule is submitted for Supreme Court Review as part of a formal Pull Request.
+
 ## Implementation-Level Design Documents
 
 For any new, non-trivial component (e.g., a new MCP server, a complex mobile app feature), a dedicated implementation-level design document must be created. This document will detail the specific code structure, algorithms, and data flows, serving as a guide for development and a reference for future maintenance.

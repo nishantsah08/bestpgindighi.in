@@ -57,6 +57,12 @@ graph TD
     CARETAKER_AGENT -- "Consumes" --> MCP_MAINTENANCE
     CARETAKER_AGENT -- "Consumes" --> MCP_TENANTS
 
+    %% Core Datastore
+    DATABASE[(🗄️ Firebase Firestore)]
+
+    MCP_TENANTS -- "Reads/Writes" --> DATABASE
+    MCP_FINANCE -- "Reads/Writes" --> DATABASE
+
     %% App to MCP Flows
     SystemPortal -- "Uses" --> MCP_AUTH
     SystemPortal -- "Uses" --> MCP_TENANTS

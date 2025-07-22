@@ -1,23 +1,20 @@
 # 11 - Data Governance Model
 
-**Version:** 1.0
-**Date:** 2025-07-22
+This document outlines the policies for managing the system's data, with a focus on the NoSQL structure of Firebase Firestore.
 
-## 1. Purpose
+## 1. Schema Management
 
-This document defines the specific governance and security rules for different categories of data within the system.
+- **Canonical Schema:** The `docs/06_DATABASE_SCHEMA.md` document is the single source of truth for the data model.
+- **Schema Evolution:** Any changes to the data model must be backward-compatible. Destructive changes (e.g., deleting a field) are prohibited. Instead, new fields should be added, and old fields should be marked as deprecated.
+- **Validation:** All data written to the database must be validated against the canonical schema by the respective MCP service.
 
-## 2. General Data
+## 2. Data Lifecycle Management
 
-- **Applies to:** Tenants, Vendors, Financial Ledger, Properties, etc.
-- **Access Control:** Role-based access control (RBAC) as defined in the Security Model and implemented via Firestore Rules.
-- **Encryption:** Encrypted at rest and in transit by default.
+- **Data Retention:** Data retention policies are defined in the `01_DATA_PRIVACY_POLICY.md`.
+- **Archiving:** Tenant data will be moved to an archived state upon off-boarding.
+- **Deletion:** Personally Identifiable Information (PII) will be securely deleted after the legally mandated retention period.
 
-## 3. Sensitive Personal Information (SPI)
+## 3. Data Quality
 
-- **Applies to:** The psychological profiles and sentiment analysis data generated from employee communications.
-- **Heightened Governance Rules:**
-    - **Access Control:** Access is restricted to the CEO's unique user ID only. This will be enforced by a specific, non-modifiable Firestore security rule.
-    - **Audit Trail:** Every access event (read or view) of this data by the CEO must be logged in a separate, immutable audit log collection.
-    - **Data Lifecycle:** The raw analytical data will be retained for a maximum of 180 days. The high-level summary profile will be retained for the duration of employment.
-    - **Secure Deletion:** Upon cessation of employment, a formal process will be triggered to securely delete the associated analysis data and profile after a 30-day grace period.
+- **Data Owners:** Each data collection (e.g., `tenants`, `vendors`) has a designated owner (the relevant ministry) responsible for its quality and integrity.
+- **Auditing:** The Auditor AI will periodically run data quality checks to identify and report anomalies.

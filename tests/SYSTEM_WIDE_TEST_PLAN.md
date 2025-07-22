@@ -35,7 +35,12 @@ Given our reliance on the Model Context Protocol (MCP), a new category of testin
 - **Bias Testing:** The test dataset will include a diverse range of document types and qualities to ensure the model is not biased.
 - **Security Testing:** The model will be tested against adversarial attacks (e.g., forged documents).
 
-## 6. User Acceptance Testing (UAT)
+## 6. Business Logic Rule Testing
+
+- **Objective:** To validate the correctness of the business logic defined in the `.yaml` policy files.
+- **Method:** Each rule will be tested with a dedicated set of unit tests that provide sample inputs and assert the expected outcome.
+
+## 7. User Acceptance Testing (UAT)
 
 - **Objective:** To allow the CEO and other key stakeholders to test new features and confirm they meet business requirements.
 - **Process:** UAT will be conducted in the staging environment before any major new feature is released to production.

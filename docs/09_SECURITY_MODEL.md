@@ -36,7 +36,12 @@ Authentication confirms *who* is making the request; authorization confirms *wha
 - **TLS Everywhere:** All communication between system components must be encrypted using TLS 1.2 or higher.
 - **Firewall Rules:** Strict firewall rules will be in place to limit traffic between services to only what is explicitly required.
 
-## 6. Auditing & Monitoring
+## 6. Securing Inbound Webhooks
+
+- **Signature Validation:** All inbound webhooks (e.g., from the WhatsApp Business API) must be secured by validating the request signature.
+- **Payload Integrity:** The signature validation process ensures that the request payload has not been tampered with.
+
+## 7. Auditing & Monitoring
 
 - **Audit Logs:** Every request to an MCP service, whether successful or failed, will be logged.
 - **Vigilance AI:** The Vigilance AI is responsible for continuously monitoring these audit logs for suspicious activity.

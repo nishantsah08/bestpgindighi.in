@@ -1,77 +1,39 @@
-# Database Schema
+# 06 - Database Schema (Firebase Firestore)
 
-**Version:** 1.0
-**Date:** 2025-07-22
+This document defines the data model for the system, implemented in Firebase Firestore.
 
-## 1. Overview
+## 1. Top-Level Collections
 
-This document defines the schema for the primary data collections stored in Firestore.
+- `tenants`
+- `vendors`
+- `judicial_docket`
+- `general_ledger`
 
-## 2. Collections
+## 2. `tenants` Collection
 
-### `properties`
-- **Description:** Stores the physical structure of all managed properties.
+- **Document ID:** `tenant_id` (auto-generated)
 - **Fields:**
-    - `property_id` (String)
-    - `property_name` (String)
-    - `flats` (Array of Objects)
-        - `flat_number` (String)
-        - `status` (String: "Operational", "Expansion Ready")
-        - `sub_meter_id` (String)
-        - `beds` (Array of Strings)
+    - `name` (string)
+    - `contact_number` (string)
+    - `status` (string: `PROVISIONAL`, `VERIFIED`, `ACTIVE`, `ARCHIVED`)
+    - `verification_attempts` (number)
+    - `identity_documents` (map, nullable)
+    - `created_at` (timestamp)
 
-### `tenants`
-- **Description:** Stores information about all customers.
+## 3. `judicial_docket` Collection
+
+- **Document ID:** `case_id` (auto-generated)
 - **Fields:**
-    - `tenant_svh_id` (String)
-    - `full_name` (String)
-    - `phone_number` (String)
-    - `property_id` (String) -> Links to `properties`
-    - `flat_number` (String)
-    - `bed_id` (String)
-    - `status` (String: "Active", "Inactive", "Lead")
-    - `language_preference` (String: "en", "hi", "mr", optional)
-    - `snoozed_alerts` (Map)
+    - `case_type` (string)
+    - `status` (string: `PENDING_REVIEW`, `PENDING_CEO_APPROVAL`, `RESOLVED`)
+    - `filer_id` (string)
+    - `monetary_impact_amount` (number, nullable)
+    - `recommended_verdict` (string, nullable)
+    - `final_verdict` (string, nullable)
+    - `created_at` (timestamp)
 
-### `vendors`
-- **Description:** Stores information about all third-party vendors.
-- **Fields:**
-    - `vendor_id` (String)
-    - `vendor_name` (String)
-    - `service_category` (String)
-    - `contact_person` (String)
-    - `phone_number` (String)
-    - `activity_log` (Array of Objects)
-        - `date` (Timestamp)
-        - `note` (String)
-    - `files` (Array of Objects)
-        - `file_name` (String)
-        - `storage_url` (String)
+## 4. Firestore Security Rules
 
-### `financial_ledger`
-- **Description:** The immutable record of all financial transactions.
-- **Fields:**
-    - `transaction_id` (String)
-    - `date` (Timestamp)
-    - `amount` (Number)
-    - `type` (String: "Revenue", "Expense")
-    - `category` (String) -> Links to `Chart of Accounts`
-    - `description` (String)
-    - `linked_entity_id` (String) -> Links to `tenants` (svh_id) or `vendors` (vendor_id)
-    - `payment_method` (String: "Manual UPI", "Manual Cash")
-    - `is_corrected` (Boolean)
-    - `reversing_transaction_id` (String, optional)
-
-### `complaints`
-- **Description:** Stores all tenant complaints and service requests.
-- **Fields:**
-    - `complaint_id` (String)
-    - `tenant_id` (String) -> Links to `tenants`
-    - `property_id` (String) -> Links to `properties`
-    - `date_filed` (Timestamp)
-    - `summary` (String)
-    - `status` (String: "New", "In Progress", "Resolved")
-    - `snooze_until_date` (Timestamp, optional)
-
-### `meters` & `electricity_readings`
-- **Description:** As defined in the electricity billing bill.
+- Access to collections will be governed by Firestore Security Rules.
+- Rules will be written to enforce the Access Control Lists (ACLs) defined in the `05_MCP_CAPABILITY_REGISTRY.md`.
+- Example: Only a service with the `Financial_AI_Agent` role can write to the `general_ledger` collection.

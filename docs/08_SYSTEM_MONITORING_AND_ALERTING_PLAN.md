@@ -20,6 +20,13 @@ Our monitoring strategy is based on the four "Golden Signals" of monitoring:
 
 ## 3. Key Metrics to Monitor (Per MCP Service)
 
+## 3. Key Metrics to Monitor (Per MCP Service)
+
+### External API Webhooks
+- **Request Rate:** Requests per second.
+- **Error Rate:** 4xx and 5xx errors.
+- **Latency:** Time to process and queue the incoming message.
+
 ### Application Metrics
 - **Request Rate:** Requests per second (by capability).
 - **Error Rate:** Percentage of failed requests (by capability and error type).

@@ -28,6 +28,12 @@ principles:
       This includes minimizing unnecessary database reads, optimizing data storage structures,
       and writing efficient code.
 
+  - principle: Monitor Key Cost Drivers
+    description: >
+      The system must actively monitor known, high-variable cost drivers. This includes
+      "Firestore Read/Write Operations" and "Verification AI Document Analysis Events".
+      The Auditor AI is responsible for reporting on these metrics.
+
   - principle: Justification for Paid Services
     description: >
       Moving any component from a free tier to a paid tier requires a formal

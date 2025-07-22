@@ -1,37 +1,22 @@
-# Disaster Recovery Plan
+# 07 - Disaster Recovery Plan
 
-**Version:** 1.0
-**Date:** 2025-07-22
+This document outlines the procedures for recovering from a catastrophic system failure.
 
-## 1. Purpose
+## 1. Core Principle: Recovery Time Objective (RTO)
 
-This document outlines the procedures for recovering from a catastrophic data loss or system failure.
+Our primary goal is to restore critical, tenant-facing services within a defined Recovery Time Objective. The RTO for this system is **4 hours**.
 
-## 2. Core Infrastructure
+## 2. Firebase Firestore Backup and Restore
 
-- **Primary Data Store:** Google Firestore
-- **Primary File Store:** Google Cloud Storage
+- **Backup Strategy:** Automated, daily backups of the entire Firestore database will be configured using the Firebase console.
+- **Backup Retention:** Backups will be retained for a minimum of 30 days.
+- **Restore Procedure:** In the event of data corruption or loss, the on-call engineer will manually initiate a point-in-time restore from the last known good backup.
 
-## 3. Recovery Procedures
+## 3. Service Redeployment
 
-### 3.1 Database Recovery (Firestore)
+- **Infrastructure as Code:** All MCP services will be defined using an Infrastructure as Code (IaC) framework (e.g., Terraform).
+- **Redeployment:** In the event of a service or infrastructure failure, the on-call engineer will redeploy the affected services from the IaC templates.
 
-- **Scenario:** Accidental data deletion or corruption.
-- **Action:** Utilize Firestore's **Point-in-Time Recovery (PITR)** feature.
-- **Steps:**
-    1.  The CEO or acting technical lead will access the Google Cloud Console.
-    2.  Navigate to the Firestore database section.
-    3.  Initiate a restoration process, selecting a timestamp just prior to the catastrophic event.
-    4.  The database will be restored to its state at that exact moment.
-- **RTO (Recovery Time Objective):** < 1 hour.
-- **RPO (Recovery Point Objective):** < 1 minute (data is restorable to any minute in the past 7 days).
+## 4. Annual Testing
 
-### 3.2 File Storage Recovery (Cloud Storage)
-
-- **Scenario:** Accidental deletion of uploaded files.
-- **Action:** Utilize Cloud Storage's **Object Versioning** feature.
-- **Steps:**
-    1.  Object versioning will be enabled on the storage bucket.
-    2.  If an object is deleted, it is retained as a non-current version.
-    3.  The CEO or technical lead can restore the non-current version through the Google Cloud Console.
-- **RTO:** < 30 minutes.
+- The disaster recovery plan will be tested annually in a non-production environment to ensure its effectiveness and to train personnel on the procedures.
