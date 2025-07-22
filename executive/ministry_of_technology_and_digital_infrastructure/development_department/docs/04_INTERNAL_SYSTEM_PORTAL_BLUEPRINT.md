@@ -11,7 +11,8 @@ This document outlines the structural blueprint and feature set for the CEO's In
 - **Purpose:** To provide a single-glance overview of the business, framed around the four critical inversion risks.
 - **Structure:** The dashboard will be divided into four main quadrants:
     1.  **Compliance Risk:** Displays the output of the `getComplianceStatusReport` (pending verifications, agreements, etc.).
-    2.  **Financial Risk:** Displays the outputs of `getPendingRentReport`, `getTotalCashAtHand`, and `getProjectedRevenueNextMonth`.
+    2.  **Judicial Approvals:** A queue of pending high-value judicial cases requiring the CEO's decision. Each item will link to a detailed case view.
+    3.  **Financial Risk:** Displays the outputs of `getPendingRentReport`, `getTotalCashAtHand`, and `getProjectedRevenueNextMonth`.
     3.  **Reputation Risk (GBL):** Displays the outputs of `getCustomerComplaintsReport` and `getLeadFunnelReport`.
     4.  **Key Person Risk (Caretaker):** Also displays the `getCustomerComplaintsReport` as a proxy for operational stress.
 
@@ -33,7 +34,7 @@ This document outlines the structural blueprint and feature set for the CEO's In
 ### 3. Section Details
 
 #### 3.1 Cabinet Secretary (Query Interface)
-- **Purpose:** A powerful, LLM-driven interface for the CEO to ask complex questions that span across internal system data and the open internet.
+- **Purpose:** A powerful, LLM-driven interface for the CEO to ask complex questions. It will also be linked from the Judicial Approval section to allow for deep-dive analysis of case data.
 - **Implementation:** This is a highly complex feature that will be implemented in phases.
     - **Phase 1:** The initial version will support a limited set of structured queries (e.g., "show me all expenses in the Maintenance category for last month").
     - **Future Phases:** Will progressively add more complex, natural language capabilities and integration with external data sources, requiring a dedicated technical design document.

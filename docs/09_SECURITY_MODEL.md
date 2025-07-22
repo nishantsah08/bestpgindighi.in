@@ -38,5 +38,9 @@ Authentication confirms *who* is making the request; authorization confirms *wha
 
 ## 6. Auditing & Monitoring
 
-- **Audit Logs:** Every request to an MCP service, whether successful or failed, will be logged. The log will include the identity of the caller, the capability requested, and a timestamp.
-- **Vigilance AI:** The Vigilance AI is responsible for continuously monitoring these audit logs for suspicious activity, such as repeated failed authentication attempts or unauthorized access requests.
+- **Audit Logs:** Every request to an MCP service, whether successful or failed, will be logged.
+- **Vigilance AI:** The Vigilance AI is responsible for continuously monitoring these audit logs for suspicious activity.
+
+## 7. Executive Action Auditing
+
+- All judicial decisions made by the CEO via the Internal System Portal will be captured in a dedicated, immutable audit log. The log will record the CEO's identity, the case ID, the timestamp, and the exact action taken (Approve, Reject, Modify).

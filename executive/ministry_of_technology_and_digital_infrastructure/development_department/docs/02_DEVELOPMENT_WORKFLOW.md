@@ -23,6 +23,7 @@ All proposed changes to Foundational Policies are subject to a rigorous, automat
 - **Canonical Documentation:** [`judiciary/00_JUDICIAL_REVIEW_PROCESS.md`](../judiciary/00_JUDICIAL_REVIEW_PROCESS.md)
 
 This review includes:
+- **Judicial Process Integration:** Ensuring that any new process includes appropriate triggers for filing judicial cases and handling their verdicts.
 - **Event-Based Impact Analysis:** Analyzing how a change affects all connected components in the system's 3D logical model.
 - **Data & Policy Versioning:** Ensuring that any change that alters data structure is properly versioned and that the system can handle both old and new data formats.
 

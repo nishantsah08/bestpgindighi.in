@@ -49,3 +49,10 @@ chart_of_accounts:
   - description: >
       The system will use the official Chart of Accounts as defined in the
       `14_chart_of_accounts.yaml` policy document.
+
+judicial_financial_controls:
+  - rule: Mandatory CEO Review
+    description: >
+      All financial disputes or corrections with a value greater than ₹500 must be
+      reviewed and approved by the CEO, as per the process defined in the
+      Judicial Review Process document.

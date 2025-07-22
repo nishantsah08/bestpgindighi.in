@@ -60,6 +60,13 @@ Each registered capability must include the following information:
 
 ### Document & Notification Capabilities
 
+- **Capability ID:** `tasks.create_ceo_approval_request`
+- **Description:** Creates a task in the CEO's portal for a high-value judicial case review.
+- **Owner:** Ministry of Technology & Digital Infrastructure
+- **Service Endpoint:** `https://mcp.bestpgindighi.in/tasks/ceo_approval`
+- **ACL:** `[Judiciary_AI]`
+- **Schema:** `schemas/tasks/ceo_approval_request.json`
+
 - **Capability ID:** `documents.analyze_and_verify`
 - **Description:** Triggers the Verification AI to analyze a submitted document set.
 - **Owner:** Ministry of Technology & Digital Infrastructure

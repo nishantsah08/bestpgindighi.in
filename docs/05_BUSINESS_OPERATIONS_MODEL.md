@@ -33,8 +33,15 @@ This process is designed to be highly autonomous, triggered by a financial event
 
 5.  **Failure Escalation Path:**
     *   If the AI Verification Loop fails three consecutive times, the process is halted.
-    *   The system automatically calls the `tasks.create_escalation` MCP capability.
-    *   A new task, "Manual Verification Required," is created and assigned to the **Sales Agent** in their mobile app's action queue.
+    *   The system automatically calls the `judiciary.file_case` MCP capability to create a new case.
+
+6.  **Judicial Review & CEO Approval:**
+    *   The Judiciary AI reviews the case and recommends a verdict.
+    *   If the case involves a financial dispute > ₹500, it enters the `PENDING_CEO_APPROVAL` state.
+    *   The CEO approves, rejects, or modifies the verdict via the Internal System Portal.
+
+7.  **Post-Verdict Execution:**
+    *   Once a final verdict is determined, the system calls the appropriate MCP capability to enforce it (e.g., `financial.issue_refund`, `tenants.finalize_verification`).
 
 ### Cost Impact Statement
 

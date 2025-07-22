@@ -26,3 +26,10 @@ Any significant, time-wasting procedural issue that is resolved during operation
 ## 4. Jurisdiction Over Autonomous Agents
 
 The Judiciary's mandate is hereby extended to include the review of decisions made by autonomous AI agents. If a customer or employee disputes a decision made by an agent (e.g., the Verification AI), they may file a case. The Judiciary has the authority to examine the agent's operational logs and to overturn its decision if it is found to be inconsistent with established policy or constitutional principles.
+
+## 5. Case Filing and Resolution Procedure
+
+1.  **Filing:** Cases are filed via the `judiciary.file_case` MCP capability. Cases with a financial impact must include the `monetary_impact_amount`.
+2.  **Review:** The Judiciary AI performs a full analysis and formulates a "Recommended Verdict".
+3.  **CEO Approval Checkpoint:** For cases where `monetary_impact_amount` > 500, the case is moved to `PENDING_CEO_APPROVAL` and a task is created for the CEO. Per the Constitution, if the CEO does not act within 72 hours, the recommended verdict becomes final.
+4.  **Final Verdict:** The final verdict is recorded and the original filer is notified.
