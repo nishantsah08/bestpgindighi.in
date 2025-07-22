@@ -1,0 +1,24 @@
+From,To,Label
+ACT: Financial Management,Principle: Financial Integrity,DERIVES_AUTHORITY_FROM
+ACT: Judicial Process,Principle: CEO Financial Authority,DERIVES_AUTHORITY_FROM
+ACT: Judicial Process,Principle: Default Verdict Clause,DERIVES_AUTHORITY_FROM
+AGENT: Judiciary AI,ACT: Judicial Process,ENFORCES
+AGENT: Financial AI,ACT: Financial Management,ENFORCES
+AGENT: Verification AI,ACT: Communication Strategy,ENFORCES
+AGENT: Auditor AI,ACT: Cost Optimization,ENFORCES
+AGENT: Vigilance AI,AGENT: Verification AI,MONITORS
+PROCESS: Tenant Onboarding,TRIGGER: WhatsApp Message,INITIATED_BY
+TRIGGER: WhatsApp Message,AGENT: Financial AI,TRIGGERS
+AGENT: Financial AI,CAPABILITY: tenants.create_provisional,USES
+CAPABILITY: tenants.create_provisional,DATA: Tenant Records,PERSISTS_STATE_TO
+CAPABILITY: tenants.create_provisional,STATE: Pending Document Submission,CREATES_STATE
+STATE: Pending Document Submission,CAPABILITY: notifications.send_verification_form,TRIGGERS
+CAPABILITY: notifications.send_verification_form,AGENT: Verification AI,TRIGGERS
+AGENT: Verification AI,CAPABILITY: documents.analyze,USES
+AGENT: Verification AI,CAPABILITY: notifications.send_whatsapp_audio,USES
+PROCESS: Judicial Review,CAPABILITY: judiciary.file_case,INITIATED_BY
+CAPABILITY: judiciary.file_case,DATA: Judicial Docket,PERSISTS_STATE_TO
+CAPABILITY: judiciary.file_case,AGENT: Judiciary AI,TRIGGERS
+AGENT: Judiciary AI,CAPABILITY: tasks.create_ceo_approval,USES
+CAPABILITY: tasks.create_ceo_approval,STATE: Pending CEO Approval,CREATES_STATE
+STATE: Pending CEO Approval,ROLE: CEO,REQUIRES_ACTION_FROM
