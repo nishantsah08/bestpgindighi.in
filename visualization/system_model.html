@@ -1,33 +1,25 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Best PG in Dighi - 3D System Model</title>
+    <title>Best PG in Dighi - 3D System Model (Corrected)</title>
     <style>
         body { margin: 0; background-color: #000011; color: white; font-family: sans-serif; }
-        .node-label {
-            font-size: 12px;
-            padding: 1px 4px;
-            border-radius: 4px;
-            background-color: rgba(0,0,0,0.5);
-            color: white;
-            user-select: none;
-        }
         #info-box {
             position: absolute;
             top: 10px;
             left: 10px;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.8);
             padding: 10px;
             border-radius: 5px;
             border: 1px solid #555;
             display: none;
+            max-width: 300px;
         }
-        h2 { margin-top: 0; }
-        p { margin-bottom: 0; }
+        h2 { margin-top: 0; color: #4fc3f7; }
+        p { margin-bottom: 5px; }
+        strong { color: #ffeb3b; }
     </style>
 </head>
 <body>
@@ -60,13 +52,13 @@
             { id: 'CaretakerAI', name: '🛠️ Caretaker AI Agent', group: 3, description: 'Receives notifications to assign beds.' },
 
             // MCP Services (The Work)
-            { id: 'WebhookService', name: '🔌 WhatsApp Webhook', group: 4, description: 'The \'Front Door\'. Receives messages from the WhatsApp API.', failure: 'LOGICAL FAILURE 1: This component is not yet built.' },
-            { id: 'TenantService', name: '👤 Tenant Mgmt Service', group: 4, description: 'Manages tenant records (provisional, verified, etc.).', failure: 'LOGICAL FAILURE 2: This component is not yet built.' },
-            { id: 'NotificationService', name: '🔔 Notification Service', group: 4, description: 'Sends automated SMS, WhatsApp, and audio messages.', failure: 'LOGICAL FAILURE 2: This component is not yet built.' },
-            { id: 'PolicyEngine', name: '📖 Policy Engine', group: 4, description: 'The \'Rulebook Reader\'. Allows AIs to understand and apply YAML policies.', failure: 'LOGICAL FAILURE 3: This component is not yet built.' },
+            { id: 'WebhookService', name: '🔌 WhatsApp Webhook', group: 4, description: 'The \'Front Door\'. Receives messages from the WhatsApp API.', failure: 'This component is not yet built.' },
+            { id: 'TenantService', name: '👤 Tenant Mgmt Service', group: 4, description: 'Manages tenant records (provisional, verified, etc.).', failure: 'This component is not yet built.' },
+            { id: 'NotificationService', name: '🔔 Notification Service', group: 4, description: 'Sends automated SMS, WhatsApp, and audio messages.', failure: 'This component is not yet built.' },
+            { id: 'PolicyEngine', name: '📖 Policy Engine', group: 4, description: 'The \'Rulebook Reader\'. Allows AIs to understand and apply YAML policies.', failure: 'This component is not yet built.' },
 
             // Core Datastore
-            { id: 'FirestoreDB', name: '🗄️ Firebase Firestore', group: 5, description: 'The \'Notebook\'. The central database for all system state.', failure: 'LOGICAL FAILURE 2: This component is not yet built.' },
+            { id: 'FirestoreDB', name: '🗄️ Firebase Firestore', group: 5, description: 'The \'Notebook\'. The central database for all system state.', failure: 'This component is not yet built.' },
 
             // Key Documents
             { id: 'Acts', name: '📜 Acts (YAML)', group: 6, description: 'The ratified, machine-readable rulebooks.' },
@@ -121,7 +113,8 @@
                 content += `<p><strong>Details:</strong> ${node.details}</p>`;
             }
             if (node.failure) {
-                content += `<p style='color: #ff8a80;'><strong>LOGICAL FAILURE:</strong> ${node.failure}</p>`;
+                // CORRECTED: Used a template literal and standard CSS for styling
+                content += `<p style="color: #ff8a80;"><strong>LOGICAL FAILURE:</strong> ${node.failure}</p>`;
             }
             infoBox.innerHTML = content;
             infoBox.style.display = 'block';
