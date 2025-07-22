@@ -11,6 +11,6 @@ parameters_file: '04_complaints_and_violations_parameters.md'
 
 core_principles:
   - 'All complaints and reported violations, regardless of source, must be centrally processed and classified.'
-  - 'An initial owner for a complaint will be determined by intent-based routing, as defined in the parameters file.'
+  - 'An initial handler for a complaint will be determined by intent-based routing, as defined in the parameters file.'
   - 'A formal escalation path exists for all complaints, with triggers and responsible roles defined in the parameters file.'
   - 'Complaints originating from staff have an accelerated escalation path.'

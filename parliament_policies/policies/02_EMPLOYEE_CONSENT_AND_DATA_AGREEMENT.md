@@ -9,7 +9,7 @@ This document outlines the data processing activities related to your role and s
 
 ## 2. Data Collection & Analysis
 
-As part of your role, all business-related and non-business-related calls made or received on your work-provided communication channel will be recorded and transcribed.
+As part of your role, all business-related calls made or received on your work-provided communication channel will be recorded and transcribed.
 
 These transcripts will be analyzed by a secure, automated AI system for two specific purposes:
 

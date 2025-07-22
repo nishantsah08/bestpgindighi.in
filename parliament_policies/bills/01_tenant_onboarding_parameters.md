@@ -130,7 +130,7 @@
 
     Do not tamper with CCTV, routers, wiring, or other safety equipment.
 
-    Note: These rules are subject to updates. For any issues, please call caretaker Parveen at 9028217994. If the issue is not resolved within a reasonable timeframe, please message or call the owner at 75594 21424. You will be notified via WhatsApp or notice board. Tenants must acknowledge changes.
+    Note: These rules are subject to updates. For any issues, please call caretaker Parveen at 9028217994. If the issue is not resolved within a reasonable timeframe, please message or call the CEO at 75594 21424. You will be notified via WhatsApp or notice board. Tenants must acknowledge changes.
     ```
 
 ### Compliance & E-Signing

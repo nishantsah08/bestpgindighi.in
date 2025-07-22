@@ -1,15 +1,27 @@
 title: "Customer Interaction and Call Management Bill"
-status: "draft"
-version: 1.0
+status: "active" # Ratified to resolve C24
+version: 2.0 # Major version change for new logic
 
-# This bill governs the handling of inbound customer communications, especially in response to automated messages.
+# This bill governs the handling of inbound customer communications.
 
 inbound_communication:
-  default_routing:
+  # The primary principle is to ensure a seamless human experience.
+  # All messages are delivered to the human agent first.
+  human_first_delivery:
     - channel: "WhatsApp"
-      action: "route_to_sales_agent_queue"
+      action: "deliver_to_sales_agent_interface"
     - channel: "SMS"
-      action: "route_to_sales_agent_queue"
+      action: "deliver_to_sales_agent_interface"
+
+  # AI monitors the message stream in parallel to the human agent.
+  ai_monitoring:
+    - rule: "Fork financial transactions to the Financial AI"
+      conditions:
+        - channel: "WhatsApp"
+        - message_content_type: ["text", "image"]
+        - message_contains_keywords: ["payment", "paid", "sent", "upi", "gpay", "phonepe", "paytm", "receipt", "screenshot"]
+        - image_contains_ocr_patterns: ["payment successful", "transaction id", "upi reference"]
+      action: "fork_to_financial_ai_queue"
 
   escalation_rules:
     - trigger: "customer_reply_to_automated_message"

@@ -54,13 +54,13 @@ This section documents the primary user flows for new system features.
 
 #### Expense Filing Flow
 
-- **Trigger:** Owner sends a message (text, image, or combined) to the system.
+- **Trigger:** CEO sends a message (text, image, or combined) to the system.
 - **Flow:**
     1.  Financial AI performs OCR/NLP analysis on the message.
     2.  Financial AI responds with a single, consolidated clarification questionnaire.
     3.  Owner replies to the questionnaire.
     4.  Financial AI summarizes the structured data and asks for final confirmation.
-    5.  Owner confirms, and the transaction is filed.
+    5.  CEO confirms, and the transaction is filed.
 
 #### Revenue Recognition Flow
 

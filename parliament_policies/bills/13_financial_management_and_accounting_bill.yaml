@@ -2,7 +2,7 @@
 version: 1.0
 policy_type: foundational
 
-status: DRAFT
+status: ACTIVE
 
 description: >
   This bill formally establishes the Ministry of Finance and defines the immutable
@@ -16,17 +16,13 @@ core_principles:
       entry and a new correct entry, preserving a complete transaction history.
 
 revenue_recognition:
-  - process: Manual Revenue Recording
+  - process: Automated Revenue Recognition from Sales Channel
     description: >
-      All revenue from non-integrated sources must be recorded manually.
-    external_interface: WhatsApp Business API
-    workflows:
-      - actor: CEO
-        channel: Internal System Portal
-        methods: ["Manual UPI", "Manual Cash"]
-      - actor: Sales
-        channel: WhatsApp
-        methods: ["Manual UPI", "Manual Cash"]
+      The system will passively monitor the main WhatsApp channel. When a message
+      from a customer contains evidence of a payment (e.g., a payment screenshot
+      or text confirming payment), the system will automatically fork this information
+      to the Financial AI to be recorded as revenue. The Sales agent does not need
+      to take any special action.
 
 expense_management:
   - process: Conversational Expense Filing
@@ -41,7 +37,7 @@ expense_management:
       - "Step 3: AI initiates a single, consolidated clarification dialogue with the verified data."
       - "Step 4: Owner provides answers to the questionnaire."
       - "Step 5: AI confirms final structured data."
-      - "Step 6: Owner gives final approval."
+      - "Step 6: CEO gives final approval."
       - "Step 7: Transaction is irreversibly filed."
 
 chart_of_accounts:

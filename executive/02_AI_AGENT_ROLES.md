@@ -55,7 +55,7 @@ These AI agents are the "civil service" of the Executive branch, responsible for
 
 6.  **Financial AI Agent:**
     *   **Ministry:** Finance
-    *   **Description:** This agent is responsible for managing all financial transactions. It uses conversational AI to process expense and revenue reports via WhatsApp, ensuring all data is accurate and complete before committing it to the general ledger. It is the engine that drives the real-time financial statements.
+    - Passively monitors the main WhatsApp channel to identify and process financial transactions, including revenue and expenses. It is the engine that drives the real-time financial statements.
 
 ### The Independent Bodies
 

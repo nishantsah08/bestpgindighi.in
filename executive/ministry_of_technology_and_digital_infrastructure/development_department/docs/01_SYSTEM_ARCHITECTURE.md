@@ -13,7 +13,7 @@ Our system is architected as a network of MCP-compliant services. Each service e
 ```mermaid
 graph TD
     subgraph "Strategic & Legislative"
-        CEO(👤 CEO/Owner)
+        CEO(👤 CEO)
         PARLIAMENT(🏛️ Parliament <br> Defines Policies)
     end
 

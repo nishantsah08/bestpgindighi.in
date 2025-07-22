@@ -21,5 +21,6 @@ To ensure the integrity and authenticity of incoming requests, all calls to this
 
 ## 4. Logical Routing
 
-- Upon successful authentication, the webhook service will place the entire message payload onto an internal, secure message queue.
-- The **Financial AI Agent** will be the designated subscriber to this queue, ensuring asynchronous and reliable processing of incoming messages.
+- Upon successful authentication, the webhook service will follow a dual-path protocol:
+  1. **Primary Path (Human Interface):** The message is immediately delivered to the human-facing Sales Agent interface (e.g., WhatsApp Web, third-party CRM) to ensure seamless, real-time customer interaction.
+  2. **Secondary Path (AI Monitoring):** A copy of the entire message payload is simultaneously placed onto an internal, secure message queue for asynchronous analysis by the AI monitoring service.

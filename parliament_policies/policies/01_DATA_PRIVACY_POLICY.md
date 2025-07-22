@@ -32,5 +32,6 @@ This policy outlines our commitment to protecting the privacy and security of al
 ## 6. Automated Processing of Personal Data
 
 - The **Verification AI** is authorized to autonomously process tenant-submitted documents, including Aadhar cards and photographs, for the sole purpose of identity verification.
+- The **Financial AI** is authorized to passively monitor the main business WhatsApp channel to identify and process financial transactions. This may include analyzing message text and images for information related to payments.
 - This process is fully automated. The AI is programmed to handle data securely and to delete temporary files after processing.
 - All automated processing is logged and audited by the Auditor AI.

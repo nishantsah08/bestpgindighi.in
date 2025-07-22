@@ -2,7 +2,7 @@
 version: 1.0
 policy_type: foundational
 
-status: DRAFT
+status: ACTIVE
 
 description: >
   This document defines the official Chart of Accounts for the business, compliant
@@ -36,6 +36,9 @@ liabilities:
       - "Security Deposits"
 
 # 3. Equity
+# Note: The term "Owner" in this context refers to the standard accounting principle
+# of Owner's Equity and does not imply operational control by the business owner,
+# which is held by the CEO.
 equity:
   - category: Owner's Equity
     accounts:
