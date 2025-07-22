@@ -22,3 +22,7 @@ No change to the system's logical model (i.e., any change to a policy, parameter
 ## 3. Precedent for Procedural Efficiency
 
 Any significant, time-wasting procedural issue that is resolved during operations must be documented as a new Case File in the `judiciary/cases/` directory. This creates a body of precedent that the AI Agent must review during its startup sequence, ensuring that past inefficiencies are not repeated. The resolution documented in the case file becomes binding law for all future, similar operations.
+
+## 4. Jurisdiction Over Autonomous Agents
+
+The Judiciary's mandate is hereby extended to include the review of decisions made by autonomous AI agents. If a customer or employee disputes a decision made by an agent (e.g., the Verification AI), they may file a case. The Judiciary has the authority to examine the agent's operational logs and to overturn its decision if it is found to be inconsistent with established policy or constitutional principles.

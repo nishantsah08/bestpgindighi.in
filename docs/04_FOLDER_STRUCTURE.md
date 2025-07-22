@@ -31,7 +31,7 @@ bestpgindighi-ai/
 │
 ├── 🧠 advisory/              # Strategic planning and analysis AI.
 │
-├── 🌐 mcp/                   # Shared Model Context Protocol servers.
+├── 🌐 mcp/                   # Implementations of MCP-compliant servers and capability definitions.
 │
 ├── 📚 docs/                   # System documentation (this folder).
 │   ├── 00_SYSTEM_OVERVIEW.md
@@ -45,6 +45,8 @@ bestpgindighi-ai/
 │   └── user_manuals/
 │
 ├──  src/                    # Source code for MCP servers and other backend logic.
+│   ├── assets/
+│   │   └── audio/            # Pre-recorded audio files for notifications.
 │   └── database/
 │       └── 00_DATA_MIGRATION_PLAN.md
 │

@@ -54,7 +54,14 @@ This document outlines the structural blueprint and feature set for the CEO's In
 - **Purpose:** To provide a high-level overview of the health and status of the digital infrastructure.
 - **Components:** System Status Dashboard, Deployment Logs, and a high-level Error Monitoring summary.
 
-#### 3.6 Vendor Directory
+#### 3.6 MCP Service Registry
+- **Purpose:** To view and manage the registered MCP-compliant services.
+- **Features:**
+    - A list of all registered services from the `05_MCP_CAPABILITY_REGISTRY.md`.
+    - The real-time health status of each service endpoint.
+    - The ability to view the Access Control List (ACL) for each capability.
+
+#### 3.7 Vendor Directory
 - **Purpose:** The web-based interface for managing all vendor information.
 - **Features:** A searchable list of vendors, with profile pages containing full financial transaction history, interaction logs, and uploaded files.
 

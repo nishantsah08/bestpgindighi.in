@@ -1,33 +1,42 @@
-# Security Model
+# 09 - Security Model
 
-**Version:** 1.0
-**Date:** 2025-07-22
+This document outlines the security model for the entire autonomous management system, with a specific focus on securing the distributed network of Model Context Protocol (MCP) services.
 
 ## 1. Core Principles
 
-- **Principle of Least Privilege:** All components (human and AI) will only have the minimum permissions necessary to perform their defined roles.
-- **Defense in Depth:** Security will be applied in layers, from the frontend applications to the backend infrastructure.
+- **Least Privilege:** All components (AI agents, applications, services) must operate with the minimum level of privilege necessary to perform their function.
+- **Defense in Depth:** Security is applied in layers. A failure in one layer should be caught by the next.
+- **Zero Trust:** No component is trusted by default. All interactions must be authenticated and authorized.
+- **Secure by Design:** Security is not an afterthought; it is a foundational component of the system architecture.
 
 ## 2. Authentication
 
-- **Method:** Google Login (OAuth 2.0) will be the sole method of authentication for all user-facing systems (Internal Portal, Mobile Apps).
-- **Rationale:** This delegates user authentication to Google's robust and secure infrastructure, reducing our security surface area.
+All requests to any MCP service endpoint must be authenticated.
+
+- **Method:** We will use OAuth 2.0 with the Client Credentials flow for service-to-service communication.
+- **Identity Provider:** A central, dedicated Authentication Service (conforming to the MCP standard) will be responsible for issuing time-limited access tokens.
+- **Token Validation:** Every MCP service is responsible for validating the access token on every incoming request.
 
 ## 3. Authorization
 
-- **Internal Portal:** Access is restricted to the CEO's specific Google account ID.
-- **Mobile Apps:** User roles (CEO, Sales, Caretaker) are assigned to specific Google account IDs. The application will enforce features based on the authenticated user's role.
-- **MCP Servers:** Each MCP capability will verify the role of the calling user before executing any operation.
+Authentication confirms *who* is making the request; authorization confirms *what* they are allowed to do.
 
-## 4. Data Security
+- **Capability-Based Access Control:** Authorization is managed at the capability level.
+- **Access Control Lists (ACLs):** Each capability is protected by an ACL, which is defined in the `05_MCP_CAPABILITY_REGISTRY.md`. The ACL specifies exactly which AI agents or application roles are permitted to invoke the capability.
+- **Enforcement:** The gateway of each MCP service is responsible for enforcing the ACL for its registered capabilities.
 
-- **Firestore Rules:** Granular security rules will be implemented to control access to data collections. For example:
-    - The `financial_ledger` can only be read by the CEO and the Financial AI Agent.
-    - Tenant profiles can only be modified by authorized agents (e.g., Sales).
-- **Encryption at Rest:** All data stored in Firestore and Google Cloud Storage is automatically encrypted by Google.
-- **Encryption in Transit:** All data transmitted between clients and servers will use TLS (HTTPS).
+## 4. Secret Management
 
-## 5. Secret Management
+- **Secrets Vault:** All sensitive information (API keys, client secrets, database credentials) will be stored in a centralized, encrypted secrets vault (e.g., HashiCorp Vault or a cloud provider's equivalent).
+- **No Hardcoded Secrets:** Secrets must never be stored in source code, configuration files, or environment variables.
+- **Dynamic Secrets:** Where possible, we will use dynamic secrets that are generated on-demand and have a short lifespan.
 
-- **API Keys & Secrets:** All third-party API keys (e.g., WhatsApp Business API token) and system secrets will be stored securely using Google Cloud Secret Manager.
-- **Access:** Only specific Google Cloud Functions (MCP Servers) will be granted IAM permissions to access specific secrets at runtime. Secrets will not be stored in source code or environment variables.
+## 5. Network Security
+
+- **TLS Everywhere:** All communication between system components must be encrypted using TLS 1.2 or higher.
+- **Firewall Rules:** Strict firewall rules will be in place to limit traffic between services to only what is explicitly required.
+
+## 6. Auditing & Monitoring
+
+- **Audit Logs:** Every request to an MCP service, whether successful or failed, will be logged. The log will include the identity of the caller, the capability requested, and a timestamp.
+- **Vigilance AI:** The Vigilance AI is responsible for continuously monitoring these audit logs for suspicious activity, such as repeated failed authentication attempts or unauthorized access requests.

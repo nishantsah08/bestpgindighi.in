@@ -1,28 +1,17 @@
-# Policy for Customer Interaction and Call Management
+title: "Customer Interaction and Call Management Bill"
+status: "draft"
 version: 1.0
-policy_type: foundational
 
-versioning_policy:
-  - type: 'semantic_versioning'
-    description: 'This policy governs the initial contact and data capture for all potential and existing customers. Changes to this policy are considered foundational and require a major version update.'
+# This bill governs the handling of inbound customer communications, especially in response to automated messages.
 
-parameters_file: '10_customer_interaction_and_call_management_parameters.md'
+inbound_communication:
+  default_routing:
+    - channel: "WhatsApp"
+      action: "route_to_sales_agent_queue"
+    - channel: "SMS"
+      action: "route_to_sales_agent_queue"
 
-core_principles:
-  - 'All first interactions, whether by call or WhatsApp, must be captured by the system.'
-  - 'The system must automatically create a unique customer identifier (SVH-XX) for any interaction deemed to be a potential business lead.'
-
-call_management:
-  - '**Selective Universal Recording:** All calls to the `Sales` number are recorded universally. For all other staff (CEO, Caretaker, etc.), only calls from numbers already present in the system (i.e., existing customers) are recorded.'
-  - '**Call Duration Filtering:** The system will only process calls with a duration between the `min` and `max` seconds defined in the parameters file.'
-  - '**Post-Call Transcription:** Transcription is initiated immediately after a recorded call disconnects.'
-  - '**Data Enrichment:** The system shall attempt to auto-fill customer profile information from call transcripts.'
-  - '**Flagging:** The system should provide a mechanism for agents to flag calls as high-risk or high-opportunity.'
-
-whatsapp_management:
-  - 'All inbound WhatsApp messages shall be ingested into a central processing queue.'
-  - '**New Customer Engagement:** For messages from unknown numbers, a short-duration `debounce` timer is initiated. The message batch is processed for enrichment after the timer expires, ensuring prompt engagement with new leads.'
-  - '**Existing Customer Enrichment:** For messages from known customers, the message batch will be processed on-demand, immediately before any system-initiated outbound message is sent to that customer. This ensures full context is available without incurring the cost of constant real-time processing.'
-
-contact_synchronization:
-  - 'Customer contact details (Name, Phone, SVH-ID) must be synchronized in real-time to the contact lists of all relevant personnel (CEO, Sales, Caretaker).'
+  escalation_rules:
+    - trigger: "customer_reply_to_automated_message"
+      action: "create_task_for_sales_agent"
+      priority: "medium"

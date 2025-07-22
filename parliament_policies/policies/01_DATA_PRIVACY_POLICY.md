@@ -1,6 +1,6 @@
 # Data Privacy Policy
 
-**Version:** 1.0
+**Version:** 1.1
 **Date:** 2025-07-22
 
 ## 1. Purpose
@@ -28,3 +28,9 @@ This policy outlines our commitment to protecting the privacy and security of al
 
 - Financial records will be retained in accordance with Indian law.
 - Personal data for tenants will be archived upon off-boarding and securely deleted after a defined period, unless required for legal or financial reasons.
+
+## 6. Automated Processing of Personal Data
+
+- The **Verification AI** is authorized to autonomously process tenant-submitted documents, including Aadhar cards and photographs, for the sole purpose of identity verification.
+- This process is fully automated. The AI is programmed to handle data securely and to delete temporary files after processing.
+- All automated processing is logged and audited by the Auditor AI.

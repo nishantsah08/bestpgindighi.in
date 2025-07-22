@@ -1,29 +1,16 @@
-# Bill to Define the System-Wide Communication Strategy
+title: "Communication Strategy Bill"
+status: "draft"
 version: 1.0
-policy_type: foundational
 
-status: DRAFT
+# This bill governs all automated communications sent to customers.
 
-description: >
-  This bill defines the official strategy and rules for all system-initiated
-  communications.
+automated_messaging:
+  max_retries: 3
+  tone: "Polite and professional"
 
-core_principles:
-  - principle: Audience-Centric
-    description: "The tone and content of messages must be tailored to the recipient (e.g., Lead, Tenant, CEO, Sales, Caretaker)."
-  - principle: Channel Optimization
-    description: "The system will use the right channel for the right job: WhatsApp for external, App Push Notifications for internal."
-  - principle: Automated Language Detection
-    description: "The system must infer and use the recipient's preferred language for all communications."
+  templates:
+    verification_rejection:
+      message: "Hello, we were unable to verify your documents. Please re-upload clear copies at the following link: [LINK]"
 
-workflows:
-  - process: Language Detection
-    agent: Information Extraction Agent
-    trigger: "First communication is received from a new user."
-    logic: "Analyze the language of the initial message to determine the primary language (English, Hindi, Marathi). Save this to the user's profile."
-    fallback: "If the language cannot be determined with high confidence, the system will default to English."
-
-  - process: Failed Delivery
-    trigger: "The WhatsApp Business API reports a definitive failure to deliver a message."
-    action: "Create a high-priority 'Communication Failure' task in the Internal System Portal."
-    assignee: Sales Role
+    caretaker_notification:
+      audio_file: "src/assets/audio/new_tenant_authorization.mp3"

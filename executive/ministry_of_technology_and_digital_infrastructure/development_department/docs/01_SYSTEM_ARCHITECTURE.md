@@ -2,9 +2,11 @@
 
 This document outlines the high-level architecture of the autonomous management system. The system is owned by **"SVH Enterprise"** and this specific implementation is for the **"Best PG in Dighi"** brand.
 
-## Core Communication: Model Context Protocol (MCP)
+## Core Communication: The Model Context Protocol (MCP) Standard
 
-All components within the system communicate via the Model Context Protocol (MCP). The MCP acts as a central, intelligent communication bus, ensuring that all interactions are standardized, contextual, and auditable.
+All components within the system communicate by adhering to the **Model Context Protocol (MCP) standard**. MCP is not a single server, but a secure gateway protocol that defines how Large Language Models (LLMs) can safely and securely interact with a variety of tools, APIs, and data sources.
+
+Our system is architected as a network of MCP-compliant services. Each service exposes a specific set of capabilities (e.g., "billing," "tenant onboarding") that our AI Agents can consume. This approach provides flexibility, security, and clear separation of concerns. The master list of all available capabilities is defined in the `05_MCP_CAPABILITY_REGISTRY.md` document.
 
 ## Architecture Diagram
 
@@ -22,57 +24,58 @@ graph TD
         JUD(⚖️ Judiciary AI)
     end
 
-    subgraph "Executive Branch"
+    subgraph "Executive Branch (AI Agents)"
         CAB_SEC(🤖 Cabinet Secretary AI)
-        FIN_MIN(💰 Ministry of Finance)
-        DEPT_A(🏢 Dept A: Billing)
-        DEPT_B(🏢 Dept B: Maintenance)
-        DEPT_C(🏢 Dept C: Onboarding)
+        FIN_AGENT(💰 Finance AI Agent)
+        SALES_AGENT(📈 Sales AI Agent)
+        CARETAKER_AGENT(🛠️ Caretaker AI Agent)
+        VERIFICATION_AI(📄 Verification AI)
     end
 
-    subgraph "External Interfaces & Applications"
+    subgraph "Interface & Applications"
         PublicWebsite[🌐 Public Website]
         SystemPortal[🔒 Internal System Portal]
-        MobileSuite[📱 Native Mobile Suite <br> CEO, Sales, Caretaker Apps]
+        MobileSuite[📱 Native Mobile Suite]
     end
 
-    %% Core Communication Bus
-    MCP((🌐 Model Context Protocol <br> Central Bus))
+    subgraph "MCP-Compliant Services (The 'Sockets')"
+        MCP_AUTH(Auth Service)
+        MCP_TENANTS(Tenant Mgmt Service)
+        MCP_BILLING(Billing Service)
+        MCP_MAINTENANCE(Maintenance Service)
+        MCP_LEADS(Lead Gen Service)
+        MCP_FINANCE(Financial Ledger Service)
+    end
 
-    %% Flows
-    CEO -- "Strategic Direction" --> CAB_SEC
+    %% AI to MCP Flows
+    CAB_SEC -- "Consumes" --> MCP_AUTH
+    CAB_SEC -- "Consumes" --> MCP_TENANTS
+    FIN_AGENT -- "Consumes" --> MCP_FINANCE
+    FIN_AGENT -- "Consumes" --> MCP_BILLING
+    SALES_AGENT -- "Consumes" --> MCP_LEADS
+    SALES_AGENT -- "Consumes" --> MCP_TENANTS
+    CARETAKER_AGENT -- "Consumes" --> MCP_MAINTENANCE
+    CARETAKER_AGENT -- "Consumes" --> MCP_TENANTS
+
+    %% App to MCP Flows
+    SystemPortal -- "Uses" --> MCP_AUTH
+    SystemPortal -- "Uses" --> MCP_TENANTS
+    SystemPortal -- "Uses" --> MCP_BILLING
+    MobileSuite -- "Uses" --> MCP_AUTH
+    MobileSuite -- "Uses" --> MCP_LEADS
+    MobileSuite -- "Uses" --> MCP_MAINTENANCE
+    PublicWebsite -- "Feeds" --> MCP_LEADS
+
+    %% Oversight Flows
+    AUDIT -- "Audits" --> MCP_FINANCE
+    AUDIT -- "Audits" --> MCP_BILLING
+    VIGIL -- "Monitors" --> MCP_AUTH
+    VIGIL -- "Monitors" --> MCP_TENANTS
+
+    %% Human & Policy Flows
     CEO -- "Manages via" --> SystemPortal
     CEO -- "Manages via" --> MobileSuite
-
-    PARLIAMENT -- "Publishes Policies" --> MCP
-
-    PublicWebsite -- "Generates Leads" --> DEPT_C
-
-    SystemPortal -- "Interacts with" --> MCP
-    MobileSuite -- "Interacts with" --> MCP
-
-    CAB_SEC -- "Reads Policies" --> MCP
-    CAB_SEC -- "Issues Commands" --> DEPT_A
-    CAB_SEC -- "Issues Commands" --> DEPT_B
-    CAB_SEC -- "Issues Commands" --> DEPT_C
-    CAB_SEC -- "Issues Commands" --> FIN_MIN
-
-    FIN_MIN -- "Executes Financial Tasks" --> MCP
-    DEPT_A -- "Executes Tasks" --> MCP
-    DEPT_B -- "Executes Tasks" --> MCP
-    DEPT_C -- "Executes Tasks" --> MCP
-
-    FIN_MIN -- "Refers Edge Cases" --> JUD
-    DEPT_A -- "Refers Edge Cases" --> JUD
-    DEPT_B -- "Refers Edge Cases" --> JUD
-    DEPT_C -- "Refers Edge Cases" --> JUD
-
-    STRAT -- "Analyzes System Data" ..-> MCP
-    AUDIT -- "Audits Departments" ..-> DEPT_A
-    AUDIT -- "Audits Departments" ..-> DEPT_B
-    AUDIT -- "Audits Departments" ..-> DEPT_C
-    AUDIT -- "Audits Ministry" ..-> FIN_MIN
-    VIGIL -- "Monitors Entire System" ..-> MCP
+    PARLIAMENT -- "Publishes Policies" --> CAB_SEC
 ```
 
 ### Core Data Models

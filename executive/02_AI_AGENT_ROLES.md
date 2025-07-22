@@ -23,6 +23,8 @@ The CEO is the ultimate authority in the system, with unique responsibilities th
 
 ## The AI Civil Service
 
+These AI agents are the "civil service" of the Executive branch, responsible for carrying out the day-to-day operations of the business. They do not act on their own initiative, but rather consume capabilities exposed via the Model Context Protocol (MCP) as directed by their governing ministry and the policies set by Parliament.
+
 ### The Executive Branch
 
 1.  **Cabinet Secretary AI:**
@@ -43,7 +45,11 @@ The CEO is the ultimate authority in the system, with unique responsibilities th
     *   **Ministry:** Growth & Commerce
     *   **Description:** This agent processes raw text (e.g., call transcripts, WhatsApp messages) to extract structured information and insights. It identifies customer needs, preferences, and key data points to auto-populate customer profiles.
 
-5.  **Contact Sync Agent:**
+5.  **Verification AI:**
+    *   **Ministry:** Technology & Digital Infrastructure
+    *   **Description:** A specialized agent responsible for the autonomous verification of tenant documents. It analyzes submitted documents for clarity and completeness, and manages the automated communication loop with the tenant.
+
+6.  **Contact Sync Agent:**
     *   **Ministry:** Technology & Digital Infrastructure
     *   **Description:** This agent is responsible for the real-time synchronization of customer contact information across all relevant platforms and devices, ensuring that all personnel have access to the most up-to-date contact details.
 
@@ -59,11 +65,11 @@ The CEO is the ultimate authority in the system, with unique responsibilities th
 
 2.  **Auditor AI:**
     *   **Role:** The system's independent performance and financial watchdog.
-    *   **Responsibilities:** Proactively audits all executive departments and ministries, including the new **Ministry of Finance**, for policy compliance, efficiency, and resource waste, reporting directly to the CEO.
+    *   **Responsibilities:** Proactively audits all executive departments and ministries, including the new **Ministry of Finance** and the **Verification AI**, for policy compliance, efficiency, and resource waste, reporting directly to the CEO.
 
 3.  **Vigilance AI:**
     *   **Role:** The system's security and integrity officer.
-    *   **Responsibilities:** Monitors for internal security breaches or policy violations. It is also responsible for monitoring the security and integrity of all external API endpoints, such as the WhatsApp Business API webhook, and alerts the CEO to any suspicious activity.
+    *   **Responsibilities:** Monitors for internal security breaches or policy violations. It is also responsible for monitoring the security and integrity of all external API endpoints and the operational integrity of autonomous agents like the **Verification AI**. It alerts the CEO to any suspicious activity.
 
 ### The Advisory Body (NITI-Aayog)
 

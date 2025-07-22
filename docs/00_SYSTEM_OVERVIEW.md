@@ -30,6 +30,7 @@ In addition to the governing bodies, the system is comprised of several key tech
 - **Public Website:** The primary marketing and lead-generation asset, built on Firebase Hosting.
 - **Internal System Portal:** A secure, web-based command center for the CEO to manage the entire system.
 - **Native Mobile Suite:** A set of three, role-specific Android applications (CEO, Sales, Caretaker) built in Kotlin for on-the-go operations.
+- **Model Context Protocol (MCP):** A secure, standardized gateway protocol that allows all system components (AI agents, applications, and external services) to communicate and access tools and data in a controlled and auditable way.
 - **Ministry of Finance:** A new, autonomous executive ministry responsible for all financial recording and reporting, driven by a Financial AI Agent.
 
 ## Independent & Advisory Bodies
