@@ -1,5 +1,5 @@
 # Defines the core logic for the tenant offboarding process.
-version: 3.0 # Major revision for financial control
+version: 4.0 # Major revision for uncontrolled offboarding
 policy_type: operational
 
 versioning_policy:
@@ -23,7 +23,8 @@ offboarding_process:
       - 'completed'
 
 core_principles:
-  - 'The offboarding process is formally initiated when a tenant gives notice, as per the terms of their agreement.'
-  - 'A damage assessment must be completed before the final financial settlement can be calculated.'
-  - 'The final settlement must account for all outstanding financial obligations, including any `previous_outstanding` balance or `pending_deposit` payments, and may include a `discount_amount` as per Sales discretion.'
-  - 'The final settlement, including the security deposit refund, is subject to the `Cash-Out Authorization` policy in the `13_financial_management_and_accounting_bill.yaml`, which requires exclusive CEO approval for the final transaction.'
+  - 'The offboarding process can be initiated in two ways:'
+  - '1. Controlled Offboarding: A tenant gives notice as per the terms of their agreement.'
+  - '2. Uncontrolled Offboarding: The Caretaker confirms that a bed has been reclaimed as per the eviction process in the `02_monthly_billing_collections_bill.yaml`.'
+  - 'Upon initiation, the system will calculate the final dues.'
+  - 'The final settlement, including any write-offs or refunds, will be sent to the CEO for final approval as per the `Cash-Out Authorization` policy.'

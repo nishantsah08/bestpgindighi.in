@@ -1,5 +1,5 @@
 # Defines the core logic for monthly billing and collections.
-version: 2.0
+version: 3.0 # Major revision for eviction process
 policy_type: financial
 
 versioning_policy:
@@ -14,6 +14,14 @@ billing_principles:
   - 'Billing is event-driven, consolidating all billable charges from the preceding month.'
   - 'Late payments will incur penalties as defined in the parameters file.'
   - 'A multi-level escalation process will be initiated for overdue payments.'
+
+eviction_process:
+  - principle: "Automated Eviction for Non-Payment"
+    description: "This process defines the automated actions to be taken when a tenant fails to pay their rent."
+    trigger: "A tenant's rent is not fully paid by the 25th of the month."
+    workflow_steps:
+      - "Step 1: The system automatically sends a formal eviction notice to the tenant."
+      - "Step 2: The system creates a task for the Caretaker to reclaim possession of the bed on the last day of the month."
 
 payment_handling:
   - 'Overpayments will be credited to the next month's bill.'
