@@ -39,3 +39,6 @@ This Constitution may be amended by the CEO only.
 
 - **Amendment I:** Authorization of Autonomous Financial Systems (`01_AMENDMENT_FINANCIAL_SYSTEM.md`)
 - **Amendment II:** Authorization of Employee Data Analysis for Risk Management (`02_AMENDMENT_EMPLOYEE_DATA_ANALYSIS.md`)
+- **Amendment III:** On the Authority and Responsibility of AI Intent (`03_AMENDMENT_AI_INTENT_AUTHORITY.md`)
+- **Amendment IV:** On the Authority for Visual Data Interpretation (`04_AMENDMENT_VISUAL_DATA_INTERPRETATION.md`)
+- **Amendment V:** On the Limitation of Communication Channels (`05_AMENDMENT_COMMUNICATION_CHANNEL_LIMITATION.md`)

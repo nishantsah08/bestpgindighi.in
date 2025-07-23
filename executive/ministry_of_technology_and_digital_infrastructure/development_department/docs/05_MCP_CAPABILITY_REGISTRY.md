@@ -58,6 +58,29 @@ Each registered capability must include the following information:
 - **ACL:** `[Caretaker_AI_Agent, Caretaker_App, CEO_App]`
 - **Schema:** `schemas/tenants/maintenance_request.json`
 
+### Feedback Capabilities
+
+- **Capability ID:** `feedback.send_monthly_survey`
+- **Description:** A scheduled capability that sends the monthly feedback survey link to all active tenants.
+- **Owner:** Property & Tenant Welfare
+- **Service Endpoint:** `https://mcp.bestpgindighi.in/feedback/send_survey`
+- **ACL:** `[System_Internal_Scheduler]`
+- **Schema:** `schemas/feedback/send_request.json`
+
+- **Capability ID:** `feedback.store_response`
+- **Description:** An endpoint to receive and store a submitted feedback form from a tenant.
+- **Owner:** Property & Tenant Welfare
+- **Service Endpoint:** `https://mcp.bestpgindighi.in/feedback/store_response`
+- **ACL:** `[Public_Web_Form]`
+- **Schema:** `schemas/feedback/store_request.json`
+
+- **Capability ID:** `feedback.get_satisfaction_trend`
+- **Description:** Calculates and returns the aggregated tenant satisfaction trend for the last 6 months.
+- **Owner:** Property & Tenant Welfare
+- **Service Endpoint:** `https://mcp.bestpgindighi.in/feedback/get_trend`
+- **ACL:** `[CEO_App, Internal_System_Portal]`
+- **Schema:** `schemas/feedback/trend_response.json`
+
 ### Document & Notification Capabilities
 
 - **Capability ID:** `tasks.create_ceo_approval_request`
@@ -75,7 +98,7 @@ Each registered capability must include the following information:
 - **Schema:** `schemas/documents/analysis_request.json`
 
 - **Capability ID:** `notifications.send_verification_form`
-- **Description:** Sends the initial SMS/WhatsApp with the link to the verification form.
+- **Description:** Sends the initial WhatsApp message with the link to the verification form.
 - **Owner:** Ministry of Technology & Digital Infrastructure
 - **Service Endpoint:** `https://mcp.bestpgindighi.in/notifications/send`
 - **ACL:** `[System_Internal]`

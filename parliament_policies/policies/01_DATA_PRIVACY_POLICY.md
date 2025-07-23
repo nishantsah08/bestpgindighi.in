@@ -1,7 +1,7 @@
 # Data Privacy Policy
 
-**Version:** 1.1
-**Date:** 2025-07-22
+**Version:** 1.2
+**Date:** 2025-07-23
 
 ## 1. Purpose
 
@@ -10,6 +10,7 @@ This policy outlines our commitment to protecting the privacy and security of al
 ## 2. Data Collection and Usage
 
 - **Tenant Data:** Personal information is collected for the sole purpose of managing the tenancy, including communication, billing, and compliance. It will not be shared with third parties except as required by law (e.g., police verification).
+- **Tenant Feedback Data:** To continuously improve our services, we will periodically send a request for feedback via WhatsApp. Your participation is optional. The feedback you provide will be used for internal analysis to enhance service quality. Aggregated and anonymized feedback data will be used for trend analysis.
 - **Financial Data:** All financial data is collected for internal accounting and operational management. It is treated as confidential.
 - **Vendor Data:** Vendor information is collected for the sole purpose of managing business relationships.
 

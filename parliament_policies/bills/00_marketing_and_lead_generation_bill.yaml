@@ -1,5 +1,5 @@
 # Defines the autonomous logic for marketing, lead generation, and nurturing.
-version: 3.0
+version: 4.0 # Introduced AI-Powered Lead Scoring.
 policy_type: operational
 
 versioning_policy:
@@ -11,13 +11,16 @@ parameters_file: '00_marketing_and_lead_generation_parameters.md'
 depends_on:
   - 'parliament_policies/bills/10_customer_interaction_and_call_management_bill.yaml'
 
-lead_capture_and_initial_contact_process:
-  - description: 'Defines the automated process from initial inquiry to the first contact.'
+lead_capture_and_scoring_process:
+  - description: 'Defines the automated process from initial inquiry to lead scoring and prioritization.'
   - steps:
       - 'Step 1: A new inquiry is received via a phone call.'
-      - 'Step 2: The call recording is automatically transcribed and analyzed by the Information Extraction Agent.'
-      - 'Step 3: A new lead profile is created and the contact information is saved.'
-      - 'Step 4: The system automatically sends a standardized WhatsApp message to the lead, containing property details, pricing, location, and caretaker contact information.'
+      - 'Step 2: The call recording is automatically transcribed and analyzed.'
+      - 'Step 3: A new lead profile is created with the extracted contact information.'
+      - 'Step 4: The lead's data (e.g., inquiry content, source, time of day) is sent to the AI Lead Scoring model.'
+      - 'Step 5: The model returns a Lead Score (1-100) which is saved to the lead's profile.'
+      - 'Step 6: A new task is created for the Sales Agent, prioritized in their queue based on the Lead Score.'
+      - 'Step 7: The system automatically sends a standardized WhatsApp message to the lead with property details.'
 
 lead_nurturing_process:
   - description: 'An automated, multi-stage follow-up process to convert leads into site visits.'

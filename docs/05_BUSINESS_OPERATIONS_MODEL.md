@@ -18,7 +18,7 @@ This process is designed to be highly autonomous, triggered by a financial event
 
 2.  **Automated Document Request:**
     *   The successful creation of a provisional record triggers the system to call the `notifications.send_verification_form` MCP capability.
-    *   An SMS/WhatsApp is immediately sent to the tenant with a link to the secure Police Verification web form.
+    *   A WhatsApp message is immediately sent to the tenant with a link to the secure Police Verification web form.
 
 3.  **AI Verification Loop:**
     *   The tenant submits their documents (Aadhar, photo, etc.) via the form.

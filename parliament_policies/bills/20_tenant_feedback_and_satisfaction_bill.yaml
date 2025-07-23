@@ -1,0 +1,51 @@
+# Bill to Establish the Tenant Feedback and Satisfaction Program
+version: 1.0
+policy_type: operational
+
+description: >
+  This bill establishes a systematic program for collecting, analyzing, and acting upon
+  tenant feedback to continuously improve service quality and tenant welfare.
+
+feedback_process:
+  - process: Monthly Automated Feedback Collection
+    description: >
+      A monthly, automated process to gather detailed feedback from all active tenants.
+    schedule:
+      - trigger: "Cron-based scheduler"
+      - timing: "On the 15th day of every month at 12:00 PM IST."
+    workflow_steps:
+      - "Step 1: The system generates a unique, secure feedback survey link for every active tenant."
+      - "Step 2: The system sends the unique link to each tenant via their registered WhatsApp number."
+      - "Step 3: The tenant submits the feedback form."
+      - "Step 4: The system receives the submission, validates the data, and calculates the 'calculated_overall_satisfaction_score'."
+      - "Step 5: The complete feedback record is stored permanently in the 'tenant_feedback' database collection."
+
+feedback_parameters:
+  - section: "Data Collected from Tenant"
+    fields:
+      - name: "bathroom_cleanliness_score"
+        type: "Integer (1-5)"
+      - name: "kitchen_cleanliness_score"
+        type: "Integer (1-5)"
+      - name: "parking_area_cleanliness_score"
+        type: "Integer (1-5)"
+      - name: "garbage_collection_timeliness_score"
+        type: "Integer (1-5)"
+      - name: "room_cleaning_service_score"
+        type: "Integer (1-5, nullable)"
+      - name: "maintenance_quality_score"
+        type: "Integer (1-5, nullable)"
+      - name: "comments"
+        type: "String (optional, max 1000 chars)"
+
+  - section: "System Generated Data"
+    fields:
+      - name: "feedback_id"
+        type: "UUID"
+      - name: "tenant_id"
+        type: "String (Reference)"
+      - name: "timestamp"
+        type: "Timestamp"
+      - name: "calculated_overall_satisfaction_score"
+        type: "Float"
+        calculation: "Average of all submitted non-null score fields."

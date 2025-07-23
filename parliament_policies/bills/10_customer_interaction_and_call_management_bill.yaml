@@ -1,15 +1,13 @@
 title: "Customer Interaction and Call Management Bill"
 status: "active"
-version: 5.0 # Major revision for unified service request routing
-
-# This bill governs the handling of inbound customer communications.
+version: 7.0 # Added media handling for visual data interpretation.
+# This bill governs the handling of all inbound communications on the System Operations Channel (SOC).
 
 inbound_communication:
-  - rule: "Intelligent Routing for all Inbound Messages"
-    description: "This rule establishes a clear hierarchy for routing all inbound messages to ensure financial transactions, service requests, and general inquiries are handled by the correct entity."
-    routing_logic:
-      - "Step 1: Analyze the message for financial content based on keywords and OCR patterns."
-      - "Step 2: If the message is identified as a financial transaction, route it exclusively to the Financial AI."
-      - "Step 3: If the message is not a financial transaction, analyze it for service-related keywords (including both maintenance and complaints)."
-      - "Step 4: If the message is identified as a service request or complaint, route it exclusively to the Unified Service Request Workflow."
-      - "Step 5: If the message is neither financial nor service-related, route it to the Sales Agent's interface."
+  - rule: "AI-Powered Intent Recognition and Routing for All Media Types"
+    description: "All inbound messages and media files on the SOC will be processed by an AI service to determine user intent and extract relevant entities. This derived intent is the primary driver for all subsequent system actions."
+    processing_flow:
+      - "Step 1: Receive inbound communication (text, image, or document) from the SOC."
+      - "Step 2: If the communication is text, submit it to the NLU service. If it is a media file, submit it to the OCR/NLU service."
+      - "Step 3: Route the resulting structured intent object to the appropriate MCP (Ministerial Capability Platform) queue based on the classified intent (e.g., 'intent_file_expense_from_document' -> 'financial_ai_queue')."
+      - "Step 4: For any intent classified as having financial, legal, or data-modification consequences, the receiving agent MUST initiate the mandatory 'AI Confirmation Loop' as defined in the Constitution before taking any action."

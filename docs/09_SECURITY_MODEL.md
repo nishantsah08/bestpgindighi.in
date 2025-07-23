@@ -49,3 +49,13 @@ Authentication confirms *who* is making the request; authorization confirms *wha
 ## 7. Executive Action Auditing
 
 - All judicial decisions made by the CEO via the Internal System Portal will be captured in a dedicated, immutable audit log. The log will record the CEO's identity, the case ID, the timestamp, and the exact action taken (Approve, Reject, Modify).
+
+## 8. Mitigating Intent Interpretation Risks
+
+- **The Risk of Ambiguity:** An intent-based system, by its nature, introduces the risk that the AI may misinterpret a user's ambiguous natural language, leading to unintended actions.
+- **Primary Control (The AI Confirmation Loop):** The mandatory **AI Confirmation Loop**, as defined in Constitution Amendment III, is the primary security control to mitigate this risk. It transforms an ambiguous user request into an unambiguous, structured proposal that requires explicit user sign-off.
+- **Auditability:** The user's final, affirmative confirmation serves as the definitive, auditable record of their authorization for the action, shifting the final accountability to the user and protecting the system from claims of misinterpretation.
+
+### 8.1. Document Forgery Risk
+- **The Risk:** A user could submit a digitally altered or fraudulent receipt or invoice to the SOC for expense processing.
+- **Control Clarification:** The AI's role is limited to **data extraction**, not **document authentication**. The system will not attempt to detect forgeries. The **AI Confirmation Loop** remains the primary control. By confirming the transaction, the CEO attests to the legitimacy of the source document and accepts full responsibility for the expense, as per Constitution Amendment IV.

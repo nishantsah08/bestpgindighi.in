@@ -1,5 +1,5 @@
 # Bill to Establish the Ministry of Finance and Define Financial Policy
-version: 2.0 # Major revision for cash-out authorization
+version: 3.0 # Constitutional update for AI-driven visual data processing.
 policy_type: foundational
 
 status: ACTIVE
@@ -44,20 +44,17 @@ ambiguous_payment_clarification:
       - "Step 4: The Financial AI updates the transaction record with the breakdown provided by the Sales Agent."
 
 expense_management:
-  - process: Conversational Expense Filing
+  - process: AI-Powered Expense Filing
     description: >
-      All expenses are filed via a conversational AI workflow on WhatsApp.
-    external_interface: WhatsApp Business API
+      Expenses are filed via the System Operations Channel (SOC). This workflow is authorized by Constitution Amendments III and IV, allowing the AI to process text, images, and PDFs.
+    external_interface: WhatsApp Business API (via SOC)
     actors: ["CEO"]
     workflow_steps:
-      - "Trigger: CEO sends WhatsApp message (text, image, or combined)."
-      - "Step 1: AI performs OCR and NLP analysis and calculates a Confidence Score for each extracted data point (Vendor, Amount, Date)."
-      - "Step 2: If confidence is low on any data point, the AI will explicitly ask for manual confirmation or correction."
-      - "Step 3: AI initiates a single, consolidated clarification dialogue with the verified data."
-      - "Step 4: CEO provides answers to the questionnaire."
-      - "Step 5: AI confirms final structured data."
-      - "Step 6: CEO gives final approval."
-      - "Step 7: Transaction is irreversibly filed."
+      - "Trigger: CEO sends a message, an image of a receipt, or a PDF invoice to the SOC."
+      - "Step 1: The AI uses NLU and/or OCR to extract structured data (e.g., vendor, amount, date)."
+      - "Step 2: The AI initiates the mandatory 'AI Confirmation Loop' by presenting the extracted, structured data back to the CEO for review."
+      - "Step 3: The CEO provides explicit, affirmative confirmation."
+      - "Step 4: The transaction is irreversibly filed in the General Ledger."
 
 chart_of_accounts:
   - standard: Indian Accounting Standards

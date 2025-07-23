@@ -56,3 +56,15 @@ Alerts will be categorized into two levels:
 - **Ministry of Technology & Digital Infrastructure:** Responsible for maintaining the monitoring and alerting infrastructure.
 - **Auditor AI:** Responsible for analyzing long-term trends in the monitoring data to identify performance bottlenecks and cost-saving opportunities.
 - **Vigilance AI:** Responsible for monitoring security-related logs and metrics for signs of an attack.
+
+## 6. NLU Service Monitoring
+
+- **Description:** The Natural Language Understanding (NLU) service is a critical component responsible for interpreting all user communication. Its health and performance are paramount.
+- **Key Metrics:**
+    - **Intent Confidence Score:** Average confidence score for all classifications. A sudden drop can indicate a problem with the model.
+    - **Unrecognized Intent Rate:** Percentage of messages for which the NLU service could not determine a valid intent. A spike indicates user confusion or a new, unsupported use case.
+    - **Confirmation Rejection Rate:** Percentage of times a user replies negatively (e.g., "cancel") to an AI Confirmation Loop. A high rate suggests the AI is frequently misinterpreting user requests.
+    - **Latency:** 95th and 99th percentile latency for intent classification.
+- **Alerting Rules:**
+    - **Warning:** Average confidence score drops below 0.85 for 10 minutes.
+    - **Critical:** Unrecognized intent rate exceeds 20% over a 5-minute period.

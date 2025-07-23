@@ -8,6 +8,7 @@ This document defines the data model for the system, implemented in Firebase Fir
 - `vendors`
 - `judicial_docket`
 - `general_ledger`
+- `tenant_feedback`
 
 ## 2. `tenants` Collection
 
@@ -20,7 +21,22 @@ This document defines the data model for the system, implemented in Firebase Fir
     - `identity_documents` (map, nullable)
     - `created_at` (timestamp)
 
-## 3. `judicial_docket` Collection
+## 3. `tenant_feedback` Collection
+
+- **Document ID:** `feedback_id` (auto-generated)
+- **Fields:**
+    - `tenant_id` (string, reference to `tenants` collection)
+    - `timestamp` (timestamp)
+    - `bathroom_cleanliness_score` (number, 1-5)
+    - `kitchen_cleanliness_score` (number, 1-5)
+    - `parking_area_cleanliness_score` (number, 1-5)
+    - `garbage_collection_timeliness_score` (number, 1-5)
+    - `room_cleaning_service_score` (number, 1-5, nullable)
+    - `maintenance_quality_score` (number, 1-5, nullable)
+    - `comments` (string, nullable)
+    - `calculated_overall_satisfaction_score` (float)
+
+## 4. `judicial_docket` Collection
 
 - **Document ID:** `case_id` (auto-generated)
 - **Fields:**
@@ -32,7 +48,7 @@ This document defines the data model for the system, implemented in Firebase Fir
     - `final_verdict` (string, nullable)
     - `created_at` (timestamp)
 
-## 4. Firestore Security Rules
+## 5. Firestore Security Rules
 
 - Access to collections will be governed by Firestore Security Rules.
 - Rules will be written to enforce the Access Control Lists (ACLs) defined in the `05_MCP_CAPABILITY_REGISTRY.md`.
