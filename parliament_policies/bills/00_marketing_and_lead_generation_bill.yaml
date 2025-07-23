@@ -1,5 +1,5 @@
 # Defines the autonomous logic for marketing, lead generation, and nurturing.
-version: 4.0 # Introduced AI-Powered Lead Scoring.
+version: 5.0 # Empowered AI for autonomous strategy optimization.
 policy_type: operational
 
 versioning_policy:
@@ -30,14 +30,14 @@ lead_nurturing_process:
       - 'Rule 3: If `visit_status` is not `completed` within 30 days of initial contact, trigger a final follow-up message.'
   - exit_condition: 'The nurturing sequence for a lead terminates immediately if the lead indicates they are no longer interested.'
 
-dynamic_nurturing_optimization:
-  - description: 'Authorizes the autonomous optimization of the lead nurturing cadence.'
+Autonomous_Strategy_Optimization:
+  - description: 'Empowers an AI agent to act as a strategic advisor, proposing monthly optimizations to the lead nurturing strategy.'
   - authorized_agent: 'Independent Risk Advisory AI'
-  - objective: 'To maximize the `lead_to_visit_conversion_rate`.'
+  - objective: 'To propose a new, optimized lead nurturing strategy on a monthly basis that maximizes the `lead_to_visit_conversion_rate` while minimizing the `total_monthly_whatsapp_cost`.'
   - methodology:
-      - 'The authorized agent will continuously analyze the performance of the baseline nurturing cadence.'
-      - 'The agent is authorized to propose and, with CEO approval, implement controlled A/B tests to experiment with alternative follow-up intervals.'
-      - 'All proposed changes must be justified by a data-driven hypothesis based on historical performance.'
-  - safety_rails:
-      - 'Follow-up intervals may not be shorter than 2 days.'
-      - 'Follow-up intervals may not be longer than 45 days.'
+      - 'The authorized agent will continuously analyze all relevant data, including `current_vacancy`, `predicted_future_vacancy`, `lead_scores`, `message_costs`, and historical `conversion_rates`.'
+      - 'The agent will use this analysis to formulate a data-driven proposal for a new nurturing strategy for the upcoming month.'
+  - governance:
+      - 'The AI agent is strictly prohibited from implementing any changes autonomously.'
+      - 'On the first of each month, the agent must generate a formal "Monthly Marketing Optimization Proposal" and enqueue it for CEO approval using the `tasks.create_strategy_proposal_request` capability.'
+      - 'The existing nurturing strategy remains in effect until the CEO formally approves a new one.'

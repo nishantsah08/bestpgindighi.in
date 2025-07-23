@@ -8,12 +8,16 @@ This document outlines the structural blueprint and feature set for the CEO's In
 
 ### 1. Main Dashboard (Landing Page)
 
-- **Purpose:** To provide a single-glance overview of the business, framed around key operational areas.
-- **Structure:** The dashboard will be divided into four main quadrants:
-    1.  **Tenant Welfare:** A large, prominent line chart displaying the **Tenant Satisfaction Trend** over the last 6 months. This is the primary measure of service quality. The data is sourced from the `feedback.get_satisfaction_trend` capability.
-    2.  **Judicial & Compliance:** A queue of pending high-value judicial cases requiring the CEO's decision, alongside a summary of any compliance risks (e.g., pending police verifications).
-    3.  **Financial Health:** Key metrics including `Pending Rent`, `Cash At Hand`, and `Projected Revenue`.
-    4.  **Sales & Growth:** A summary of the lead funnel, occupancy rates, and key marketing metrics.
+- **Purpose:** To provide a single-glance overview of the business, framed around key operational areas and strategic decisions.
+- **Structure:** The dashboard will be divided into two main sections:
+    1.  **Strategic Queues:** High-priority items that require CEO review and approval.
+        - **Strategic Proposals:** A dedicated queue for the monthly AI-driven marketing strategy proposals. This is the most important strategic review item.
+        - **Judicial & Compliance:** A queue of pending high-value judicial cases and critical compliance risks.
+    2.  **Operational Quadrants:** A four-quadrant view of real-time business health.
+        - **Tenant Welfare:** A large line chart displaying the **Tenant Satisfaction Trend**.
+        - **Financial Health:** Key metrics including `Pending Rent`, `Cash At Hand`, and `Projected Revenue`.
+        - **Sales & Growth:** A summary of the lead funnel and occupancy rates.
+        - **System Status:** A high-level overview of the health of the digital infrastructure.
 
 ---
 

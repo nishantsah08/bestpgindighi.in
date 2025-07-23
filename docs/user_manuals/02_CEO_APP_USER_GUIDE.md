@@ -2,21 +2,24 @@
 
 **For:** CEO
 
-This guide explains how to use the CEO Mobile App for on-the-go management.
+This guide explains how to use the CEO Mobile App for on-the-go management and strategic review.
 
-## 1. The System Operations Channel (SOC)
+## 1. Strategic Reviews: The AI Partnership (New!)
 
-You now have a direct line to the system's AI. You can perform key actions by sending simple messages or images to the dedicated SOC WhatsApp number.
+Once a month, the system's AI will act as your strategic advisor, presenting a data-driven proposal to optimize the marketing and lead nurturing strategy. This is the most important review you will conduct.
 
-### Filing Expenses with Text
-Simply tell the system what you spent money on.
+### Reviewing Monthly AI Strategy Proposals
 
-*   **You say:** "I spent 500 rupees on lunch with a new vendor"
-*   **The System asks:** "OK. I am about to file the following expense: `amount: 500 INR, description: Lunch with a new vendor`. Please confirm."
-*   **You reply:** "Confirm"
+*   **What it is:** On the first of each month, a new item will appear in the **"Strategic Proposals"** queue on your dashboard. This is the AI's proposal for the next month's lead nurturing strategy.
+*   **How to interpret it:** The proposal will include a summary of the AI's findings and a clear recommendation. For example: *"Based on last month's data, I recommend we stop sending follow-up messages to leads with a score below 60 when vacancy is at 0%. This is projected to save ₹X in WhatsApp costs with minimal impact on conversions."*
+*   **Your Role:** Your role is to use your business judgment to approve or reject the AI's proposed strategy. The existing strategy will continue until you approve a new one.
 
-### Filing Expenses with a Receipt (New!)
-No need to type. Just send a picture of a receipt or an invoice PDF.
+## 2. The System Operations Channel (SOC)
+
+You have a direct line to the system's AI for day-to-day operations. You can perform key actions by sending simple messages or images to the dedicated SOC WhatsApp number.
+
+### Filing Expenses
+Send a text message or a photo of a receipt.
 
 *   **You do:** Send a photo of a receipt to the SOC.
 *   **The System asks:** "OK. I have extracted the following from the document: `vendor: Hotel Sagar, amount: 1250 INR, date: 2025-07-23`. Please confirm."
@@ -28,18 +31,10 @@ Ask the system questions about your business.
 *   **You ask:** "How many vacant beds do we have right now?"
 *   **The System replies:** "We currently have 6 vacant beds across all properties."
 
-## 2. The Mobile App
+## 3. The Mobile App Dashboard
 
-### Dashboard
-The app opens to a dashboard focused on key business areas. The most prominent feature is the **Tenant Satisfaction Trend** chart.
+Your dashboard provides a real-time overview of the business, including the **Tenant Satisfaction Trend** chart and queues for routine approvals.
 
-*   **What it is:** This chart shows the average, aggregated satisfaction score from all tenants over the last 6 months. It is your primary tool for understanding the quality of the tenant experience.
-*   **How to use it:** Monitor the trend line. An upward trend indicates improving service, while a downward trend is an early warning sign that requires investigation into the detailed feedback reports.
-
-### Managing Vendors
-1.  Navigate to the **Vendor Directory**.
-2.  Tap the **+** button to add a new vendor and fill in their details.
-3.  Tap on an existing vendor to view their profile and add notes or upload files.
-
-### Handling Approvals
-The **Action Required** queue on the dashboard will show items needing your approval, such as estimated utility bills or judicial cases. Tap the item to view details and approve or reject it.
+### Managing Vendors & Approvals
+*   Use the **Vendor Directory** to manage vendor information.
+*   Use the **Action Required** queue for routine approvals like utility bills and judicial cases.

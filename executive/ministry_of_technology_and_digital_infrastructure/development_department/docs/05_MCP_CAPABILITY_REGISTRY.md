@@ -90,6 +90,13 @@ Each registered capability must include the following information:
 - **ACL:** `[Judiciary_AI]`
 - **Schema:** `schemas/tasks/ceo_approval_request.json`
 
+- **Capability ID:** `tasks.create_strategy_proposal_request`
+- **Description:** Creates a task in the CEO's portal for a monthly AI-driven strategy proposal.
+- **Owner:** Ministry of Technology & Digital Infrastructure
+- **Service Endpoint:** `https://mcp.bestpgindighi.in/tasks/strategy_proposal`
+- **ACL:** `[Independent_Risk_Advisory_AI]`
+- **Schema:** `schemas/tasks/strategy_proposal_request.json`
+
 - **Capability ID:** `documents.analyze_and_verify`
 - **Description:** Triggers the Verification AI to analyze a submitted document set.
 - **Owner:** Ministry of Technology & Digital Infrastructure
