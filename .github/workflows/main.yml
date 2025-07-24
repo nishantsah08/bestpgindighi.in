@@ -30,19 +30,6 @@ jobs:
           workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v2
-
-      - name: Terraform Init
-        run: terraform init
-        working-directory: ./terraform
-
-      - name: Terraform Plan and Apply
-        run: |
-          terraform plan -out=tfplan -input=false -var="gcp_project_id=${{ env.GCP_PROJECT_ID }}"
-          terraform apply -input=false tfplan
-        working-directory: ./terraform
-
       - name: Configure Docker
         run: gcloud auth configure-docker ${{ env.GAR_LOCATION }}-docker.pkg.dev
 
