@@ -70,20 +70,6 @@ jobs:
         run: terraform init
         working-directory: ./terraform
 
-      - name: Import Artifact Registry Repo
-        run: terraform import -lock=false google_artifact_registry_repository.bestpg_repo projects/${{ env.GCP_PROJECT_ID }}/locations/${{ env.GAR_LOCATION }}/repositories/${{ env.REPO_NAME }} || echo "Repo already in state or does not exist"
-        working-directory: ./terraform
-
-      - name: Import Backend Service
-        run: terraform import -lock=false google_cloud_run_v2_service.backend projects/${{ env.GCP_PROJECT_ID }}/locations/${{ env.GCP_REGION }}/services/backend || echo "Backend service already in state or does not exist"
-        working-directory: ./terraform
-
-      - name: Import Frontend Service
-        run: terraform import -lock=false google_cloud_run_v2_service.frontend projects/${{ env.GCP_PROJECT_ID }}/locations/${{ env.GCP_REGION }}/services/frontend || echo "Frontend service already in state or does not exist"
-        working-directory: ./terraform
-
       - name: Terraform Apply
-        run: |
-          terraform apply -auto-approve \
-            -var="gcp_project_id=${{ env.GCP_PROJECT_ID }}"
+        run: terraform apply -auto-approve
         working-directory: ./terraform
