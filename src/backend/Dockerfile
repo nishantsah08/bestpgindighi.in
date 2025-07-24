@@ -1,25 +1,33 @@
-# Stage 1: The builder stage
-FROM python:3.11-slim AS builder
+# ---- Base Stage ----
+FROM python:3.11-slim-bookworm AS base
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# ---- Builder Stage ----
+FROM base AS builder
 
 WORKDIR /app
 
-# Install dependencies
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
-COPY . .
+# ---- Final Stage ----
+FROM base AS final
 
-# Stage 2: The production stage
-FROM python:3.11-slim
+RUN addgroup --system app && adduser --system --ingroup app app
+USER app
 
 WORKDIR /app
 
-# Copy installed dependencies and application code from the builder stage
-COPY --from=builder /app /app
+COPY --from=builder /opt/venv /opt/venv
+COPY . .
 
-# Expose the port the app runs on
+ENV PATH="/opt/venv/bin:$PATH"
+
 EXPOSE 8080
 
-# Command to run the application
-CMD uvicorn main:app --host 0.0.0.0 --port $PORT
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
