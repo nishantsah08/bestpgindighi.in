@@ -57,12 +57,28 @@ All new architectural proposals must include a "Cost Impact Statement" that demo
 
 Any code or policy change that is successfully validated and merged into the `main` branch will automatically trigger a deployment pipeline.
 
-## Mobile Application Update Strategy
+## Development Environment & Parallel Workflows
 
-For internally distributed mobile applications, a mandatory, blocking update flow is required to ensure all devices run the latest version.
+To ensure a stable, reproducible, and isolated development process, this project adheres to a container-based and multi-workspace strategy.
 
-1.  **Private Distribution:** The CI/CD pipeline will build and sign the Android application package (`.apk`) and upload it to a private, secure storage location (e.g., Supabase Storage). The pipeline will also update a version manifest file on the server.
-2.  **Forced Update Check:** Upon application launch, the app must immediately and silently check the server's version manifest before loading any other part of the application.
-3.  **Blocking UI:** If the application's version is older than the server's version, the application must immediately present a full-screen, non-dismissible overlay that blocks all other UI elements.
-4.  **Mandatory Download & Install:** This blocking screen will display the download progress of the new `.apk` file. Once the download is complete, the user will be presented with a single option: "INSTALL UPDATE". Tapping this button will launch the Android system's package installer.
-5.  **Security Permission:** This flow requires the user to grant the "Install unknown apps" permission for the application on their device. The app should guide the user through this process if the permission is not already granted.
+### **1. Environment Isolation**
+
+The host development machine, which is optimized for native Android development, will not be modified. All other development environments are to be provisioned and run inside isolated containers.
+
+*   **Backend & Frontend Environments:** Development for the Python/FastAPI backend and the React/TypeScript frontend will be conducted exclusively within **Docker containers**. The project will contain `Dockerfile` and `docker-compose.yml` files that define these environments as code. This guarantees that the development environment is identical to the production environment on Cloud Run and prevents any contamination of the host machine.
+*   **Native Android Environment:** The native Android environment on the host machine remains pristine. Its configuration will be made reproducible through:
+    *   The **Gradle Wrapper (`gradlew`)** to enforce a consistent build tool version.
+    *   Explicit library and SDK versions defined in the `build.gradle` files.
+    *   A `src/mobile/SETUP.md` file that will document the initial machine setup steps (e.g., which core Android SDKs to install).
+
+### **2. Parallel Development (Multi-Workspace Strategy)**
+
+To enable multiple Gemini instances to work on different features simultaneously without conflict, a multi-workspace approach is mandated.
+
+1.  **Primary Workspace:** The main project folder is used for project management, code review, and integration.
+2.  **Feature Workspaces:** For each major, independent feature, a new, separate clone of the repository must be created in a dedicated folder (e.g., `bestpgindighi-feature-billing`).
+3.  **Isolated Instance:** A dedicated Gemini CLI instance is to be launched for each feature workspace.
+4.  **Feature Branching:** Within its isolated workspace, the Gemini instance will create and work on a specific feature branch (e.g., `feature/billing`).
+5.  **Integration via Pull Request:** Upon completion, the feature branch will be pushed to the central GitHub repository. The work will then be reviewed and merged into the `main` branch via a formal Pull Request.
+
+This strategy combines the physical isolation of separate directories with the logical isolation of Git branches, enabling safe and scalable parallel development.
