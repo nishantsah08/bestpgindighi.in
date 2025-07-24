@@ -21,6 +21,17 @@ jobs:
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
 
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ./terraform
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve -var="supabase_password=${{ secrets.SUPABASE_PASSWORD }}"
+        working-directory: ./terraform
+
       - name: Configure Docker
         run: gcloud auth configure-docker asia-south1-docker.pkg.dev
 
@@ -33,14 +44,3 @@ jobs:
         run: |
           docker build -t asia-south1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/bestpg-repo/frontend:latest ./src/frontend
           docker push asia-south1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/bestpg-repo/frontend:latest
-
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v3
-
-      - name: Terraform Init
-        run: terraform init
-        working-directory: ./terraform
-
-      - name: Terraform Apply
-        run: terraform apply -auto-approve -var="supabase_password=${{ secrets.SUPABASE_PASSWORD }}"
-        working-directory: ./terraform
