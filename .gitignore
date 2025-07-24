@@ -29,3 +29,6 @@ pip-wheel-metadata/
 
 # Reference Directories
 bestpgindighi-ai/
+
+# Service Account Keys
+gcp-credentials.json

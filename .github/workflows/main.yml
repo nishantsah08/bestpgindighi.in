@@ -1,0 +1,46 @@
+name: Deploy Walking Skeleton
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Configure Docker
+        run: gcloud auth configure-docker asia-south1-docker.pkg.dev
+
+      - name: Build and push backend image
+        run: |
+          docker build -t asia-south1-docker.pkg.dev/bestpgindighi/bestpg-repo/backend:latest ./src/backend
+          docker push asia-south1-docker.pkg.dev/bestpgindighi/bestpg-repo/backend:latest
+
+      - name: Build and push frontend image
+        run: |
+          docker build -t asia-south1-docker.pkg.dev/bestpgindighi/bestpg-repo/frontend:latest ./src/frontend
+          docker push asia-south1-docker.pkg.dev/bestpgindighi/bestpg-repo/frontend:latest
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ./terraform
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve -var="supabase_password=${{ secrets.SUPABASE_PASSWORD }}"
+        working-directory: ./terraform
