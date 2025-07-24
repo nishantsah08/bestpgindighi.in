@@ -22,4 +22,8 @@ COPY --from=builder /app /app
 EXPOSE 8080
 
 # Command to run the application
+COPY entrypoint.sh .
+RUN chmod +x entrypoint.sh
+RUN apt-get update && apt-get install -y dos2unix && dos2unix entrypoint.sh
+
 ENTRYPOINT ["./entrypoint.sh"]
