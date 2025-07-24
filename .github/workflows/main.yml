@@ -45,7 +45,9 @@ jobs:
           service: 'backend'
           region: ${{ env.GCP_REGION }}
           image: ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/backend:${{ github.sha }}
-          allow_unauthenticated: true
+
+      - name: Allow unauthenticated access to backend
+        run: gcloud run services add-iam-policy-binding backend --region=${{ env.GCP_REGION }} --member=allUsers --role=roles/run.invoker
 
       - name: Build and Push Frontend Image
         run: |
@@ -59,4 +61,6 @@ jobs:
           service: 'frontend'
           region: ${{ env.GCP_REGION }}
           image: ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/frontend:${{ github.sha }}
-          allow_unauthenticated: true
+
+      - name: Allow unauthenticated access to frontend
+        run: gcloud run services add-iam-policy-binding frontend --region=${{ env.GCP_REGION }} --member=allUsers --role=roles/run.invoker
