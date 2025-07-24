@@ -22,6 +22,8 @@ resource "google_artifact_registry_repository" "bestpg_repo" {
 resource "google_cloud_run_v2_service" "backend" {
   name     = "backend"
   location = var.gcp_region
+
+  template {}
 }
 
 resource "google_cloud_run_v2_service_iam_member" "backend_public" {
@@ -35,6 +37,8 @@ resource "google_cloud_run_v2_service_iam_member" "backend_public" {
 resource "google_cloud_run_v2_service" "frontend" {
   name     = "frontend"
   location = var.gcp_region
+
+  template {}
 }
 
 resource "google_cloud_run_v2_service_iam_member" "frontend_public" {
