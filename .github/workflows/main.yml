@@ -70,6 +70,13 @@ jobs:
         run: terraform init
         working-directory: ./terraform
 
+      - name: Terraform Import
+        run: |
+          terraform import google_artifact_registry_repository.bestpg_repo projects/${{ env.GCP_PROJECT_ID }}/locations/${{ env.GAR_LOCATION }}/repositories/${{ env.REPO_NAME }} || true
+          terraform import google_cloud_run_v2_service.backend projects/${{ env.GCP_PROJECT_ID }}/locations/${{ env.GCP_REGION }}/services/backend || true
+          terraform import google_cloud_run_v2_service.frontend projects/${{ env.GCP_PROJECT_ID }}/locations/${{ env.GCP_REGION }}/services/frontend || true
+        working-directory: ./terraform
+
       - name: Terraform Apply
         run: |
           terraform apply -auto-approve \
