@@ -8,17 +8,22 @@ terraform {
 }
 
 provider "google" {
-  project = data.google_project.project.project_id
   region  = "asia-south1"
 }
 
+variable "gcp_project_id" {
+  description = "The GCP project ID."
+  type        = string
+}
+
 resource "google_cloud_run_v2_service" "backend" {
+  project  = var.gcp_project_id
   name     = "backend"
   location = "asia-south1"
 
   template {
     containers {
-      image = "asia-south1-docker.pkg.dev/${data.google_project.project.project_id}/bestpg-repo/backend:latest"
+      image = "asia-south1-docker.pkg.dev/${var.gcp_project_id}/bestpg-repo/backend:latest"
       ports {
         container_port = 8080
       }
@@ -31,12 +36,13 @@ resource "google_cloud_run_v2_service" "backend" {
 }
 
 resource "google_cloud_run_v2_service" "frontend" {
+  project  = var.gcp_project_id
   name     = "frontend"
   location = "asia-south1"
 
   template {
     containers {
-      image = "asia-south1-docker.pkg.dev/${data.google_project.project.project_id}/bestpg-repo/frontend:latest"
+      image = "asia-south1-docker.pkg.dev/${var.gcp_project_id}/bestpg-repo/frontend:latest"
       ports {
         container_port = 80
       }
