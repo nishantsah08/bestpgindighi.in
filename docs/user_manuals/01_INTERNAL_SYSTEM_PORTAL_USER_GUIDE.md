@@ -68,3 +68,25 @@ Settings that are specific to your user account are located in the User Profile 
 *   **Change Password:** Manage your login credentials.
 *   **Theme:** Select a light or dark theme for the portal interface.
 *   **Logout:** Sign out of the application.
+
+---
+
+### 6. Initial System Setup & Data Population
+
+When the system is first deployed, it will be empty. Follow this two-step process to populate it with your core business data.
+
+#### Step 1: Manual Setup of Core Data
+
+First, you must manually set up the foundational data using the portal:
+
+1.  **Define Properties:** Navigate to `🏡 Property & Tenant Welfare -> Asset Management`. Add your properties, and then the rooms and beds within them, setting the rent price for each bed.
+2.  **Create Staff Accounts:** Create user accounts for your staff members and assign their roles.
+
+#### Step 2: AI-Powered Import of Existing Tenants
+
+To import your existing tenant data, you will use a conversational AI workflow powered by the Cabinet Secretary.
+
+1.  **Upload Raw Data:** Navigate to `🏡 Property & Tenant Welfare -> Data Import`. Upload your existing tenant spreadsheet or file in whatever format you have it (Excel, CSV, text).
+2.  **Conversational Mapping:** The Cabinet Secretary AI will start a chat session. It will analyze your file and guide you through mapping your columns (e.g., "Name," "Room No.") to the system's required fields.
+3.  **AI-Assisted Cleaning:** The AI will automatically handle tasks like splitting a "101A" room value into Room: "101" and Bed: "A", asking you for confirmation.
+4.  **Guided Import:** Once you confirm the mapping, the AI will process the file, validate each row against the properties you set up in Step 1, and import all valid tenants. It will provide a summary of the import and a list of any rows that failed for your review.
