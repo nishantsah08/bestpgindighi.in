@@ -84,20 +84,67 @@ graph TD
     PARLIAMENT -- "Publishes Policies" --> CAB_SEC
 ```
 
-### Core Data Models
+## Technical Implementation Architecture
 
-The system is built around a set of core data models that represent key business entities.
+This section details the concrete technologies and services chosen to implement the conceptual architecture, with a primary focus on a zero-cost, high-automation model.
 
-1.  **Tenants:** Represents all prospective, current, and past tenants. This model holds all customer-related information, including contact details, billing history, and communication logs.
-2.  **Vendors:** Represents all third-party service providers (e.g., electricians, plumbers, suppliers). This model stores vendor contact information, service history, and financial records like invoices and quotes.
-3.  **General Ledger:** The central, immutable record of all financial transactions (revenue and expenses) within the system.
+```mermaid
+graph TD
+    subgraph "User Layer"
+        USER(👤 User)
+    end
 
-### Key Interaction Flows
+    subgraph "Google Cloud Platform (Free Tiers)"
+        DNS(🌐 Google Cloud DNS)
+        FIREBASE(🔥 Firebase Hosting <br> Free SSL & CDN <br> Routing Rules)
+        CLOUDRUN_FE([💻 Cloud Run: Frontend] <br> React/TypeScript)
+        CLOUDRUN_BE([🤖 Cloud Run: Backend] <br> Python/FastAPI)
+        CLOUDBUILD(🔨 Cloud Build <br> CI/CD Pipeline)
+        ARTIFACT(📦 Artifact Registry <br> Docker Image Storage)
+    end
 
-1.  **Financial Management:** The **Ministry of Finance**, via its **Financial AI Agent**, handles all expense and revenue recording. It receives data from the outside world via the official **WhatsApp Business API** and then processes it internally using the Model Context Protocol (MCP).
-2.  **Lead Generation:** The **Public Website** serves as the primary channel for attracting new leads. Information from prospective tenants is captured and fed directly to the Onboarding Department (Dept C).
-3.  **Command & Control:** The CEO provides strategic direction and manages the system via the **Internal System Portal** and the **Native Mobile Suite**. These interfaces act as the primary human-computer interaction points for system management. The detailed blueprint for the portal is defined in `04_INTERNAL_SYSTEM_PORTAL_BLUEPRINT.md`.
-4.  **Policy & Execution:** The Parliament publishes policies to the MCP. The Departments read these policies and execute their tasks accordingly.
-5.  **Oversight & Reporting:** The independent Auditor and Vigilance AIs monitor the system and report directly to the CEO, ensuring unbiased oversight. The Auditor AI has a specific mandate to audit the new Ministry of Finance.
-6.  **Exception Handling:** When a Department encounters an error it cannot solve, it refers the issue to the independent Judiciary AI for a binding resolution.
-7.  **Vendor Management:** The CEO manages all vendor relationships, including adding new vendors and logging interactions, primarily through the **CEO Mobile App** and the **Internal System Portal**.
+    subgraph "Supabase Platform (Free Tier)"
+        SUPA_DB[(🗄️ Supabase <br> PostgreSQL Database)]
+        SUPA_STORAGE(🗃️ Supabase Storage <br> .apk files)
+    end
+    
+    subgraph "Development & Source Control"
+        GITHUB(📁 GitHub Monorepo)
+    end
+
+    USER -- "bestpgindighi.in" --> DNS
+    DNS --> FIREBASE
+    FIREBASE -- "Serves web pages" --> CLOUDRUN_FE
+    FIREBASE -- "/api/* rewrite" --> CLOUDRUN_BE
+    
+    CLOUDRUN_BE -- "Reads/Writes" --> SUPA_DB
+    CLOUDRUN_BE -- "Reads/Writes" --> SUPA_STORAGE
+
+    GITHUB -- "On Push" --> CLOUDBUILD
+    CLOUDBUILD -- "Builds & Tests" --> GITHUB
+    CLOUDBUILD -- "Deploys" --> CLOUDRUN_FE
+    CLOUDBUILD -- "Deploys" --> CLOUDRUN_BE
+    CLOUDBUILD -- "Stores Image" --> ARTIFACT
+    CLOUDBUILD -- "Uploads APK" --> SUPA_STORAGE
+```
+
+### **Technology Stack & Rationale**
+
+*   **Entrypoint & Web Hosting:** **Firebase Hosting** will serve as the primary entry point. It provides free, automated SSL certificates, a global CDN for performance, and intelligent routing ("rewrites") to direct traffic to the appropriate backend service, all within its generous free tier. This replaces the need for a paid Load Balancer.
+*   **Backend Service:** A **Python** application using the **FastAPI** framework, running on **Google Cloud Run**. This provides a high-performance, scalable, serverless environment that scales to zero, eliminating cost when not in use.
+*   **Frontend Service:** A **React** application written in **TypeScript**, also running on **Google Cloud Run**. This provides a modern, secure, and maintainable platform for all web portals.
+*   **Database:** A **PostgreSQL** database managed by **Supabase**. This provides a robust, relational database on a perpetual free tier, which is critical for data integrity and cost management.
+*   **Mobile Applications:** Native Android applications will be written in **Kotlin**. The UI will be built with **Jetpack Compose**, with a fallback to traditional **XML layouts** if the provided development environment does not support it. Updates will be handled via a custom, mandatory self-update mechanism, with `.apk` files hosted on **Supabase Storage**.
+*   **Infrastructure as Code:** The entire cloud infrastructure will be defined as code using **Terraform**. This ensures a repeatable, reliable, and automated setup process.
+*   **CI/CD Automation:** **Google Cloud Build** will be triggered on every `git push` to the GitHub repository, automatically testing, building, and deploying all components.
+
+### **Cost-Control & Retention Policies**
+
+The architecture is designed to operate at a near-zero monthly cost.
+
+*   **Primary Recurring Cost:** The only anticipated recurring charge is **~$0.20/month** for **Google Cloud DNS** to keep the domain name active.
+*   **Docker Image Optimization:** To remain within the **Google Artifact Registry** free tier (0.5 GB), a multi-stage build process will be used to create minimal, production-only Docker images.
+*   **Image Retention Policy:** A strict, automated retention policy will be enforced via Terraform:
+    1.  The most recently deployed image will always be tagged `latest` and will be exempt from deletion.
+    2.  A maximum of 9 other non-`latest` images will be retained.
+    3.  Any non-`latest` image older than 30 days will be automatically deleted.

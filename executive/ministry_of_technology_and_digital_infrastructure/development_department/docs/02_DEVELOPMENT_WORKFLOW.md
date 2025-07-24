@@ -56,3 +56,13 @@ All new architectural proposals must include a "Cost Impact Statement" that demo
 ## Automated Deployment (CI/CD)
 
 Any code or policy change that is successfully validated and merged into the `main` branch will automatically trigger a deployment pipeline.
+
+## Mobile Application Update Strategy
+
+For internally distributed mobile applications, a mandatory, blocking update flow is required to ensure all devices run the latest version.
+
+1.  **Private Distribution:** The CI/CD pipeline will build and sign the Android application package (`.apk`) and upload it to a private, secure storage location (e.g., Supabase Storage). The pipeline will also update a version manifest file on the server.
+2.  **Forced Update Check:** Upon application launch, the app must immediately and silently check the server's version manifest before loading any other part of the application.
+3.  **Blocking UI:** If the application's version is older than the server's version, the application must immediately present a full-screen, non-dismissible overlay that blocks all other UI elements.
+4.  **Mandatory Download & Install:** This blocking screen will display the download progress of the new `.apk` file. Once the download is complete, the user will be presented with a single option: "INSTALL UPDATE". Tapping this button will launch the Android system's package installer.
+5.  **Security Permission:** This flow requires the user to grant the "Install unknown apps" permission for the application on their device. The app should guide the user through this process if the permission is not already granted.
