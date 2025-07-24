@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "google" {
-  project = "bestpgindighi"
+  project = data.google_project.project.project_id
   region  = "asia-south1"
 }
 
@@ -18,7 +18,7 @@ resource "google_cloud_run_v2_service" "backend" {
 
   template {
     containers {
-      image = "asia-south1-docker.pkg.dev/bestpgindighi/bestpg-repo/backend:latest"
+      image = "asia-south1-docker.pkg.dev/${data.google_project.project.project_id}/bestpg-repo/backend:latest"
       ports {
         container_port = 8080
       }
@@ -36,7 +36,7 @@ resource "google_cloud_run_v2_service" "frontend" {
 
   template {
     containers {
-      image = "asia-south1-docker.pkg.dev/bestpgindighi/bestpg-repo/frontend:latest"
+      image = "asia-south1-docker.pkg.dev/${data.google_project.project.project_id}/bestpg-repo/frontend:latest"
       ports {
         container_port = 80
       }
