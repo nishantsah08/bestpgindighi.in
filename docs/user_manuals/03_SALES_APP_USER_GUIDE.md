@@ -1,34 +1,64 @@
-# Sales Mobile App - User Guide
+# Sales App - User Guide
 
 **For:** Sales Team
 
-This guide explains how to use the Sales Mobile App and the new AI-powered workflows.
+### Philosophy: The Fastest Path from Lead to Lease
 
-## 1. AI-Powered Lead Scoring (New!)
+This app is your high-performance tool to guide leads through the entire sales funnel. It is an active assistant designed to help you close deals efficiently.
 
-To help you focus on the most promising inquiries, the system now uses AI to score every new lead.
+---
 
-*   **What it is:** When a new lead comes in, the AI analyzes it and assigns a **Lead Score** from 1 to 100.
-*   **How it helps you:** Your **Action Required** queue is now automatically prioritized by this score. Leads with the highest score will appear at the top, allowing you to focus your time where it matters most.
+### Window 1: The Lead Pipeline (Home Screen)
 
-## 2. The System Operations Channel (SOC)
+This is your command center, providing a visual overview of your sales funnel.
 
-You can record key financial transactions by sending simple, natural language messages to the dedicated SOC WhatsApp number.
+**Functionality:**
+*   **Kanban Board:** Columns represent sales stages: **New Leads**, **Contacted**, **Visit Scheduled**, **Negotiating**, **Closed**.
+*   **Date Filter:** A dropdown menu to filter leads by a date range (e.g., "This Week," "This Month").
+*   **Lead Cards:** Each lead is a card showing their name and desired bed type. You can drag and drop these cards to move them between stages.
+*   **Add Lead:** A `(+)` button allows you to manually add walk-in or referral leads.
 
-### Recording Revenue
-When a tenant makes a payment, simply tell the system about it.
+---
 
-*   **You say:** "The tenant in C-201 just paid 10000 rupees for their advance"
-*   **The System asks:** "OK. I am about to record the following revenue: `amount: 10000 INR, description: Tenant advance, property: C-201`. Please confirm."
-*   **You reply:** "Confirm"
+### Window 2: The Lead Detail View
 
-## 3. The Mobile App
+Tapping a lead card opens their complete profile and interaction history.
 
-### Monitoring Workflows
-The main screen of the app provides an overview of the lead and tenant onboarding pipelines. Use this to track progress and identify bottlenecks.
+**Functionality:**
+*   **Quick Actions:** Prominent **[Call]** and **[WhatsApp]** buttons to instantly contact the lead.
+*   **Interaction Timeline:** A chronological feed of every touchpoint (calls, messages, notes).
+*   **Log Interaction:** A floating `(+)` button to quickly add a new note or log the outcome of a recent interaction.
 
-### Handling Action Items
-Your **Action Required** queue is your primary workspace. It is now prioritized by the AI Lead Score.
+---
 
-### Requesting Reviews (GBL Flywheel)
-During the off-boarding process, navigate to the tenant's profile and tap the **"Generate GBL Review Link"** button to generate a review link for the tenant.
+### Window 3: The Activity Feed
+
+This is your real-time feed of important system events that help you decide what to do next.
+
+**Functionality:**
+*   A reverse-chronological list of notifications.
+*   **Examples:**
+    *   `🟢 Priya S. has paid the booking amount for Room 5B.`
+    *   `🔵 Caretaker marked Room 12A as "Ready for Move-in".`
+    *   `🔴 Anjali Sharma's document verification FAILED.`
+
+---
+
+### Window 4: The Availability Viewer
+
+Your digital catalog of all available rooms and beds.
+
+**Functionality:**
+*   A visual list of available rooms with photos, room numbers, and monthly rent.
+*   **Filters:** Quickly filter by bed type (Single, Bunk) or availability.
+*   **Share:** Instantly send the details of a specific room to the lead you are working with.
+
+---
+
+### Window 5: The "Close & Onboard" Screen
+
+The final step to close a deal and trigger the onboarding process.
+
+**Functionality:**
+*   A simple form to confirm the tenant's name, selected room, rent, and move-in date.
+*   A single **[Send Booking Link & Initiate Onboarding]** button that marks the deal as closed and automatically kicks off the onboarding workflow in the system.

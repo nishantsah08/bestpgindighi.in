@@ -1,34 +1,58 @@
 # Internal System Portal - User Guide
 
-**For:** CEO
+**For:** CEO, Power Users
 
-This guide explains how to use the main features of the Internal System Portal.
+### Philosophy: Total Information, Total Control
 
-## 1. Accessing the Portal
+This web-based portal is the central nervous system of the entire operation. It is the comprehensive dashboard for deep analysis, configuration, and management, designed for use on a desktop computer.
 
-- Navigate to the provided URL.
-- Log in using your designated CEO Google Account.
+---
 
-## 2. The Dashboard
+### Window 1: The Main Dashboard
 
-The dashboard provides a high-level overview of the business, organized into four risk quadrants. Review these quadrants to quickly assess the health of the business.
+The landing page provides a detailed operational overview of the business.
 
-## 3. The Cabinet Secretary
+**Functionality:**
+*   **Live Occupancy Map:** A visual representation of all properties with color-coded statuses.
+*   **Key Operational Metrics:** View real-time data on rent collection progress and open maintenance tickets.
+*   **System-Wide Activity Feed:** A detailed, real-time log of all significant events from all applications.
+*   **Quick Actions:** Buttons for common administrative tasks like `[+ Add New Tenant]` or `[+ Add Expense]`.
 
-Use this page to ask complex questions about your business data. Start with simple, structured questions and expand as the system evolves.
+---
 
-## 4. Managing Finances
+### Window 2: Tenant Management
 
-- Navigate to the **Ministry of Finance** section.
-- Here you can view all financial statements, browse the general ledger, and manage inventory.
-- **To Correct a Transaction:**
-    1.  Find the incorrect transaction in the General Ledger.
-    2.  Click the "Correct Transaction" button.
-    3.  Enter a reason for the correction and submit.
-    4.  Enter the details for the new, correct transaction.
+The master database and Customer Relationship Management (CRM) for all tenants.
 
-## 5. Recording a Rent Payment
+**Functionality:**
+*   A powerful, searchable, and filterable table of all tenants (past, present, and prospective).
+*   Clicking a tenant opens their **360-Degree Tenant Profile**, which contains:
+    *   All personal and contact details.
+    *   A complete, itemized payment history.
+    *   A full log of all maintenance requests and other issues.
+    *   A record of all communications.
+    *   A link to their signed rent agreement PDF.
 
-1.  Navigate to **Ministry of Finance -> Tenant Payments**.
-2.  Select the tenant and invoice.
-3.  Click "Record Payment," enter the details, and confirm. **This action is irreversible.**
+---
+
+### Window 3: Property & Availability Management
+
+The administrative view for managing all physical assets.
+
+**Functionality:**
+*   A hierarchical view of `Properties > Floors > Rooms > Beds`.
+*   **Set Rent Prices:** This is the interface used to define the rent for each specific bed.
+*   **Manage Status:** Change the status of a bed (e.g., `Available`, `Occupied`, `Under Maintenance`).
+*   Upload photos and manage amenity lists for each room.
+
+---
+
+### Window 4: The Parliament
+
+This is the most powerful screen in the portal. It is the Graphical User Interface (GUI) for configuring the live business logic of the system.
+
+**Functionality:**
+*   The portal reads all `.yaml` policy files from the `parliament_policies/` directory in the project.
+*   It dynamically generates a user-friendly web form for each policy, allowing you to edit its parameters.
+*   **Example:** To change the late fee, you would select the "Late Fee Policy." The form would show an input field for "Late Fee Amount (in INR)".
+*   When you save a change, the new value is stored in the database and immediately used by the live application, overriding the default value from the code.

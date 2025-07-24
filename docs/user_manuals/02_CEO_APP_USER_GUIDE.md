@@ -1,40 +1,64 @@
-# CEO Mobile App - User Guide
+# CEO App - User Guide
 
 **For:** CEO
 
-This guide explains how to use the CEO Mobile App for on-the-go management and strategic review.
+### Philosophy: Signal, Not Noise
 
-## 1. Strategic Reviews: The AI Partnership (New!)
+This app is your command and control center for high-level oversight, strategic decision-making, and critical interventions. It is designed to filter out noise and present only what requires your direct attention.
 
-Once a month, the system's AI will act as your strategic advisor, presenting a data-driven proposal to optimize the marketing and lead nurturing strategy. This is the most important review you will conduct.
+---
 
-### Reviewing Monthly AI Strategy Proposals
+### Core Navigation
 
-*   **What it is:** On the first of each month, a new item will appear in the **"Strategic Proposals"** queue on your dashboard. This is the AI's proposal for the next month's lead nurturing strategy.
-*   **How to interpret it:** The proposal will include a summary of the AI's findings and a clear recommendation. For example: *"Based on last month's data, I recommend we stop sending follow-up messages to leads with a score below 60 when vacancy is at 0%. This is projected to save ₹X in WhatsApp costs with minimal impact on conversions."*
-*   **Your Role:** Your role is to use your business judgment to approve or reject the AI's proposed strategy. The existing strategy will continue until you approve a new one.
+The app has four primary, top-level windows accessible from the bottom navigation bar:
+`[ 📈 Dash ] [ ⚖️ Judiciary ] [ 💰 Finance ] [ 👥 Staff ]`
 
-## 2. The System Operations Channel (SOC)
+---
 
-You have a direct line to the system's AI for day-to-day operations. You can perform key actions by sending simple messages or images to the dedicated SOC WhatsApp number.
+### Window 1: The Executive Dashboard
 
-### Filing Expenses
-Send a text message or a photo of a receipt.
+Your prioritized list of items that require immediate action.
 
-*   **You do:** Send a photo of a receipt to the SOC.
-*   **The System asks:** "OK. I have extracted the following from the document: `vendor: Hotel Sagar, amount: 1250 INR, date: 2025-07-23`. Please confirm."
-*   **You reply:** "Confirm"
+**Functionality:**
+*   **Counters:** Prominent counters for **Overdue Issues** and **Pending Judiciary Cases**.
+*   **Judiciary Docket:** A summary of the top pending cases awaiting your verdict.
+*   **Recent Activity:** A feed of other high-impact system events (e.g., large expense approvals).
+*   **Settings:** Access app settings (profile, notifications, security) via the `⚙️` icon in the header.
 
-### Querying Information
-Ask the system questions about your business.
+---
 
-*   **You ask:** "How many vacant beds do we have right now?"
-*   **The System replies:** "We currently have 6 vacant beds across all properties."
+### Window 2: The Judiciary View
 
-## 3. The Mobile App Dashboard
+Your dedicated workspace for exercising legal authority.
 
-Your dashboard provides a real-time overview of the business, including the **Tenant Satisfaction Trend** chart and queues for routine approvals.
+**Functionality:**
+*   A list of all pending cases requiring your approval.
+*   Tap a case to open its detail view, which includes a summary, the AI's recommended verdict, and **Contextual Deep Links**.
+*   **Deep Links:** Secure, one-tap links like `[View Payment History >]` or `[View Rent Agreement >]` that open the full, detailed record in the web-based Internal System Portal.
+*   **Actions:** Clear **[Approve Verdict]** and **[Overturn & Rule]** buttons.
 
-### Managing Vendors & Approvals
-*   Use the **Vendor Directory** to manage vendor information.
-*   Use the **Action Required** queue for routine approvals like utility bills and judicial cases.
+---
+
+### Window 3: The Finance View
+
+A transparent, real-time view into the business's finances.
+
+**Functionality:**
+*   View top-line metrics: `Total Revenue`, `Total Expenses`, `Net Profit`.
+*   Review a simple cash flow chart.
+*   Approve or deny any expenses that exceed the policy threshold.
+*   Access a full, searchable log of all financial transactions.
+
+---
+
+### Window 4: The Staff Roster
+
+Your oversight tool for monitoring staff performance and well-being.
+
+**Functionality:**
+*   A list of all staff members.
+*   Tap on a caretaker to open their detailed **Caretaker Profile**.
+*   **Behavioral Analysis:** View an AI-generated psychological profile based on communication patterns, showing trends for traits like Empathy and Stress Level.
+*   **Recent Communications:** Review a list of all recorded calls from the last 7 days.
+*   **Direct Audio Playback:** Tap the **▶ Play** button next to a call to listen to the full recording directly within the app. You can also view the machine-generated transcript.
+*   **Data Retention:** All call recordings and transcripts are automatically and permanently deleted after 7 days.
