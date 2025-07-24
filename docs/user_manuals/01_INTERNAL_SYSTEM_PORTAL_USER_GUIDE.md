@@ -4,55 +4,67 @@
 
 ### Philosophy: Total Information, Total Control
 
-This web-based portal is the central nervous system of the entire operation. It is the comprehensive dashboard for deep analysis, configuration, and management, designed for use on a desktop computer.
+This web-based portal is the central nervous system of the entire operation, structured like a government to provide both high-level oversight and deep, departmental control. It is designed for use on a desktop computer.
 
 ---
 
-### Window 1: The Main Dashboard
+### Main Navigation & Structure
 
-The landing page provides a detailed operational overview of the business.
+The portal is organized around a main navigation bar on the left, providing access to each major governmental function:
 
-**Functionality:**
-*   **Live Occupancy Map:** A visual representation of all properties with color-coded statuses.
-*   **Key Operational Metrics:** View real-time data on rent collection progress and open maintenance tickets.
-*   **System-Wide Activity Feed:** A detailed, real-time log of all significant events from all applications.
-*   **Quick Actions:** Buttons for common administrative tasks like `[+ Add New Tenant]` or `[+ Add Expense]`.
-
----
-
-### Window 2: Tenant Management
-
-The master database and Customer Relationship Management (CRM) for all tenants.
-
-**Functionality:**
-*   A powerful, searchable, and filterable table of all tenants (past, present, and prospective).
-*   Clicking a tenant opens their **360-Degree Tenant Profile**, which contains:
-    *   All personal and contact details.
-    *   A complete, itemized payment history.
-    *   A full log of all maintenance requests and other issues.
-    *   A record of all communications.
-    *   A link to their signed rent agreement PDF.
+*   `📈 Dashboard`
+*   `🗣️ Cabinet Secretary`
+*   `💰 Ministry of Finance`
+*   `🏡 Property & Tenant Welfare`
+*   `📈 Growth & Commerce`
+*   `⚙️ Ministry of Technology`
 
 ---
 
-### Window 3: Property & Availability Management
+### 1. The Dashboard
 
-The administrative view for managing all physical assets.
+This is your primary, cross-ministry "Situation Room." It is a tabbed interface designed to show what needs attention and how the business is performing.
 
-**Functionality:**
-*   A hierarchical view of `Properties > Floors > Rooms > Beds`.
-*   **Set Rent Prices:** This is the interface used to define the rent for each specific bed.
-*   **Manage Status:** Change the status of a bed (e.g., `Available`, `Occupied`, `Under Maintenance`).
-*   Upload photos and manage amenity lists for each room.
+*   **Date Range Filter:** All data on the dashboard can be filtered by a master date range (e.g., "This Month").
+*   **Action Items Tab:** The default view, focusing on immediate tasks. It contains:
+    *   A **Pending Issues** widget with a total count and breakdown by category (Judiciary, Maintenance).
+    *   A **Rent Status** widget showing collected vs. pending rent for the period.
+    *   An **Issues Docket** listing all actionable items requiring your review.
+*   **Performance Trends Tab:** This view shows key performance indicators (KPIs) with visual trend line charts:
+    *   Widgets for Revenue, Occupancy Rate, Lead Conversion, etc., all showing trends over the selected period.
 
 ---
 
-### Window 4: The Parliament
+### 2. The Cabinet Secretary
 
-This is the most powerful screen in the portal. It is the Graphical User Interface (GUI) for configuring the live business logic of the system.
+Your direct line to the system's AI analyst. Use this chat-like interface to ask complex, natural language questions about your business data (e.g., "Compare electricity costs for Q1 vs Q2").
 
-**Functionality:**
-*   The portal reads all `.yaml` policy files from the `parliament_policies/` directory in the project.
-*   It dynamically generates a user-friendly web form for each policy, allowing you to edit its parameters.
-*   **Example:** To change the late fee, you would select the "Late Fee Policy." The form would show an input field for "Late Fee Amount (in INR)".
-*   When you save a change, the new value is stored in the database and immediately used by the live application, overriding the default value from the code.
+---
+
+### 3. Ministry Pages (Departmental Headquarters)
+
+Each ministry page is a dedicated dashboard for that specific business function, often with its own tabs for different departments.
+
+*   **Ministry of Finance:** Manage all financial operations, including revenue, expenses, and the General Ledger.
+*   **Property & Tenant Welfare:** The hub for the Tenant CRM and the Property/Bed inventory management system.
+*   **Growth & Commerce:** Contains the detailed Sales Pipeline, lead management tools, and marketing reports.
+
+---
+
+### 4. Ministry of Technology
+
+The engine room for configuring the system itself.
+
+*   **The Parliament (Tab):** A powerful GUI for editing live business policies. The system reads the project's `.yaml` policy files and generates user-friendly forms to let you change the rules of the business without touching code.
+*   **System Configuration (Tab):** The secure area for managing system-wide technical settings, most importantly the **API Keys and Integration Secrets** for third-party services like WhatsApp or payment gateways.
+
+---
+
+### 5. Personal Settings (User Profile Menu)
+
+Settings that are specific to your user account are located in the User Profile Menu, accessed by clicking your name in the **top-right corner** of the portal.
+
+*   **Edit Profile:** Change your display name and contact information.
+*   **Change Password:** Manage your login credentials.
+*   **Theme:** Select a light or dark theme for the portal interface.
+*   **Logout:** Sign out of the application.
