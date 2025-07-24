@@ -1,50 +1,76 @@
-name: Deploy Walking Skeleton
+name: Build, Push, and Deploy to Cloud Run
 
 on:
   push:
     branches:
       - main
 
+env:
+  GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  GCP_REGION: asia-south1
+  GAR_LOCATION: asia-south1
+  SERVICE_NAME: bestpg
+  REPO_NAME: bestpg-repo
+
 jobs:
-  deploy:
+  build-and-push-images:
+    name: Build and Push Docker Images
     runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v2
+        id: auth
+        uses: 'google-github-actions/auth@v2'
         with:
-          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+          workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
-      - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2
+      - name: Configure Docker
+        run: gcloud auth configure-docker ${{ env.GAR_LOCATION }}-docker.pkg.dev
+
+      - name: Build and push backend image
+        run: |
+          docker build -t ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/backend:${{ github.sha }} ./src/backend
+          docker push ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/backend:${{ github.sha }}
+
+      - name: Build and push frontend image
+        run: |
+          docker build -t ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/frontend:${{ github.sha }} ./src/frontend
+          docker push ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/frontend:${{ github.sha }}
+
+  deploy-with-terraform:
+    name: Deploy to Cloud Run with Terraform
+    needs: build-and-push-images
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: 'google-github-actions/auth@v2'
+        with:
+          workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
       - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v3
+        uses: hashicorp/setup-terraform@v2
 
       - name: Terraform Init
         run: terraform init
         working-directory: ./terraform
 
-      - name: Terraform Apply (Phase 1: Infra)
-        run: terraform apply -auto-approve -target=google_artifact_registry_repository.bestpg_repo -target=google_secret_manager_secret.supabase_password -target=google_secret_manager_secret_version.supabase_password_version -var="supabase_password=${{ secrets.SUPABASE_PASSWORD }}" -var="gcp_project_id=${{ secrets.GCP_PROJECT_ID }}"
-        working-directory: ./terraform
-
-      - name: Configure Docker
-        run: gcloud auth configure-docker asia-south1-docker.pkg.dev
-
-      - name: Build and push backend image
+      - name: Terraform Apply
         run: |
-          docker build -t asia-south1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/bestpg-repo/backend:latest ./src/backend
-          docker push asia-south1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/bestpg-repo/backend:latest
-
-      - name: Build and push frontend image
-        run: |
-          docker build -t asia-south1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/bestpg-repo/frontend:latest ./src/frontend
-          docker push asia-south1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/bestpg-repo/frontend:latest
-
-      - name: Terraform Apply (Phase 2: Deploy)
-        run: terraform apply -auto-approve -var="supabase_password=${{ secrets.SUPABASE_PASSWORD }}" -var="gcp_project_id=${{ secrets.GCP_PROJECT_ID }}"
-        working-directory: ./terraform
+          terraform apply -auto-approve \
+            -var="gcp_project_id=${{ env.GCP_PROJECT_ID }}"
