@@ -28,8 +28,8 @@ jobs:
         run: terraform init
         working-directory: ./terraform
 
-      - name: Terraform Apply
-        run: terraform apply -auto-approve -var="supabase_password=${{ secrets.SUPABASE_PASSWORD }}" -var="gcp_project_id=${{ secrets.GCP_PROJECT_ID }}"
+      - name: Terraform Apply (Phase 1: Infra)
+        run: terraform apply -auto-approve -target=google_artifact_registry_repository.bestpg_repo -target=google_secret_manager_secret.supabase_password -target=google_secret_manager_secret_version.supabase_password_version -var="supabase_password=${{ secrets.SUPABASE_PASSWORD }}" -var="gcp_project_id=${{ secrets.GCP_PROJECT_ID }}"
         working-directory: ./terraform
 
       - name: Configure Docker
@@ -44,3 +44,7 @@ jobs:
         run: |
           docker build -t asia-south1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/bestpg-repo/frontend:latest ./src/frontend
           docker push asia-south1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/bestpg-repo/frontend:latest
+
+      - name: Terraform Apply (Phase 2: Deploy)
+        run: terraform apply -auto-approve -var="supabase_password=${{ secrets.SUPABASE_PASSWORD }}" -var="gcp_project_id=${{ secrets.GCP_PROJECT_ID }}"
+        working-directory: ./terraform
