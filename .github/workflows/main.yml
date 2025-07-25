@@ -38,6 +38,12 @@ jobs:
           docker build -t ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/backend:${{ github.sha }} ./src/backend
           docker push ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/backend:${{ github.sha }}
 
+      - name: Grant Secret Manager access
+        run: |
+          gcloud secrets add-iam-policy-binding backend-secret \
+            --member="serviceAccount:878356245185-compute@developer.gserviceaccount.com" \
+            --role="roles/secretmanager.secretAccessor"
+
       - name: Deploy Backend to Cloud Run
         id: deploy-backend
         uses: 'google-github-actions/deploy-cloudrun@v2'
