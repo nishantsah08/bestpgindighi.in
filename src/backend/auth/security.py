@@ -1,8 +1,13 @@
+import os
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
 from jose import JWTError, jwt
+from fastapi import Depends, HTTPException, status
 
-SECRET_KEY = "your-secret-key"  # This should be loaded from environment variables
+SECRET_KEY = os.environ.get("SECRET_KEY")
+if SECRET_KEY is None:
+    raise Exception("Missing SECRET_KEY environment variable")
+
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 

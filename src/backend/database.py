@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from .auth.models import Base  # Import the Base
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"  # Using SQLite for simplicity
 
@@ -14,3 +15,6 @@ def get_db():
         yield db
     finally:
         db.close()
+
+def create_db_and_tables():
+    Base.metadata.create_all(bind=engine)
