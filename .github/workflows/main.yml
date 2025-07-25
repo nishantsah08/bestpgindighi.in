@@ -36,7 +36,6 @@ jobs:
       - name: Build and Push Backend Image
         run: |
           docker build -t ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/backend:${{ github.sha }} ./src/backend
-          sleep 30
           docker push ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/backend:${{ github.sha }}
 
       - name: Deploy Backend to Cloud Run
