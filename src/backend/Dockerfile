@@ -22,7 +22,7 @@ WORKDIR /app
 RUN adduser --system --group appuser
 USER appuser
 
-COPY --from=builder /opt/venv/lib/python3.11/site-packages /opt/venv/lib/python3.11/site-packages
+COPY --from=builder /opt/venv/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
 COPY . /app/backend
 
 ENV PATH="/opt/venv/bin:$PATH"
