@@ -30,6 +30,12 @@ jobs:
           workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
+      - name: Grant Secret Manager access
+        run: |
+          gcloud secrets add-iam-policy-binding backend-secret \
+            --member="serviceAccount:${{ secrets.GCP_SERVICE_ACCOUNT }}" \
+            --role="roles/secretmanager.secretAccessor"
+
       - name: Configure Docker
         run: gcloud auth configure-docker ${{ env.GAR_LOCATION }}-docker.pkg.dev
 
@@ -45,6 +51,9 @@ jobs:
           service: 'backend'
           region: ${{ env.GCP_REGION }}
           image: ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/backend:${{ github.sha }}
+          secrets:
+            - name: SECRET_KEY
+              value: 'backend-secret:latest'
 
       - name: Allow unauthenticated access to backend
         run: gcloud run services add-iam-policy-binding backend --region=${{ env.GCP_REGION }} --member=allUsers --role=roles/run.invoker
