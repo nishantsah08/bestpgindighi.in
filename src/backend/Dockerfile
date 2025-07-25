@@ -1,27 +1,26 @@
-# ---- Base Stage ----
-FROM python:3.11-slim-bookworm AS base
+# Dockerfile
 
-ENV PYTHONDONTWRITEBYTECODE 1
+# Stage 1: Builder
+FROM python:3.11-slim-bookworm AS builder
+
 ENV PYTHONUNBUFFERED 1
-
-# ---- Builder Stage ----
-FROM base AS builder
+ENV PYTHONDONTWRITEBYTECODE 1
 
 WORKDIR /app
-
-RUN python -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# ---- Final Stage ----
-FROM base AS final
+# Stage 2: Runner
+FROM python:3.11-slim-bookworm AS runner
 
-RUN addgroup --system app && adduser --system --ingroup app app
-USER app
+ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
 
 WORKDIR /app
+
+RUN adduser --system --group appuser
+USER appuser
 
 COPY --from=builder /opt/venv /opt/venv
 COPY . /app/backend
