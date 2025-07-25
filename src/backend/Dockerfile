@@ -23,6 +23,7 @@ RUN adduser --system --group appuser
 USER appuser
 
 COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+COPY --from=builder /usr/local/bin/uvicorn /usr/local/bin/uvicorn
 COPY . /app/backend
 
 ENV PYTHONPATH=/app
