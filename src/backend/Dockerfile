@@ -25,7 +25,7 @@ USER appuser
 COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
 COPY . /app/backend
 
-ENV PATH="/opt/venv/bin:$PATH"
+ENV PYTHONPATH=/app
 
 EXPOSE 8080
 
