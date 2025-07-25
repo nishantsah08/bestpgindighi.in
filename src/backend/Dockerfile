@@ -1,5 +1,3 @@
-# Dockerfile
-
 # Stage 1: Builder - Install dependencies
 FROM python:3.11-slim-bookworm AS builder
 
@@ -35,7 +33,7 @@ COPY --from=builder /venv /venv
 ENV PATH="/venv/bin:$PATH"
 
 # Copy your application code
-COPY . /app/backend
+COPY . .
 
 # Expose the port Cloud Run will use (default is 8080)
 EXPOSE 8080
@@ -45,4 +43,4 @@ RUN adduser --system --group appuser
 USER appuser
 
 # Command to run the application
-CMD uvicorn backend.main:app --host 0.0.0.0 --port ${PORT}
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
