@@ -49,18 +49,18 @@ jobs:
       - name: Allow unauthenticated access to backend
         run: gcloud run services add-iam-policy-binding backend --region=${{ env.GCP_REGION }} --member=allUsers --role=roles/run.invoker
 
-      - name: Build and Push Frontend Image
+      - name: Build and Push Internal Dashboard Image
         run: |
           docker build -t ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/internal-dashboard:${{ github.sha }} ./src/internal_dashboard
-          docker push ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/frontend:${{ github.sha }}
+          docker push ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/internal-dashboard:${{ github.sha }}
 
-      - name: Deploy Frontend to Cloud Run
-        id: deploy-frontend
+      - name: Deploy Internal Dashboard to Cloud Run
+        id: deploy-internal-dashboard
         uses: 'google-github-actions/deploy-cloudrun@v2'
         with:
-          service: 'frontend'
+          service: 'internal-dashboard'
           region: ${{ env.GCP_REGION }}
           image: ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/internal-dashboard:${{ github.sha }}
 
-      - name: Allow unauthenticated access to frontend
+      - name: Allow unauthenticated access to Internal Dashboard
         run: gcloud run services add-iam-policy-binding internal-dashboard --region=${{ env.GCP_REGION }} --member=allUsers --role=roles/run.invoker
