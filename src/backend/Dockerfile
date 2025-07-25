@@ -2,8 +2,8 @@
 FROM python:3.11-slim-bookworm AS builder
 
 # Set environment variables for Python
-ENV PYTHONUNBUFFERED 1
-ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
 
 # Create a directory for your application and set it as the working directory
 WORKDIR /app
@@ -20,8 +20,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 FROM python:3.11-slim-bookworm AS runner
 
 # Set environment variables for Python
-ENV PYTHONUNBUFFERED 1
-ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
 
 # Create a directory for your application and set it as the working directory
 WORKDIR /app
