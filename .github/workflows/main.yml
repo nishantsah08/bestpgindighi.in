@@ -51,7 +51,7 @@ jobs:
 
       - name: Build and Push Frontend Image
         run: |
-          docker build -t ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/frontend:${{ github.sha }} ./src/frontend
+          docker build -t ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/internal-dashboard:${{ github.sha }} ./src/internal_dashboard
           docker push ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/frontend:${{ github.sha }}
 
       - name: Deploy Frontend to Cloud Run
@@ -60,7 +60,7 @@ jobs:
         with:
           service: 'frontend'
           region: ${{ env.GCP_REGION }}
-          image: ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/frontend:${{ github.sha }}
+          image: ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/internal-dashboard:${{ github.sha }}
 
       - name: Allow unauthenticated access to frontend
-        run: gcloud run services add-iam-policy-binding frontend --region=${{ env.GCP_REGION }} --member=allUsers --role=roles/run.invoker
+        run: gcloud run services add-iam-policy-binding internal-dashboard --region=${{ env.GCP_REGION }} --member=allUsers --role=roles/run.invoker
