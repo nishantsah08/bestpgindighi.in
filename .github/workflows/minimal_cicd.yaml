@@ -25,7 +25,7 @@ jobs:
       - name: Authenticate to Google Cloud
         uses: 'google-github-actions/auth@v2'
         with:
-          workload_identity_provider: 'projects/181853912506/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
+          workload_identity_provider: 'projects/181853912506/locations/global/workloadIdentityPools/github-pool-v3/providers/github-provider-v3'
           service_account: 'gemini-cicd-agent-v2@bestpgindighi-in.iam.gserviceaccount.com'
 
       - name: Login to Google Artifact Registry
