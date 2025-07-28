@@ -1,4 +1,3 @@
-# --- Stage 1: Builder ---
 FROM python:3.11.9-slim-bookworm as builder
 
 WORKDIR /app
