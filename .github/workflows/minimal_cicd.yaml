@@ -39,7 +39,7 @@ jobs:
         id: build_backend_image
         uses: docker/build-push-action@v5
         with:
-          context: ./src/backend
+          context: .
           push: true
           tags: |
             ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPO_NAME }}/${{ env.BACKEND_SERVICE_NAME }}:${{ github.sha }}
