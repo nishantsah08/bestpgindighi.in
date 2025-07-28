@@ -120,3 +120,4 @@ jobs:
           service: bestpg-backend
           region: ${{ env.GAR_LOCATION }}
           image: ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPO_NAME }}/internal-dashboard@${{ steps.build_internal_dashboard_image.outputs.digest }}
+          flags: '--quiet'
