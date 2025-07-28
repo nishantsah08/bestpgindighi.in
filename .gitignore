@@ -32,3 +32,4 @@ bestpgindighi-ai/
 
 # Service Account Keys
 gcp-credentials.json
+.gemini/secrets.vault.yaml
