@@ -14,8 +14,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # --- Stage 2: Runtime ---
 FROM python:3.11-slim
 
-RUN groupadd --system nonroot && useradd --system --group nonroot nonroot
-USER nonroot
+RUN groupadd --system appgroup && useradd --system --group appgroup appuser
+USER appuser
 
 WORKDIR /app
 
