@@ -117,7 +117,7 @@ jobs:
         id: deploy_internal_dashboard_service
         uses: google-github-actions/deploy-cloudrun@v2
         with:
-          service: bestpg-backend
+          service: internal-dashboard
           region: ${{ env.GAR_LOCATION }}
           image: ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPO_NAME }}/internal-dashboard@${{ steps.build_internal_dashboard_image.outputs.digest }}
           flags: '--quiet'
