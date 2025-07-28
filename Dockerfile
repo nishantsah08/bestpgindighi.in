@@ -14,7 +14,7 @@ FROM python:3.11.9-slim-bookworm
 RUN groupadd --system appgroup && useradd --system --group appgroup appuser
 USER appuser
 
-WORKDIR /app
+WORKDIR /app/src
 
 COPY --from=builder /opt/venv /opt/venv
 COPY . .
@@ -23,4 +23,4 @@ ENV PATH="/opt/venv/bin:$PATH"
 
 EXPOSE 8080
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "1", "--threads", "8", "--timeout", "0", "src.backend.main:app", "-k", "uvicorn.workers.UvicornWorker"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "1", "--threads", "8", "--timeout", "0", "backend.main:app", "-k", "uvicorn.workers.UvicornWorker"]
