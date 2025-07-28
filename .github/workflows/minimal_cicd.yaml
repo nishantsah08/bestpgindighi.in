@@ -76,4 +76,4 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.GCP_SA_KEY }}'
           channelId: live
-          projectId: ${{ env.PROJECT_ID }}
+          projectId: pg-business-ai-prod
