@@ -1,22 +1,22 @@
-# Stage 1: Build the React app
-FROM node:20-alpine as builder
+# --- Stage 1: Builder ---
+FROM node:18-alpine as builder
 
 WORKDIR /app
 
-COPY package.json ./
+COPY src/internal_dashboard/package.json .
+COPY src/internal_dashboard/package-lock.json .
+
 RUN npm install
 
-COPY . ./
+COPY src/internal_dashboard/ .
+
 RUN npm run build
 
-# Stage 2: Serve the static files with a web server
+# --- Stage 2: Runtime ---
 FROM nginx:1.25-alpine
 
 COPY --from=builder /app/build /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/nginx.conf
 
-# Expose port 8080
-EXPOSE 8080
+EXPOSE 80
 
-# Start nginx with the custom configuration
 CMD ["nginx", "-g", "daemon off;"]
