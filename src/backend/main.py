@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import logging
 from fastapi import FastAPI
 from . import database
@@ -19,3 +21,11 @@ app.include_router(logging_router.router, prefix="/log", tags=["log"])
 async def read_root():
     logger.info("Root endpoint accessed.")
     return {"message": "Hello from FastAPI on Cloud Run!"} # Added comment to trigger CI/CD
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8080)
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8080)
