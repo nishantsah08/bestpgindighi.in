@@ -45,7 +45,9 @@ Your direct line to the system's AI analyst. Use this chat-like interface to ask
 
 Each ministry page is a dedicated dashboard for that specific business function, often with its own tabs for different departments.
 
-*   **Ministry of Finance:** Manage all financial operations, including revenue, expenses, and the General Ledger.
+*   **Ministry of Finance:** Manage all financial operations.
+    *   **Sub-Pages:** Financial Statements (P&L, Balance Sheet, Cash Flow), General Ledger (with Transaction Correction feature), and Asset Inventory.
+    *   **Automated Inventory:** When a capital asset (e.g., a fan, a mattress) is purchased via the AI-powered expense workflow, it is automatically added to the Asset Inventory upon your confirmation. This portal view allows you to see the real-time status of all assets.
 *   **Property & Tenant Welfare:** The hub for the Tenant CRM and the Property/Bed inventory management system.
 *   **Growth & Commerce:** Contains the detailed Sales Pipeline, lead management tools, and marketing reports.
 

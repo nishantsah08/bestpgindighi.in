@@ -9,6 +9,7 @@ This document defines the data model for the system, implemented in Firebase Fir
 - `judicial_docket`
 - `general_ledger`
 - `tenant_feedback`
+- `inventory`
 
 ## 2. `tenants` Collection
 
@@ -48,7 +49,17 @@ This document defines the data model for the system, implemented in Firebase Fir
     - `final_verdict` (string, nullable)
     - `created_at` (timestamp)
 
-## 5. Firestore Security Rules
+## 5. `inventory` Collection
+
+- **Document ID:** `asset_id` (auto-generated)
+- **Fields:**
+    - `asset_name` (string)
+    - `quantity` (number)
+    - `status` (string: `IN_STORAGE`, `IN_USE`, `DISPOSED`)
+    - `purchase_transaction_id` (string, reference to `general_ledger` collection)
+    - `added_at` (timestamp)
+
+## 6. Firestore Security Rules
 
 - Access to collections will be governed by Firestore Security Rules.
 - Rules will be written to enforce the Access Control Lists (ACLs) defined in the `05_MCP_CAPABILITY_REGISTRY.md`.

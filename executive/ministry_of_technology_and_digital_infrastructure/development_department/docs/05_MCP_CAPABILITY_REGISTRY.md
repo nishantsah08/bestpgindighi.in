@@ -33,6 +33,15 @@ Each registered capability must include the following information:
 - **ACL:** `[Financial_AI_Agent]`
 - **Schema:** `schemas/financial/invoice.json`
 
+### Inventory Capabilities
+
+- **Capability ID:** `inventory.add_asset`
+- **Description:** Adds a new asset to the inventory. Triggered automatically after a confirmed capital asset purchase.
+- **Owner:** Ministry of Finance
+- **Service Endpoint:** `https://mcp.bestpgindighi.in/inventory/add`
+- **ACL:** `[Financial_AI_Agent]`
+- **Schema:** `schemas/inventory/asset.json`
+
 ### Tenant Management Capabilities
 
 ### Tenant Management Capabilities
