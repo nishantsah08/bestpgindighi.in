@@ -16,16 +16,13 @@ We use a hybrid model to manage system policies, providing both safety and flexi
     *   **How:** Managed via a secure Admin Portal GUI by authorized users.
     *   **Safety:** The GUI's editable fields and their validation rules are defined in the Tier 1 policy files.
 
-## The Supreme Court Review
+## The Planning Commission Review
 
-All proposed changes to Foundational Policies are subject to a rigorous, automated safety check to ensure system-wide consistency. This process is defined in the Judiciary's guiding document.
+All proposed changes to the system, whether architectural, design-oriented, or significant new features, must first undergo a **Planning Commission Review**. This is a mandatory step to ensure strategic alignment and architectural soundness before any development work begins.
 
-- **Canonical Documentation:** [`judiciary/00_JUDICIAL_REVIEW_PROCESS.md`](../judiciary/00_JUDICIAL_REVIEW_PROCESS.md)
+- **Canonical Documentation:** [`independent_bodies/planning_commission/README.md`](../../../../independent_bodies/planning_commission/README.md)
 
-This review includes:
-- **Judicial Process Integration:** Ensuring that any new process includes appropriate triggers for filing judicial cases and handling their verdicts.
-- **Event-Based Impact Analysis:** Analyzing how a change affects all connected components in the system's 3D logical model.
-- **Data & Policy Versioning:** Ensuring that any change that alters data structure is properly versioned and that the system can handle both old and new data formats.
+
 
 ## Configuration Loading Strategy
 
