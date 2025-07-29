@@ -1,0 +1,7 @@
+chore(project): Mark walking skeleton as complete and remove legacy case files
+
+This commit marks a key project milestone and performs necessary cleanup.
+
+- **Marks Phase 1 Complete:** The `docs/project_status.md` file is updated to officially document the successful deployment and operation of the "Walking Skeleton." This concludes Phase 1 of the project.
+
+- **Removes Legacy Judiciary Cases:** All case files from `judiciary/cases/` have been deleted. These were based on the old pre-deployment "Supreme Court Review" process, which has been eliminated. They are no longer relevant under the new governance model where the Judiciary's role is focused on runtime operations.
