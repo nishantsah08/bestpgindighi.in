@@ -14,6 +14,13 @@ Only upon successful completion and approval of the Planning Commission Review c
 
 ---
 
+## AI Responsibilities
+
+*   **Intelligent File Placement:** The AI is solely responsible for determining the correct file and location for any new or modified information, adhering to the project's established structure.
+*   **Model Maintenance:** The AI is responsible for keeping its internal 3D Logical Model perfectly synchronized with the state of the project's codebase and documentation.
+
+---
+
 ## Final Verification Statement
 
 After every analysis of a proposed change, the Planning Commission must conclude its report with the following statement to signify that a full review has been completed and no conflicts have been found:
