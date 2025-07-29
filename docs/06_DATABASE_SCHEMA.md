@@ -10,6 +10,7 @@ This document defines the data model for the system, implemented in Firebase Fir
 - `general_ledger`
 - `tenant_feedback`
 - `inventory`
+- `sales_tasks`
 
 ## 2. `tenants` Collection
 

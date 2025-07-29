@@ -21,4 +21,16 @@ core_principles:
     description: "All initial payments from a new tenant will be allocated first towards the 'first month's rent' until the ₹5000 threshold is met. Any subsequent payments will then be allocated towards the 'security deposit'."
 
   - principle: "Onboarding Prerequisite"
-    description: "A tenant is considered 'ready_for_agreement' only when both the 'first month's rent' and the full 'security deposit' have been paid."
+    description: "A tenant is considered 'ready_for_agreement' only when both the 'first month''s rent' and the full 'security deposit' have been paid."
+
+expiring_hold_workflow:
+  - principle: "Automated Follow-up and Escalation for Expired Booking Holds"
+    description: "This workflow defines the automated process for handling provisional bookings when the tenant fails to pay the full rent within the agreed-upon timeframe."
+    hold_duration_hours: 24
+    workflow_steps:
+      - "Step 1: The 24-hour hold period expires."
+      - "Step 2: The system automatically sends a reminder message to the customer via WhatsApp using the 'notifications.send_booking_hold_reminder' capability."
+      - "Step 3: The system waits for a grace period of 1 hour."
+      - "Step 4: If the full rent is still not paid after the grace period, the system automatically escalates the issue to the Sales role."
+      - "Step 5: The escalation is delivered via two channels: a WhatsApp message to the Sales agent and a new task in the Sales App, created using the 'tasks.create_sales_escalation' capability."
+      - "Step 6: The provisional booking and the associated bed remain in 'On Hold' status until the Sales agent manually resolves the escalation (e.g., by confirming payment, cancelling the booking, or refunding the partial payment)."

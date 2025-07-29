@@ -106,6 +106,13 @@ Each registered capability must include the following information:
 - **ACL:** `[Independent_Risk_Advisory_AI]`
 - **Schema:** `schemas/tasks/strategy_proposal_request.json`
 
+- **Capability ID:** `tasks.create_sales_escalation`
+- **Description:** Creates a task in the Sales App for an expired booking hold.
+- **Owner:** Ministry of Technology & Digital Infrastructure
+- **Service Endpoint:** `https://mcp.bestpgindighi.in/tasks/sales_escalation`
+- **ACL:** `[System_Internal]`
+- **Schema:** `schemas/tasks/sales_escalation_request.json`
+
 - **Capability ID:** `documents.analyze_and_verify`
 - **Description:** Triggers the Verification AI to analyze a submitted document set.
 - **Owner:** Ministry of Technology & Digital Infrastructure
@@ -119,6 +126,13 @@ Each registered capability must include the following information:
 - **Service Endpoint:** `https://mcp.bestpgindighi.in/notifications/send`
 - **ACL:** `[System_Internal]`
 - **Schema:** `schemas/notifications/form_request.json`
+
+- **Capability ID:** `notifications.send_booking_hold_reminder`
+- **Description:** Sends a WhatsApp reminder to a customer whose booking hold is about to expire.
+- **Owner:** Ministry of Technology & Digital Infrastructure
+- **Service Endpoint:** `https://mcp.bestpgindighi.in/notifications/send_reminder`
+- **ACL:** `[System_Internal]`
+- **Schema:** `schemas/notifications/reminder_request.json`
 
 - **Capability ID:** `notifications.send_whatsapp_audio`
 - **Description:** Sends a pre-recorded WhatsApp audio message.
