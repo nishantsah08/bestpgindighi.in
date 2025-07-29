@@ -9,17 +9,8 @@ This review includes:
 - **Blast Radius Analysis:** A comprehensive analysis to identify all affected components and potential impacts across the system's 3D Logical Model (X-axis: business domains, Y-axis: layers of abstraction, Z-axis: event flows). This analysis must explicitly detail new, modified, and deleted files, as well as any changes to dependencies.
 - **Resource Optimization:** Evaluating the proposed change for optimal resource utilization and adherence to cost-efficiency principles.
 - **Architectural Soundness & Scalability:** Ensuring the proposed design adheres to principles of scalability, efficiency, maintainability, and overall architectural integrity.
+- **Intelligent File Placement:** The AI is solely responsible for determining the correct file and location for any new or modified information, adhering to the project's established structure.
 
-Only upon successful completion and approval of the Planning Commission Review can a change proceed to the Supreme Court Review.
-
----
-
-## AI Responsibilities
-
-*   **Intelligent File Placement:** The AI is solely responsible for determining the correct file and location for any new or modified information, adhering to the project's established structure.
-*   **Model Maintenance:** The AI is responsible for keeping its internal 3D Logical Model perfectly synchronized with the state of the project's codebase and documentation.
-
----
 
 ## Final Verification Statement
 
