@@ -3,6 +3,13 @@ status: "active"
 version: 7.0 # Added media handling for visual data interpretation.
 # This bill governs the handling of all inbound communications on the System Operations Channel (SOC).
 
+contact_identification_standard:
+  - rule: "E.164 as Canonical Standard for Phone Numbers"
+    description: "To ensure global compatibility and data integrity, all customer phone numbers must be stored in the E.164 format (e.g., +917588498834). This is the single source of truth for contact identification."
+    implementation:
+      - "The system will use the 'phonenumbers' Python library for all parsing, validation, and formatting."
+      - "For ambiguous numbers (e.g., a 10-digit number without a country code), the system will assume 'IN' (India) as the default region."
+
 inbound_communication:
   - rule: "AI-Powered Intent Recognition and Routing for All Media Types"
     description: "All inbound messages and media files on the SOC will be processed by an AI service to determine user intent and extract relevant entities. This derived intent is the primary driver for all subsequent system actions."
