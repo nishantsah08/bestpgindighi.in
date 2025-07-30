@@ -1,6 +1,6 @@
 title: "Customer Interaction and Call Management Bill"
 status: "active"
-version: 7.0 # Added media handling for visual data interpretation.
+version: 8.0 # Added transcription provider strategy and role-based analysis rules.
 # This bill governs the handling of all inbound communications on the System Operations Channel (SOC).
 
 contact_identification_standard:
@@ -9,6 +9,32 @@ contact_identification_standard:
     implementation:
       - "The system will use the 'phonenumbers' Python library for all parsing, validation, and formatting."
       - "For ambiguous numbers (e.g., a 10-digit number without a country code), the system will assume 'IN' (India) as the default region."
+
+transcription_provider_strategy:
+  - rule: "Cost-Optimized Waterfall for Transcription Services"
+    description: "To minimize operational costs, the system will intelligently route transcription jobs to different providers, prioritizing free tiers before falling back to the most cost-effective paid service."
+    provider_priority:
+      - "1. Google Speech-to-Text (Free Tier: 60 mins/month)"
+      - "2. Azure Speech to Text (Free Tier: 5 hours/month)"
+      - "3. Deepgram (Paid Tier: Lowest cost per hour)"
+    implementation:
+      - "The system must track monthly usage of the Google and Azure free tiers."
+      - "Jobs will be routed to the highest-priority provider with remaining free-tier capacity."
+      - "If all free tiers are exhausted, jobs will be routed to Deepgram."
+
+role_based_analysis_rules:
+  - rule: "Differentiated Analysis Based on Caller Role"
+    description: "To further optimize costs and focus resources, the system applies different analysis rules based on the source of the call."
+    rules:
+      - role: "Sales"
+        condition: "Always transcribe and analyze."
+        rationale: "Every sales call is a potential new lead or a critical customer interaction."
+      - role: "CEO"
+        condition: "Only transcribe and analyze if the customer's phone number already exists in the contacts database."
+        rationale: "Prevents resource expenditure on non-customer calls."
+      - role: "Caretaker"
+        condition: "Only transcribe and analyze if the customer's phone number already exists in the contacts database."
+        rationale: "Prevents resource expenditure on non-customer calls."
 
 inbound_communication:
   - rule: "AI-Powered Intent Recognition and Routing for All Media Types"

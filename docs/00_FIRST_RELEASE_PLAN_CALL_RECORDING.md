@@ -22,7 +22,7 @@ This document outlines the three-phase development plan to implement the foundat
     *   `POST /v1/contacts`: To manually create a new contact.
     *   `GET /v1/contacts/{id}`: To retrieve the full details and interaction history of a single contact.
     *   `PUT /v1/contacts/{id}`: To update a contact's information.
-4.  **Implement E.164 Normalization:** Upgrade the system to handle international phone numbers by default. All incoming phone numbers will be parsed and stored in the robust E.164 standard format, as defined in the `10_customer_interaction_and_call_management_bill.yaml`.
+4.  **Implement Transcription and Analysis Strategy:** Implement the sophisticated, multi-provider transcription waterfall and the role-based analysis rules as defined in the `10_customer_interaction_and_call_management_bill.yaml`.
 5.  **Automated Testing:** Create and run automated tests for all new endpoints, verifying the contact creation, call linking, and data retrieval logic.
 
 ---

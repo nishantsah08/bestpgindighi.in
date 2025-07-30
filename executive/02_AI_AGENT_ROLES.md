@@ -38,11 +38,11 @@ These AI agents are the "civil service" of the Executive branch, responsible for
 
 3.  **Transcription Agent:**
     *   **Ministry:** Technology & Digital Infrastructure
-    *   **Description:** A specialized agent responsible for converting raw audio from call recordings into text transcripts.
+    *   **Description:** A specialized agent responsible for converting raw audio from call recordings into text transcripts. It operates as part of a multi-provider, cost-optimized waterfall strategy as defined in the `10_customer_interaction_and_call_management_bill.yaml`.
 
 4.  **Information Extraction Agent:**
     *   **Ministry:** Growth & Commerce
-    *   **Description:** This agent processes raw text (e.g., call transcripts, WhatsApp messages) to extract structured information and insights. It identifies customer needs, preferences, and key data points to auto-populate customer profiles.
+    *   **Description:** This agent processes call transcripts to extract structured information and insights. It only receives calls that have passed the role-based analysis rules, ensuring it processes only valid business communications. It identifies customer needs, preferences, and key data points to auto-populate customer profiles.
 
 5.  **Verification AI:**
     *   **Ministry:** Technology & Digital Infrastructure
@@ -50,7 +50,7 @@ These AI agents are the "civil service" of the Executive branch, responsible for
 
 6.  **Contact Sync Agent:**
     *   **Ministry:** Technology & Digital Infrastructure
-    *   **Description:** This agent is responsible for the real-time synchronization of customer contact information across all relevant platforms and devices, ensuring that all personnel have access to the most up-to-date contact details.
+    *   **Description:** This agent's role is to handle the synchronization of the central `contacts` database with external systems, such as mobile device address books. This is a distinct future capability.
 
 6.  **Financial AI Agent:**
     *   **Ministry:** Finance
