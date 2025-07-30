@@ -10,6 +10,8 @@ class CallLog(Base):
     customer_number = Column(String)
     duration_seconds = Column(Integer)
     recording_url = Column(String)
+    transcription_status = Column(String, default="PENDING")
+    transcript = Column(String, nullable=True)
     status = Column(String, default="UPLOADED")
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 

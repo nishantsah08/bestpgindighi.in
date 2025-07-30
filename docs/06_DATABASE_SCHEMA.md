@@ -124,6 +124,8 @@ This document defines the data model for the system, implemented in Firebase Fir
     - `call_timestamp` (timestamp)
     - `duration_seconds` (number)
     - `recording_url` (string, URL to the audio file in storage)
+    - `transcription_status` (string: `PENDING`, `COMPLETED`, `FAILED`)
+    - `transcript` (string, nullable)
     - `status` (string: `UPLOADED`, `TRANSCRIBING`, `COMPLETED`, `FAILED`)
     - `created_at` (timestamp)
 

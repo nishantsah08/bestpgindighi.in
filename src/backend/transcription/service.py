@@ -24,12 +24,16 @@ def transcribe_audio(db: Session, call_log: models.CallLog) -> str:
     # 1. Check Google Free Tier
     if get_google_usage(db) < 60:
         # update_google_usage(db, call_log.duration_seconds)
-        return _transcribe_with_google(call_log.recording_url)
-
+        transcript = _transcribe_with_google(call_log.recording_url)
     # 2. Check Azure Free Tier
-    if get_azure_usage(db) < 300:
+    elif get_azure_usage(db) < 300:
         # update_azure_usage(db, call_log.duration_seconds)
-        return _transcribe_with_azure(call_log.recording_url)
-
+        transcript = _transcribe_with_azure(call_log.recording_url)
     # 3. Fallback to Deepgram
-    return _transcribe_with_deepgram(call_log.recording_url)
+    else:
+        transcript = _transcribe_with_deepgram(call_log.recording_url)
+
+    call_log.transcript = transcript
+    call_log.transcription_status = "COMPLETED"
+    db.commit()
+    return transcript

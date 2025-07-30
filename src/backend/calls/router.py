@@ -35,3 +35,10 @@ async def upload_call_recording(
 @router.get("/", response_model=List[schemas.CallLog])
 def read_call_logs(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     return service.get_call_logs(db=db, skip=skip, limit=limit)
+
+@router.get("/{call_id}", response_model=schemas.CallLog)
+def read_call_log(call_id: int, db: Session = Depends(get_db)):
+    db_call_log = service.get_call_log(db, call_id=call_id)
+    if db_call_log is None:
+        raise HTTPException(status_code=404, detail="Call log not found")
+    return db_call_log
