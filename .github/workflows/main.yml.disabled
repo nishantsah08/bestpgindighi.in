@@ -1,0 +1,67 @@
+name: Build and Deploy to Cloud Run
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  GCP_REGION: asia-south1
+  GAR_LOCATION: asia-south1
+  REPO_NAME: bestpg-repo
+
+jobs:
+  deploy:
+    name: Build, Push, and Deploy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        id: auth
+        run: gcloud auth login
+        uses: 'google-github-actions/auth@v2'
+        with:
+          workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+      - name: Configure Docker
+        run: gcloud auth configure-docker ${{ env.GAR_LOCATION }}-docker.pkg.dev
+
+      - name: Build and Push Backend Image
+        run: |
+          docker build -t ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/backend:${{ github.sha }} ./src/backend
+          docker push ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/backend:${{ github.sha }}
+
+      - name: Deploy Backend to Cloud Run
+        id: deploy-backend
+        uses: 'google-github-actions/deploy-cloudrun@v2'
+        with:
+          service: 'backend'
+          region: ${{ env.GCP_REGION }}
+          image: ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/backend:${{ github.sha }}
+
+      - name: Allow unauthenticated access to backend
+        run: gcloud run services add-iam-policy-binding backend --region=${{ env.GCP_REGION }} --member=allUsers --role=roles/run.invoker
+
+      - name: Build and Push Internal Dashboard Image
+        run: |
+          docker build -t ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/internal-dashboard:${{ github.sha }} ./src/internal_dashboard
+          docker push ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/internal-dashboard:${{ github.sha }}
+
+      - name: Deploy Internal Dashboard to Cloud Run
+        id: deploy-internal-dashboard
+        uses: 'google-github-actions/deploy-cloudrun@v2'
+        with:
+          service: 'internal-dashboard'
+          region: ${{ env.GCP_REGION }}
+          image: ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/internal-dashboard:${{ github.sha }}
+
+      - name: Allow unauthenticated access to Internal Dashboard
+        run: gcloud run services add-iam-policy-binding internal-dashboard --region=${{ env.GCP_REGION }} --member=allUsers --role=roles/run.invoker
