@@ -6,6 +6,7 @@ class ContactBase(BaseModel):
     phone_number: str
     name: Optional[str] = None
     status: str
+    svh_id: Optional[str] = None
 
 class ContactCreate(ContactBase):
     pass

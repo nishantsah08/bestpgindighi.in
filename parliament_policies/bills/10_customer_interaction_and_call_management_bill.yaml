@@ -9,6 +9,10 @@ contact_identification_standard:
     implementation:
       - "The system will use the 'phonenumbers' Python library for all parsing, validation, and formatting."
       - "For ambiguous numbers (e.g., a 10-digit number without a country code), the system will assume 'IN' (India) as the default region."
+  - rule: "Unique System-Generated ID for All Contacts"
+    description: "Every new contact created by the system will be assigned a unique, sequential, human-readable identifier in the format SVH-XX."
+    implementation:
+      - "The system will maintain a dedicated, atomic counter in the database to guarantee uniqueness and prevent race conditions."
 
 transcription_provider_strategy:
   - rule: "Cost-Optimized Waterfall for Transcription Services"

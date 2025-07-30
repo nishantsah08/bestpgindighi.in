@@ -134,6 +134,14 @@ This document defines the data model for the system, implemented in Firebase Fir
 - **Fields:**
     - `name` (string, nullable)
     - `phone_number` (string, unique, canonical format: E.164)
+    - `svh_id` (string, unique, format: `SVH-XX`)
     - `status` (string: `New Lead`, `Active Tenant`, `Past Tenant`, `Vendor`)
     - `created_at` (timestamp)
+
+## 13. `system_counters` Collection (NEW)
+
+- **Document ID:** `counter_name` (e.g., `contact_svh_id`)
+- **Description:** Manages unique, incremental counters for the system.
+- **Fields:**
+    - `current_value` (number)
 

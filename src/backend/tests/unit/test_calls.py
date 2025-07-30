@@ -57,6 +57,29 @@ def test_upload_call_recording(test_db):
     assert "/uploads/test_audio.wav" in data["recording_url"]
     assert data["contact_id"] is not None
 
+    # Check that a contact was created with an svh_id
+    response = client.get(f"/contacts/{data['contact_id']}")
+    assert response.status_code == 200
+    contact_data = response.json()
+    assert contact_data["svh_id"] == "SVH-1"
+
+    # Upload another call from a different number to check incremental svh_id
+    response = client.post(
+        "/calls/upload",
+        data={
+            "caller_role": "Sales",
+            "customer_number": "1234567891",
+            "duration_seconds": 60,
+        },
+        files={"file": ("test_audio.wav", open("test_audio.wav", "rb"), "audio/wav")},
+    )
+    assert response.status_code == 200
+    data = response.json()
+    response = client.get(f"/contacts/{data['contact_id']}")
+    assert response.status_code == 200
+    contact_data = response.json()
+    assert contact_data["svh_id"] == "SVH-2"
+
 def test_read_call_logs(test_db):
     response = client.get("/calls/")
     assert response.status_code == 200

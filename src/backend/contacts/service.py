@@ -1,11 +1,16 @@
 from sqlalchemy.orm import Session
 from . import models, schemas
+from ..system_counters import service as counter_service
 
 def get_contact_by_phone_number(db: Session, phone_number: str):
     return db.query(models.Contact).filter(models.Contact.phone_number == phone_number).first()
 
 def create_contact(db: Session, contact: schemas.ContactCreate):
-    db_contact = models.Contact(**contact.dict())
+    next_id = counter_service.get_next_svh_id(db)
+    svh_id = f"SVH-{next_id}"
+    contact_data = contact.dict()
+    del contact_data["svh_id"]
+    db_contact = models.Contact(**contact_data, svh_id=svh_id)
     db.add(db_contact)
     db.commit()
     db.refresh(db_contact)
