@@ -1,5 +1,5 @@
 # Defines the policy for generating and managing rent agreements.
-version: 3.0 # Major revision for template and e-signing
+version: 4.0 # Added automated renewal process
 policy_type: legal
 
 versioning_policy:
@@ -18,3 +18,17 @@ core_principles:
   - 'The agreement process can only be initiated after the tenant has reached the `ready_for_agreement` state in the Tenant Onboarding policy, which requires the payment of both the full first month''s rent AND the full security deposit.'
   - 'The cost of the e-signing service is a billable event and will be added to the tenant''s next monthly bill.'
   - 'The system must store a versioned, immutable copy of the exact agreement sent to the tenant for signing.'
+
+renewal_process:
+  - type: 'automated_workflow'
+    description: 'Defines the automated process for renewing tenant rent agreements.'
+    trigger:
+      - type: 'scheduled_check'
+      - description: 'The system will scan the `rent_agreements` collection daily.'
+      - condition: 'An agreement is 45 days from its `end_date` and its `status` is `ACTIVE`.'
+    workflow_steps:
+      - 'Step 1: The system creates a renewal task and assigns it to the Sales role.'
+      - 'Step 2: The system sends an automated notification to the tenant via WhatsApp, informing them of the upcoming renewal and that a sales agent will be in touch.'
+      - 'Step 3: The Sales agent negotiates the renewal terms with the tenant.'
+      - 'Step 4: Once terms are agreed, the Sales agent initiates the e-signing process for the new agreement.'
+      - 'Step 5: Upon successful signing, the system updates the old agreement''s status to `RENEWED` and creates a new agreement record with the status `ACTIVE`.'

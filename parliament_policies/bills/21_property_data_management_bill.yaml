@@ -1,0 +1,65 @@
+# Defines the database schema for property and asset management.
+version: 1.0
+policy_type: data_schema
+
+status: ACTIVE
+
+description: >
+  This bill defines the canonical Firestore database schema for storing and managing
+  all property, unit, and bed data. It serves as the single source of truth for
+  the physical asset data model.
+
+depends_on:
+  - 'parliament_policies/bills/15_property_and_asset_management_bill.yaml'
+
+database_schema:
+  - collection: `properties`
+    document_id: `property_id` (auto-generated)
+    fields:
+      - name: `property_name`
+        type: "string"
+        description: "The official name of the property (e.g., 'Dighi Hills PG')."
+      - name: `address`
+        type: "map"
+        description: "A structured address for the property."
+      - name: `status`
+        type: "string"
+        description: "The current operational status (e.g., 'Operational', 'Under Maintenance', 'Expansion Ready')."
+      - name: `created_at`
+        type: "timestamp"
+
+  - collection: `units`
+    document_id: `unit_id` (auto-generated)
+    parent_collection: `properties`
+    parent_document_id: `property_id`
+    fields:
+      - name: `unit_number`
+        type: "string"
+        description: "The flat or unit number (e.g., '101', 'A-Wing 502')."
+      - name: `unit_type`
+        type: "string"
+        description: "The type of unit (e.g., '2BHK', 'Studio')."
+      - name: `status`
+        type: "string"
+        description: "The current status of the unit (e.g., 'Occupied', 'Vacant', 'Unavailable')."
+      - name: `property_id`
+        type: "reference"
+        description: "A reference to the parent document in the `properties` collection."
+
+  - collection: `beds`
+    document_id: `bed_id` (auto-generated)
+    parent_collection: `units`
+    parent_document_id: `unit_id`
+    fields:
+      - name: `bed_identifier`
+        type: "string"
+        description: "A unique identifier for the bed within the unit (e.g., '101A', 'Bed 1')."
+      - name: `status`
+        type: "string"
+        description: "The current status of the bed (e.g., 'Occupied', 'Vacant', 'Reserved')."
+      - name: `unit_id`
+        type: "reference"
+        description: "A reference to the parent document in the `units` collection."
+      - name: `tenant_id`
+        type: "reference"
+        description: "A reference to the `tenants` collection if the bed is occupied (nullable)."

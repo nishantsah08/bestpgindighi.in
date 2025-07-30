@@ -1,33 +1,18 @@
 # Bill to Define and Manage Properties and Assets
-version: 1.0
+version: 2.0 # Redesigned for scalable, database-driven management
 policy_type: foundational
 
-status: DRAFT
+status: ACTIVE
 
 description: >
-  This bill defines the physical structure of the business's managed properties,
-  serving as the single source of truth for all physical assets.
+  This bill establishes the policies for managing the business's physical properties and assets.
+  It mandates that all property data be stored and managed in the system's database,
+  not in this document. The canonical schema for this data is defined in the
+  `21_property_data_management_bill.yaml`.
 
-property_definitions:
-  - property_name: "Dighi Hills PG"
-    total_flats: 6
-    flat_type: "2BHK"
-    flats:
-      - flat_number: 101
-        status: "Operational"
-        beds: ["101A", "101B", "101C", "101D", "101E", "101F"]
-      - flat_number: 102
-        status: "Operational"
-        beds: ["102A", "102B", "102C", "102D", "102E", "102F"]
-      - flat_number: 201
-        status: "Expansion Ready"
-        beds: ["201A", "201B", "201C", "201D", "201E", "201F"]
-      - flat_number: 202
-        status: "Expansion Ready"
-        beds: ["202A", "202B", "202C", "202D", "202E", "202F"]
-      - flat_number: 301
-        status: "Expansion Ready"
-        beds: ["301A", "301B", "301C", "301D", "301E", "301F"]
-      - flat_number: 302
-        status: "Expansion Ready"
-        beds: ["302A", "302B", "302C", "302D", "302E", "302F"]
+core_principles:
+  - principle: "Database as Single Source of Truth"
+    description: "All property, unit, and bed data must be stored in the designated Firestore collections. This document shall not contain property data."
+
+  - principle: "Structured Data Management"
+    description: "The creation, modification, and archiving of properties, units, and beds must be handled through authorized system APIs that enforce the schema defined in `21_property_data_management_bill.yaml`."

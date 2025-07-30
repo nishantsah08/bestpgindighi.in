@@ -4,7 +4,9 @@ This document defines the data model for the system, implemented in Firebase Fir
 
 ## 1. Top-Level Collections
 
+- `properties`
 - `tenants`
+- `rent_agreements`
 - `vendors`
 - `judicial_docket`
 - `general_ledger`
@@ -12,7 +14,39 @@ This document defines the data model for the system, implemented in Firebase Fir
 - `inventory`
 - `sales_tasks`
 
-## 2. `tenants` Collection
+## 2. `properties` Collection (NEW)
+
+- **Document ID:** `property_id` (auto-generated)
+- **Description:** Stores high-level information about each managed property.
+- **Sub-collections:** `units`
+- **Fields:**
+    - `property_name` (string)
+    - `address` (map)
+    - `status` (string: `Operational`, `Expansion Ready`)
+    - `created_at` (timestamp)
+
+## 3. `units` Collection (NEW)
+
+- **Document ID:** `unit_id` (auto-generated)
+- **Description:** Stores information about individual flats or units within a property.
+- **Sub-collections:** `beds`
+- **Fields:**
+    - `unit_number` (string)
+    - `unit_type` (string: `2BHK`, `Studio`)
+    - `status` (string: `Occupied`, `Vacant`)
+    - `property_id` (reference to `properties` collection)
+
+## 4. `beds` Collection (NEW)
+
+- **Document ID:** `bed_id` (auto-generated)
+- **Description:** Stores details about each individual bed within a unit.
+- **Fields:**
+    - `bed_identifier` (string)
+    - `status` (string: `Occupied`, `Vacant`, `Reserved`)
+    - `unit_id` (reference to `units` collection)
+    - `tenant_id` (reference to `tenants` collection, nullable)
+
+## 5. `tenants` Collection
 
 - **Document ID:** `tenant_id` (auto-generated)
 - **Fields:**
@@ -23,7 +57,19 @@ This document defines the data model for the system, implemented in Firebase Fir
     - `identity_documents` (map, nullable)
     - `created_at` (timestamp)
 
-## 3. `tenant_feedback` Collection
+## 6. `rent_agreements` Collection (NEW)
+
+- **Document ID:** `agreement_id` (auto-generated)
+- **Description:** Stores all data related to tenant rent agreements.
+- **Fields:**
+    - `tenant_id` (reference to `tenants` collection)
+    - `start_date` (timestamp)
+    - `end_date` (timestamp)
+    - `status` (string: `ACTIVE`, `EXPIRED`, `RENEWED`, `CANCELLED`)
+    - `document_url` (string, URL to the signed e-agreement)
+    - `created_at` (timestamp)
+
+## 7. `tenant_feedback` Collection
 
 - **Document ID:** `feedback_id` (auto-generated)
 - **Fields:**
@@ -38,7 +84,7 @@ This document defines the data model for the system, implemented in Firebase Fir
     - `comments` (string, nullable)
     - `calculated_overall_satisfaction_score` (float)
 
-## 4. `judicial_docket` Collection
+## 8. `judicial_docket` Collection
 
 - **Document ID:** `case_id` (auto-generated)
 - **Fields:**
@@ -50,7 +96,7 @@ This document defines the data model for the system, implemented in Firebase Fir
     - `final_verdict` (string, nullable)
     - `created_at` (timestamp)
 
-## 5. `inventory` Collection
+## 9. `inventory` Collection
 
 - **Document ID:** `asset_id` (auto-generated)
 - **Fields:**
@@ -60,7 +106,7 @@ This document defines the data model for the system, implemented in Firebase Fir
     - `purchase_transaction_id` (string, reference to `general_ledger` collection)
     - `added_at` (timestamp)
 
-## 6. Firestore Security Rules
+## 10. Firestore Security Rules
 
 - Access to collections will be governed by Firestore Security Rules.
 - Rules will be written to enforce the Access Control Lists (ACLs) defined in the `05_MCP_CAPABILITY_REGISTRY.md`.
