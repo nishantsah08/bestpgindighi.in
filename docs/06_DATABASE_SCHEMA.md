@@ -13,6 +13,8 @@ This document defines the data model for the system, implemented in Firebase Fir
 - `tenant_feedback`
 - `inventory`
 - `sales_tasks`
+- `call_logs`
+- `contacts`
 
 ## 2. `properties` Collection (NEW)
 
@@ -111,3 +113,27 @@ This document defines the data model for the system, implemented in Firebase Fir
 - Access to collections will be governed by Firestore Security Rules.
 - Rules will be written to enforce the Access Control Lists (ACLs) defined in the `05_MCP_CAPABILITY_REGISTRY.md`.
 - Example: Only a service with the `Financial_AI_Agent` role can write to the `general_ledger` collection.
+
+## 11. `call_logs` Collection (NEW)
+
+- **Document ID:** `call_id` (auto-generated)
+- **Description:** Stores metadata for all recorded calls made from the mobile application suite.
+- **Fields:**
+    - `caller_role` (string: `CEO`, `Sales`, `Caretaker`)
+    - `customer_number` (string)
+    - `call_timestamp` (timestamp)
+    - `duration_seconds` (number)
+    - `recording_url` (string, URL to the audio file in storage)
+    - `status` (string: `UPLOADED`, `TRANSCRIBING`, `COMPLETED`, `FAILED`)
+    - `created_at` (timestamp)
+
+## 12. `contacts` Collection (NEW)
+
+- **Document ID:** `contact_id` (auto-generated)
+- **Description:** Stores information about all business contacts, including leads, tenants, and vendors.
+- **Fields:**
+    - `name` (string, nullable)
+    - `phone_number` (string, unique, canonical format: E.164)
+    - `status` (string: `New Lead`, `Active Tenant`, `Past Tenant`, `Vendor`)
+    - `created_at` (timestamp)
+
