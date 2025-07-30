@@ -17,3 +17,6 @@ def create_call_log(db: Session, call_log: schemas.CallLogCreate, recording_url:
 
 def get_call_logs(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.CallLog).offset(skip).limit(limit).all()
+
+def get_call_log(db: Session, call_id: int):
+    return db.query(models.CallLog).filter(models.CallLog.id == call_id).first()

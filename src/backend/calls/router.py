@@ -5,6 +5,7 @@ from typing import List
 from . import service, schemas, models
 from .. import utils
 from ..database import get_db
+from ..transcription import router as transcription_router
 
 router = APIRouter()
 
@@ -27,7 +28,9 @@ async def upload_call_recording(
         duration_seconds=duration_seconds,
         contact_id=0  # This will be updated in the service
     )
-    return service.create_call_log(db=db, call_log=call_log_data, recording_url=recording_url)
+    call_log = service.create_call_log(db=db, call_log=call_log_data, recording_url=recording_url)
+
+    return call_log
 
 @router.get("/", response_model=List[schemas.CallLog])
 def read_call_logs(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):

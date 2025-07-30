@@ -138,6 +138,15 @@ This document defines the data model for the system, implemented in Firebase Fir
     - `status` (string: `New Lead`, `Active Tenant`, `Past Tenant`, `Vendor`)
     - `created_at` (timestamp)
 
+## 14. `api_usage_logs` Collection (NEW)
+
+- **Document ID:** `provider_year_month` (e.g., `google_2025_07`)
+- **Description:** Tracks monthly usage of third-party APIs with free tiers.
+- **Fields:**
+    - `provider_name` (string: `google`, `azure`)
+    - `year_month` (string, format: `YYYY_MM`)
+    - `minutes_used` (number)
+
 ## 13. `system_counters` Collection (NEW)
 
 - **Document ID:** `counter_name` (e.g., `contact_svh_id`)

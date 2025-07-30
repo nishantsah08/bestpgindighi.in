@@ -6,3 +6,6 @@ python-jose[cryptography]
 gunicorn
 pytest
 phonenumbers
+google-cloud-speech
+azure-cognitiveservices-speech
+deepgram-sdk
