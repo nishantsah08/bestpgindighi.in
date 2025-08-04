@@ -62,7 +62,7 @@ To ensure a stable, reproducible, and isolated development process, this project
 
 The host development machine, which is optimized for native Android development, will not be modified. All other development environments are to be provisioned and run inside isolated containers.
 
-*   **Backend & Frontend Environments:** Development for the Python/FastAPI backend and the React/TypeScript frontend will be conducted exclusively within **Docker containers**. The project will contain `Dockerfile` and `docker-compose.yml` files that define these environments as code. This guarantees that the development environment is identical to the production environment on Cloud Run and prevents any contamination of the host machine.
+*   **Backend & Frontend Environments:** Development for the Python/FastAPI backend and the React/TypeScript frontend will be conducted exclusively within **Docker containers**. The project will contain `Dockerfile` and `docker-compose.yml` files that define these environments as code. This guarantees a consistent development environment for all team members and prevents any contamination of the host machine. The production environment consists of Firebase Hosting and Google Cloud Functions.
 *   **Native Android Environment:** The native Android environment on the host machine remains pristine. Its configuration will be made reproducible through:
     *   The **Gradle Wrapper (`gradlew`)** to enforce a consistent build tool version.
     *   Explicit library and SDK versions defined in the `build.gradle` files.

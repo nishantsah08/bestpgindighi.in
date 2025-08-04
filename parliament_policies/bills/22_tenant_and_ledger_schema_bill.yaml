@@ -1,0 +1,76 @@
+# Bill to Define Tenant and Ledger Database Schemas
+version: 1.0
+policy_type: data_schema
+
+status: ACTIVE
+
+description: >
+  This bill defines the canonical Firestore database schema for storing and managing
+  all tenant and financial ledger data. It also amends the existing property schema
+  to support mutually exclusive unit-level and bed-level rentals.
+
+depends_on:
+  - 'parliament_policies/bills/21_property_data_management_bill.yaml'
+
+changes:
+  - action: "MODIFY"
+    collection: `units`
+    description: "Adds fields to support unit-level rentals and enforce exclusivity."
+    add_fields:
+      - name: `rental_mode`
+        type: "string"
+        description: "Defines the rental model. Must be 'by_bed' or 'by_unit'."
+        required: true
+        default: "by_bed"
+      - name: `assigned_tenant_id`
+        type: "reference"
+        description: "Reference to the tenants collection. Only used when rental_mode is 'by_unit'."
+        required: false
+
+  - action: "CREATE"
+    collection: `tenants`
+    document_id: `tenant_id` (auto-generated)
+    description: "Creates a central collection for all tenant data."
+    fields:
+      - name: `full_name`
+        type: "string"
+      - name: `contact_number`
+        type: "string"
+      - name: `email`
+        type: "string"
+      - name: `status`
+        type: "string"
+        description: "e.g., 'Active', 'Notice Period', 'Offboarded'"
+      - name: `assignment_type`
+        type: "string"
+        description: "Specifies what the tenant is renting. Must be 'bed' or 'unit'."
+      - name: `assignment_id`
+        type: "reference"
+        description: "Reference to the specific bed or unit document."
+
+  - action: "CREATE"
+    collection: `ledgers`
+    document_id: `tenant_id`
+    description: "Creates a collection to hold the financial ledger for each tenant."
+    fields:
+      - name: `tenant_name`
+        type: "string"
+      - name: `current_balance`
+        type: "number"
+    sub_collections:
+      - collection: `transactions`
+        document_id: `transaction_id` (auto-generated)
+        fields:
+          - name: `date`
+            type: "timestamp"
+          - name: `description`
+            type: "string"
+          - name: `category`
+            type: "string"
+            description: "Corresponds to the Chart of Accounts."
+          - name: `debit`
+            type: "number"
+          - name: `credit`
+            type: "number"
+          - name: `running_balance`
+            type: "number"

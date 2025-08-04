@@ -51,8 +51,12 @@ This document outlines the structural blueprint and feature set for the CEO's In
 - **Components:** Lead Funnel Visual, Tenant Onboarding Status, Revenue Analytics, the **GBL Review Link Generator** tool, and an **Action Queue** for handling tasks like "Communication Failure" alerts.
 
 #### 3.4 Ministry of Property & Tenant Welfare (Caretaker)
-- **Purpose:** To monitor the operational health of the physical properties.
-- **Components:** Maintenance Ticket Dashboard, Tenant Satisfaction Metrics, and Property Inspection Reports.
+- **Purpose:** To monitor the operational health of the physical properties and manage the property asset portfolio.
+- **Components:** A tabbed interface featuring:
+    - **Property Explorer:** A visual, interactive tool to explore properties, units, and beds.
+    - **Maintenance Ticket Dashboard:** A Kanban board for tracking service requests.
+    - **Tenant Satisfaction Metrics:** Charts and KPIs for tenant feedback.
+    - **Property Inspection Reports:** A searchable database of inspection documents.
 
 #### 3.5 Ministry of Technology & Digital Infrastructure
 - **Purpose:** To provide a high-level overview of the health and status of the digital infrastructure.

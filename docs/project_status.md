@@ -4,8 +4,8 @@
 
 **Status: COMPLETE**
 
-*   **Backend Service (`bestpg-backend`):** Successfully deployed to Google Cloud Run. The service is running and responding as expected (returning a 403 Forbidden error, as it's not publicly accessible).
-*   **Internal Dashboard (`internal-dashboard`):** Successfully deployed to Google Cloud Run. The service is running and accessible.
+*   **Backend Service:** Deployed to **Google Cloud Functions**.
+*   **Internal Dashboard:** Deployed to **Firebase Hosting**.
 *   **Public Website:** Successfully deployed to Firebase Hosting. The website is live and accessible.
 
 All three components of the initial "Walking Skeleton" are now operational.

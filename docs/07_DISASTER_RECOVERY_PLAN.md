@@ -1,44 +1,44 @@
 # 07 - Disaster Recovery Plan
 
-This document outlines the procedures for recovering from two primary types of catastrophic failure: a database failure and a full infrastructure failure.
+This document outlines the procedures for recovering from catastrophic data loss, designed with the core principles of **data integrity and cost control** over immediate, high-availability uptime. A downtime of up to 24 hours is considered acceptable in a disaster scenario.
 
 ---
 
-## 1. Database Disaster Recovery
+## 1. Database Recovery Strategy (Firestore)
 
-This plan is to be executed in the event of significant data corruption or loss within the primary Supabase database.
+Our strategy uses two different methods to protect against the two most likely failure scenarios in the most cost-effective way.
 
-### Phase 1: Manual Restore (CEO)
+### Scenario A: Accidental Data Loss or Corruption (Common)
 
-The decision to restore the database is a CEO-level action that must be performed manually to prevent accidental data loss. The system is intentionally designed so that this action **cannot** be triggered from within the Internal System Portal.
+This plan covers the most common type of data emergency, such as a developer error or a software bug deleting or corrupting data.
 
-1.  **Declare a Data Emergency:** The CEO makes the decision to restore from a backup.
-2.  **Log into Supabase:** Navigate to `https://supabase.com/` and log into the project.
-3.  **Initiate Restore:** Navigate to the **Database -> Backups** section. Select the most recent stable backup and click the **Restore** button. Follow the on-screen prompts to complete the restore process.
+*   **Mechanism:** Firestore **Point-in-Time Recovery (PITR)**.
+*   **Description:** PITR is enabled on our Firestore database. This feature automatically creates continuous backups, allowing us to restore the database to any single minute within the last 7 days.
+*   **Recovery Process (Manual):**
+    1.  **Declare a Data Emergency:** The CEO makes the decision to restore.
+    2.  **Log into Google Cloud Console:** Navigate to the Firestore section.
+    3.  **Initiate Restore:** Use the Point-in-Time Recovery feature to select a precise timestamp before the data was corrupted. The data will be restored to a new set of collections.
+    4.  **Data Migration:** An authorized developer will then carefully migrate the necessary data from the restored collections back into the live collections.
+*   **Expected Downtime:** 1-2 hours.
+*   **Cost:** Very low. We only pay for the storage of the continuous backup data.
 
-### Phase 2: Automated Re-Sync (CEO, via Internal Portal)
+### Scenario B: Full Regional Failure (Rare)
 
-After Supabase confirms the restore is complete, the CEO must trigger the automated re-synchronization playbook from within our own portal.
+This plan covers the rare but possible event that the entire Google Cloud region hosting our primary database becomes unavailable.
 
-1.  **Navigate to Recovery Page:** Log into the Internal System Portal and navigate to `⚙️ Ministry of Technology -> Disaster Recovery`.
-2.  **Initiate Re-Sync:** Click the prominent **[Re-Sync System with Restored Database]** button.
-3.  **First Confirmation:** A warning dialog will appear explaining the action. The CEO must type the word `PROCEED` into a text box to enable the final confirmation button.
-4.  **Second Confirmation:** After typing `PROCEED`, a second, final confirmation button **[Yes, I am sure - Re-Sync Now]** will become active. The CEO must click this button.
-5.  **Monitor Progress:** The portal will then trigger the underlying GitHub Actions workflow and display its real-time progress. The workflow will automatically restart all application services and run a suite of data integrity checks.
+*   **Mechanism:** Daily Automated Backups to a separate region.
+*   **Description:** Every 24 hours, an automated process exports a full snapshot of the entire Firestore database to a Google Cloud Storage bucket. This bucket is located in a different, low-cost geographical region.
+*   **Recovery Process (Manual):**
+    1.  **Declare a Regional Disaster:** The CEO confirms the outage and approves the manual recovery process.
+    2.  **Create New Firestore Instance:** A developer will manually provision a new Firestore database in a different, healthy region.
+    3.  **Import from Backup:** The developer will initiate an import process, loading the data from the most recent daily backup file from the Cloud Storage bucket into the new Firestore instance.
+    4.  **Redeploy Backend:** The backend Cloud Functions will be redeployed to the new region, configured to connect to the new Firestore database.
+*   **Expected Downtime:** 4-8 hours, well within the 24-hour tolerance.
+*   **Cost:** Extremely low. This is the most cost-effective way to insure against a regional failure, as we only pay for the storage of the backup files.
 
 ---
 
-## 2. Full Infrastructure Disaster Recovery
+## 2. Application Infrastructure Recovery
 
-This plan is to be executed in the rare event of a total Google Cloud Platform regional failure.
-
-### Phase 1: Manual Failover Decision (CEO)
-
-1.  **Declare a Regional Disaster:** The CEO makes the decision to failover to a secondary region.
-2.  **Edit Configuration:** The CEO will edit a single line in the `terraform/gcp.tf` file in the GitHub repository, changing the `region` variable from the failed region to the new, healthy region.
-
-### Phase 2: Automated Redeployment (System)
-
-1.  **Commit & Push:** The CEO commits and pushes the one-line change to the `main` branch.
-2.  **CI/CD Trigger:** This push automatically triggers the main CI/CD pipeline.
-3.  **Automated Redeployment:** The pipeline will detect the region change and automatically execute `terraform apply`. This will build the entire application infrastructure (Firebase Hosting, Cloud Run services) from scratch in the new region, deploy the latest application code, and automatically update all DNS records to point to the new infrastructure.
+*   **Backend (Cloud Functions):** The backend is stateless. In a regional failure, it is simply redeployed to the new, healthy region alongside the database as described above.
+*   **Frontend (Firebase Hosting):** No action is required. Firebase Hosting is a global service and is not tied to a single region. It will remain available.

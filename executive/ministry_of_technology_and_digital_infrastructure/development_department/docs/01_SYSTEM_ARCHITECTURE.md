@@ -86,7 +86,7 @@ graph TD
 
 ## Technical Implementation Architecture
 
-This section details the concrete technologies and services chosen to implement the conceptual architecture, with a primary focus on a zero-cost, high-automation model.
+This section details the concrete technologies and services chosen to implement the conceptual architecture, with a primary focus on a serverless, real-time, and high-automation model.
 
 ```mermaid
 graph TD
@@ -94,57 +94,46 @@ graph TD
         USER(👤 User)
     end
 
-    subgraph "Google Cloud Platform (Free Tiers)"
+    subgraph "Google Cloud Platform (Firebase)"
         DNS(🌐 Google Cloud DNS)
-        FIREBASE(🔥 Firebase Hosting <br> Free SSL & CDN <br> Routing Rules)
-        CLOUDRUN_FE([💻 Cloud Run: Frontend] <br> React/TypeScript)
-        CLOUDRUN_BE([🤖 Cloud Run: Backend] <br> Python/FastAPI)
-        CLOUDBUILD(🔨 Cloud Build <br> CI/CD Pipeline)
-        ARTIFACT(📦 Artifact Registry <br> Docker Image Storage)
-    end
-
-    subgraph "Supabase Platform (Free Tier)"
-        SUPA_DB[(🗄️ Supabase <br> PostgreSQL Database)]
-        SUPA_STORAGE(🗃️ Supabase Storage <br> .apk files)
+        HOSTING(🔥 Firebase Hosting <br> Serves Frontend & Routes to API)
+        AUTH(🔐 Firebase Authentication)
+        DB[(🗄️ Firestore Database)]
+        FUNCTIONS(☁️ Cloud Functions <br> Python Backend API)
     end
     
     subgraph "Development & Source Control"
         GITHUB(📁 GitHub Monorepo)
+        CLOUDBUILD(🔨 Cloud Build <br> CI/CD Pipeline)
     end
 
     USER -- "bestpgindighi.in" --> DNS
-    DNS --> FIREBASE
-    FIREBASE -- "Serves web pages" --> CLOUDRUN_FE
-    FIREBASE -- "/api/* rewrite" --> CLOUDRUN_BE
+    DNS --> HOSTING
     
-    CLOUDRUN_BE -- "Reads/Writes" --> SUPA_DB
-    CLOUDRUN_BE -- "Reads/Writes" --> SUPA_STORAGE
+    HOSTING -- "Serves React App" --> USER
+    HOSTING -- "/api/* rewrite" --> FUNCTIONS
+
+    FUNCTIONS -- "Reads/Writes" --> DB
+    FUNCTIONS -- "Uses" --> AUTH
 
     GITHUB -- "On Push" --> CLOUDBUILD
     CLOUDBUILD -- "Builds & Tests" --> GITHUB
-    CLOUDBUILD -- "Deploys" --> CLOUDRUN_FE
-    CLOUDBUILD -- "Deploys" --> CLOUDRUN_BE
-    CLOUDBUILD -- "Stores Image" --> ARTIFACT
-    CLOUDBUILD -- "Uploads APK" --> SUPA_STORAGE
+    CLOUDBUILD -- "Deploys" --> HOSTING
+    CLOUDBUILD -- "Deploys" --> FUNCTIONS
 ```
+
+### **Frontend Architecture**
+
+The Internal System Portal will be developed as a **Modular Monolith Single-Page Application (SPA)** using **React** and **TypeScript**.
+
+*   **Single Codebase:** The entire frontend will exist within a single codebase, ensuring a consistent user experience and shared component library.
+*   **Modular Design:** Features (e.g., "Ministry of Finance", "Property Explorer") will be organized into distinct, independent folders within the source code.
+*   **On-Demand Loading:** **Lazy loading** will be implemented to ensure that the code for a specific feature is only downloaded to the user's browser when they navigate to it, providing a fast initial load time.
 
 ### **Technology Stack & Rationale**
 
-*   **Entrypoint & Web Hosting:** **Firebase Hosting** will serve as the primary entry point. It provides free, automated SSL certificates, a global CDN for performance, and intelligent routing ("rewrites") to direct traffic to the appropriate backend service, all within its generous free tier. This replaces the need for a paid Load Balancer.
-*   **Backend Service:** A **Python** application using the **FastAPI** framework, running on **Google Cloud Run**. This provides a high-performance, scalable, serverless environment that scales to zero, eliminating cost when not in use.
-*   **Frontend Service:** A **React** application written in **TypeScript**, also running on **Google Cloud Run**. This provides a modern, secure, and maintainable platform for all web portals.
-*   **Database:** A **PostgreSQL** database managed by **Supabase**. This provides a robust, relational database on a perpetual free tier, which is critical for data integrity and cost management.
-*   **Mobile Applications:** Native Android applications will be written in **Kotlin**. The UI will be built with **Jetpack Compose**, with a fallback to traditional **XML layouts** if the provided development environment does not support it. Updates will be handled via a custom, mandatory self-update mechanism, with `.apk` files hosted on **Supabase Storage**.
-*   **Infrastructure as Code:** The entire cloud infrastructure will be defined as code using **Terraform**. This ensures a repeatable, reliable, and automated setup process.
-*   **CI/CD Automation:** **Google Cloud Build** will be triggered on every `git push` to the GitHub repository, automatically testing, building, and deploying all components.
-
-### **Cost-Control & Retention Policies**
-
-The architecture is designed to operate at a near-zero monthly cost.
-
-*   **Primary Recurring Cost:** The only anticipated recurring charge is **~$0.20/month** for **Google Cloud DNS** to keep the domain name active.
-*   **Docker Image Optimization:** To remain within the **Google Artifact Registry** free tier (0.5 GB), a multi-stage build process will be used to create minimal, production-only Docker images.
-*   **Image Retention Policy:** A strict, automated retention policy will be enforced via Terraform:
-    1.  The most recently deployed image will always be tagged `latest` and will be exempt from deletion.
-    2.  A maximum of 9 other non-`latest` images will be retained.
-    3.  Any non-`latest` image older than 30 days will be automatically deleted.
+*   **Entrypoint & Web Hosting:** **Firebase Hosting** will serve as the primary entry point. It provides free, automated SSL certificates, a global CDN for performance, and will host the compiled React application. It will also use routing rules ("rewrites") to direct API traffic to the backend.
+*   **Backend Service:** A **Python** application using the **FastAPI** framework, deployed as a **Google Cloud Function**. This provides a high-performance, completely serverless environment that scales to zero, eliminating cost when not in use.
+*   **Database:** **Cloud Firestore** will be the primary database. Its NoSQL, document-based model is a perfect fit for the application's hierarchical data (properties, units, beds) and its real-time capabilities will power a dynamic and collaborative user interface.
+*   **Authentication:** **Firebase Authentication** will handle all user login and identity management, providing a secure and easy-to-implement solution.
+*   **CI/CD Automation:** **Google Cloud Build** will be triggered on every `git push` to the GitHub repository, automatically testing, building, and deploying all components to Firebase.

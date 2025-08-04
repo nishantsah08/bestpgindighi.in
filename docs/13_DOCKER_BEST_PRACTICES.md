@@ -21,10 +21,12 @@ COPY src/internal_dashboard/package.json .
 COPY src/internal_dashboard/package-lock.json .
 ```
 
-### 2.2. Dynamic Port Binding for Managed Platforms (Cloud Run)
+## 2. Docker for Local Development
 
-- **The Problem:** Managed platforms like Cloud Run tell your container which port to listen on via the `PORT` environment variable. Standard `nginx` images are configured to listen on port `80` by default and will ignore this variable, causing the deployment to fail its health check.
-- **The Solution:** Use a template for your `nginx.conf` and an entrypoint script to dynamically create the configuration at runtime.
+In this project, Docker's primary role is to provide a consistent, reproducible **local development environment**. It is not used for production deployments.
+
+- **Development Environment:** The `docker-compose.yml` file defines the services for the frontend (React) and backend (Python), allowing developers to spin up the entire application with a single command.
+- **Production Environment:** The frontend is deployed as static files to Firebase Hosting, and the backend is deployed as source code to Cloud Functions. Neither uses a Docker container in production.
 
 **`nginx.conf.template`:**
 ```nginx
