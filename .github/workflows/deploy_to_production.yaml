@@ -7,7 +7,6 @@ on:
     branches:
       - main
       - walking-skeleton
-      - walking-skeleton
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
@@ -23,7 +22,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
 
       - name: Install Frontend Dependencies & Build
         run: |
@@ -37,9 +36,9 @@ jobs:
           project_id: ${{ env.PROJECT_ID }}
 
       - name: Authenticate to Google Cloud
-        run: |
-          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > /tmp/gcp-credentials.json
-          gcloud auth activate-service-account --key-file=/tmp/gcp-credentials.json
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
 
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
