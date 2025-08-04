@@ -1,28 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Walking Skeleton</title>
-</head>
-<body>
-    <h1>Walking Skeleton Test</h1>
-    <p>Click the button to test the backend API and its database connection.</p>
-    <button onclick="testDb()">Test Database</button>
-    <p>API Response: <b id="api-response">...</b></p>
-
-    <script>
-        async function testDb() {
-            const responseElement = document.getElementById('api-response');
-            responseElement.textContent = 'Loading...';
-            try {
-                const response = await fetch('/api/test_db');
-                const data = await response.json();
-                responseElement.textContent = JSON.stringify(data);
-            } catch (error) {
-                responseElement.textContent = 'Error: ' + error.message;
-            }
-        }
-    </script>
-</body>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
 </html>

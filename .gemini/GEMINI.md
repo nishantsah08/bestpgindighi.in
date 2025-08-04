@@ -13,4 +13,4 @@
 ---
 # Mandatory Startup Procedure
 
-injest @constitution/** @parliament_policies/** @executive/** @judiciary/** @independent_bodies/**  @docs/**
+injest @constitution/** @parliament_policies/** @executive/** @judiciary/** @independent_bodies/**  @docs/** @.gemini/local_context.md
