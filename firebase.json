@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "src/internal_dashboard/frontend/public",
+    "public": "src/internal_dashboard/frontend/build",
     "ignore": [
       "firebase.json",
       "**/.*",
