@@ -7,16 +7,16 @@
 </head>
 <body>
     <h1>Walking Skeleton Test</h1>
-    <p>Click the button to test the backend API.</p>
-    <button onclick="testApi()">Test API</button>
+    <p>Click the button to test the backend API and its database connection.</p>
+    <button onclick="testDb()">Test Database</button>
     <p>API Response: <b id="api-response">...</b></p>
 
     <script>
-        async function testApi() {
+        async function testDb() {
             const responseElement = document.getElementById('api-response');
             responseElement.textContent = 'Loading...';
             try {
-                const response = await fetch('/api/health');
+                const response = await fetch('/api/test_db');
                 const data = await response.json();
                 responseElement.textContent = JSON.stringify(data);
             } catch (error) {

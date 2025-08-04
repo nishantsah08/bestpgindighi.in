@@ -18,6 +18,7 @@
     ]
   },
   "functions": {
-    "source": "src/internal_dashboard/backend"
+    "source": "src/internal_dashboard/backend",
+    "runtime": "python3.10"
   }
 }
