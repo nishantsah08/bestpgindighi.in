@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  backend:
+    build: ./src/internal_dashboard/backend
+    ports:
+      - "8000:8000"
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "3000:80"
+    volumes:
+      - ./src/internal_dashboard/frontend/public:/usr/share/nginx/html

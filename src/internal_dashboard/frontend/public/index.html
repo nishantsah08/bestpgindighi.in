@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walking Skeleton</title>
+</head>
+<body>
+    <h1>Walking Skeleton Test</h1>
+    <p>Click the button to test the backend API.</p>
+    <button onclick="testApi()">Test API</button>
+    <p>API Response: <b id="api-response">...</b></p>
+
+    <script>
+        async function testApi() {
+            const responseElement = document.getElementById('api-response');
+            responseElement.textContent = 'Loading...';
+            try {
+                const response = await fetch('/api/health');
+                const data = await response.json();
+                responseElement.textContent = JSON.stringify(data);
+            } catch (error) {
+                responseElement.textContent = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>

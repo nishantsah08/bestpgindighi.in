@@ -1,10 +1,23 @@
 {
   "hosting": {
-    "public": "src/public_website",
+    "public": "src/internal_dashboard/frontend/public",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/api/**",
+        "function": "api"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
     ]
+  },
+  "functions": {
+    "source": "src/internal_dashboard/backend"
   }
 }

@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - main
+      - walking-skeleton
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
