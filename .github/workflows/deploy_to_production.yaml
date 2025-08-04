@@ -37,7 +37,9 @@ jobs:
           project_id: ${{ env.PROJECT_ID }}
 
       - name: Authenticate to Google Cloud
-        uses: 'google-github-actions/auth@v1'
+        run: |
+          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > /tmp/gcp-credentials.json
+          gcloud auth activate-service-account --key-file=/tmp/gcp-credentials.json
 
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
