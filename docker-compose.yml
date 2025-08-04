@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src/internal_dashboard/frontend/public:/usr/share/nginx/html
+    depends_on:
+      - backend
+
+  backend:
+    build: ./src/internal_dashboard/backend
+    ports:
+      - "8081:8081"
+    environment:
+      - FIRESTORE_EMULATOR_HOST=firestore-emulator:8082
+      - PORT=8081
+    depends_on:
+      - firestore-emulator
+
+  firestore-emulator:
+    image: gcr.io/google.com/cloudsdktool/cloud-sdk:latest
+    command: gcloud beta emulators firestore start --host-port=0.0.0.0:8082
+    ports:
+      - "8082:8082"
