@@ -19,6 +19,8 @@ WORKDIR /app
 COPY --from=builder /opt/venv /opt/venv
 COPY ./src ./src
 
+RUN ls -R /app
+
 ENV PATH="/opt/venv/bin:$PATH"
 
 EXPOSE 8080
