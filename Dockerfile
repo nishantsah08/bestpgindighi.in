@@ -25,4 +25,4 @@ USER appuser
 EXPOSE 8080
 
 # Run the application
-CMD ["/opt/venv/bin/gunicorn", "--bind", "0.0.0.0:8080", "--workers", "1", "--threads", "8", "--timeout", "0", "internal_dashboard.backend.main:app", "-k", "uvicorn.workers.UvicornWorker"]
+CMD gunicorn --bind "0.0.0.0:$PORT" --workers 1 --threads 8 --timeout 0 "internal_dashboard.backend.main:app" -k uvicorn.workers.UvicornWorker
