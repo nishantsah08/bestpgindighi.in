@@ -25,6 +25,8 @@ USER appuser
 # Set the working directory to the source code
 WORKDIR /app/src
 
-# Expose the port and run the application
+# Expose the port
 EXPOSE 8080
-CMD gunicorn --bind "0.0.0.0:$PORT" --workers 1 --threads 8 --timeout 0 "internal_dashboard.backend.main:app" -k uvicorn.workers.UvicornWorker
+
+# Run the application
+CMD ["gunicorn", "-c", "gunicorn.conf.py", "internal_dashboard.backend.main:app"]
