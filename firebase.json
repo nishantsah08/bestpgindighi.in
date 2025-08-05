@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "src/internal_dashboard/frontend/build",
+    "public": "src/public_website",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -9,16 +9,15 @@
     "rewrites": [
       {
         "source": "/api/**",
-        "function": "api"
+        "run": {
+          "serviceId": "api-backend",
+          "region": "us-central1"
+        }
       },
       {
         "source": "**",
         "destination": "/index.html"
       }
     ]
-  },
-  "functions": {
-    "source": "src/internal_dashboard/backend",
-    "runtime": "python3.10"
   }
 }

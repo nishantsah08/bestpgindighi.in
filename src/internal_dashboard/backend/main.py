@@ -46,3 +46,7 @@ async def test_db():
 @app.get("/api/health")
 def read_root():
     return {"status": "ok"}
+
+@app.get("/api/test")
+def test_endpoint():
+    return {"status": "ok", "message": "Backend is live!"}
