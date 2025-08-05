@@ -15,4 +15,7 @@ COPY ./src ./src
 
 WORKDIR /app/src
 
-CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "--workers", "1", "--threads", "8", "--timeout", "0", "internal_dashboard.backend.main:app", "-k", "uvicorn.workers.UvicornWorker"]
+# Use shell form so $PORT expands; keep uvicorn worker
+CMD gunicorn -k uvicorn.workers.UvicornWorker \
+    --bind 0.0.0.0:$PORT --workers 1 --threads 8 --timeout 0 \
+    internal_dashboard.backend.main:app
