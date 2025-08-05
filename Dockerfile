@@ -17,10 +17,10 @@ USER appuser
 WORKDIR /app
 
 COPY --from=builder /opt/venv /opt/venv
-COPY . .
+COPY ./src ./src
 
 ENV PATH="/opt/venv/bin:$PATH"
 
 EXPOSE 8080
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "1", "--threads", "8", "--timeout", "0", "src.backend.main:app", "-k", "uvicorn.workers.UvicornWorker"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "1", "--threads", "8", "--timeout", "0", "src.internal_dashboard.backend.main:app", "-k", "uvicorn.workers.UvicornWorker"]
