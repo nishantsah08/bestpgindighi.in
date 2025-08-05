@@ -19,6 +19,8 @@ COPY ./src ./src
 RUN groupadd --system appgroup && useradd --system --group appgroup appuser
 USER appuser
 
+WORKDIR /app/src
+
 # Expose the port and run the application
 EXPOSE 8080
 CMD gunicorn --bind "0.0.0.0:$PORT" --workers 1 --threads 8 --timeout 0 "internal_dashboard.backend.main:app" -k uvicorn.workers.UvicornWorker
