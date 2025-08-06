@@ -6,7 +6,7 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}   # e.g., fir-bestpg
-  REGION: asia-south1
+  REGION: asia
   SERVICE_NAME: api-backend
   REPO: cloud-run
 
@@ -32,14 +32,18 @@ jobs:
 
       - name: Describe GAR repo
         run: |
-          gcloud artifacts repositories describe ${{ env.REPO }}           --location=${{ env.REGION }}           --project=${{ env.PROJECT_ID }}
+          gcloud artifacts repositories describe ${{ env.REPO }} \
+            --location=${{ env.REGION }} \
+            --project=${{ env.PROJECT_ID }}
 
       - name: Configure Docker auth for Artifact Registry
         run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
 
       - name: Docker login to Artifact Registry
         run: |
-          gcloud auth print-access-token |             docker login -u oauth2accesstoken --password-stdin             https://${{ env.REGION }}-docker.pkg.dev
+          gcloud auth print-access-token | \
+            docker login -u oauth2accesstoken --password-stdin \
+            https://${{ env.REGION }}-docker.pkg.dev
 
       - id: vars
         name: Compute image URI
