@@ -1,23 +1,80 @@
-name: CI/CD 
+name: CI/CD • Cloud Run (walking-skeleton)
 
-on:  push:    branches: [ walking-skeleton ]
+on:
+  push:
+    branches: [ walking-skeleton ]
 
-env:  PROJECT_ID: fir-bestpg  REGION: asia-south1  REPOSITORY: cloud-run  SERVICE: api-backend  # Tag with the commit SHA  IMAGE: asia-south1-docker.pkg.dev/fir-bestpg/cloud-run/api-backend:${{ github.sha }}
+env:
+  PROJECT_ID: fir-bestpg
+  REGION: asia-south1
+  REPOSITORY: cloud-run
+  SERVICE: api-backend
 
-jobs:  build-and-deploy:    runs-on: ubuntu-latest    permissions:      contents: read      id-token: write
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write' # Required for OIDC
 
-    steps:      - name: Checkout        uses: actions/checkout@v4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Auth to Google Cloud (JSON key)        uses: google-github-actions/auth@v2        with:          credentials_json: ${{ secrets.GCP_SA_KEY }}
+      - name: Auth to Google Cloud (OIDC)
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WIF_PROVIDER }}
+          service_account: ${{ secrets.GCP_CI_SA }}
 
-      - name: Setup gcloud        uses: google-github-actions/setup-gcloud@v2        with:          version: '>= 471.0.0'
+      - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v2
 
-      - name: Configure Docker to use Artifact Registry        run: gcloud auth configure-docker asia-south1-docker.pkg.dev --quiet
+      - name: Configure Docker to use Artifact Registry
+        run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
 
-      - name: Build image        run: |          # Dockerfile is at repo root; context is '.'          docker build --platform linux/amd64 -t "$IMAGE" .
+      - name: Build and Push Docker Image
+        id: build_image
+        run: |
+          IMAGE_BASE=${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE }}
+          IMAGE_SHA="$IMAGE_BASE:${{ github.sha }}"
+          IMAGE_REF="$IMAGE_BASE:walking-skeleton-${{ github.run_number }}"
+          docker build -t "$IMAGE_SHA" -t "$IMAGE_REF" .
+          docker push --all-tags "$IMAGE_BASE"
+          echo "image_sha=$IMAGE_SHA" >> $GITHUB_OUTPUT
 
-      - name: Push image        run: docker push "$IMAGE"
+      - name: Deploy new revision (Canary @ 10%)
+        run: |
+          gcloud run deploy "${{ env.SERVICE }}" \
+            --image "${{ steps.build_image.outputs.image_sha }}" \
+            --region "${{ env.REGION }}" \
+            --platform managed \
+            --allow-unauthenticated \
+            --port 8080 \
+            --no-traffic \
+            --quiet
 
-      - name: Deploy to Cloud Run        run: |          gcloud run deploy "$SERVICE" \            --image "$IMAGE" \            --region "$REGION" \            --platform managed \            --allow-unauthenticated \            --port 8080 \            --quiet
+      - name: Shift traffic to new revision (10%)
+        run: |
+          gcloud run services update-traffic "${{ env.SERVICE }}" \
+            --region "${{ env.REGION }}" \
+            --to-latest \
+            --set-tags=candidate
 
-      - name: Output service URL        run: |          gcloud run services describe "$SERVICE" \            --region "$REGION" \            --format='value(status.url)'
+      # In a real-world scenario, you would add integration/smoke tests here.
+      # For now, we will just pause for a moment.
+      - name: Wait for canary analysis
+        run: sleep 60
+
+      - name: Shift traffic to 100% (if tests pass)
+        if: success()
+        run: |
+          gcloud run services update-traffic "${{ env.SERVICE }}" \
+            --region "${{ env.REGION }}" \
+            --to-latest
+
+      - name: Output service URL
+        run: |
+          gcloud run services describe "${{ env.SERVICE }}" \
+            --region "${{ env.REGION }}" \
+            --format='value(status.url)'
