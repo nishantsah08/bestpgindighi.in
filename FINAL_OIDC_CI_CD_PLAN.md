@@ -1,3 +1,27 @@
+# Final OIDC CI/CD Implementation Plan
+
+**Date:** Wednesday, August 6, 2025
+
+## 1. Objective
+
+This document provides the final, corrected, and validated specification for a professional-grade CI/CD pipeline using OIDC authentication.
+
+---
+
+## 2. Verified Prerequisites
+
+*   All GCP setup (APIs, GAR repository, IAM, Workload Identity Federation) has been completed as per previous reports.
+*   The necessary GitHub secrets for OIDC (`GCP_WIF_PROVIDER`, `GCP_CI_SA`) have been created.
+
+---
+
+## 3. Final, Corrected Workflow
+
+This workflow has been corrected to include the necessary OIDC parameters in the `google-github-actions/auth` step.
+
+This should be placed in `.github/workflows/cloud-run.yml`.
+
+```yaml
 name: CI/CD • Cloud Run (walking-skeleton)
 
 on:
@@ -88,3 +112,12 @@ jobs:
           gcloud run services describe ${{ env.SERVICE }} \
             --region ${{ env.REGION }} \
             --format='value(status.url)'
+```
+
+---
+
+## 4. Request to the Expert
+
+This report contains the final, corrected workflow. The OIDC authentication step has been fixed. Please perform a final review of this implementation plan.
+
+```
