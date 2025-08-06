@@ -1,0 +1,63 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - walking-skeleton
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install backend dependencies
+        run: pip install -r src/internal_dashboard/backend/requirements.txt
+
+      - name: Run backend tests
+        run: |
+          pytest || if [ $? -eq 5 ]; then echo "No tests found"; else exit $?; fi
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Configure gcloud
+        run: gcloud config set project fir-bestpg
+
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker asia-south1-docker.pkg.dev
+
+      - name: Build and push Docker image
+        env:
+          IMAGE: asia-south1-docker.pkg.dev/fir-bestpg/cloud-run/api-backend:${{ github.sha }}
+        run: |
+          docker build -t "$IMAGE" .
+          docker push "$IMAGE"
+
+      - name: Deploy to Cloud Run
+        id: deploy
+        env:
+          IMAGE: asia-south1-docker.pkg.dev/fir-bestpg/cloud-run/api-backend:${{ github.sha }}
+        run: |
+          gcloud run deploy api-backend \
+            --image "$IMAGE" \
+            --region asia-south1 \
+            --allow-unauthenticated \
+            --platform managed \
+            --quiet
+          SERVICE_URL=$(gcloud run services describe api-backend --region asia-south1 --format 'value(status.url)')
+          echo "service_url=$SERVICE_URL" >> $GITHUB_OUTPUT
+
+      - name: Output service URL
+        run: echo "Service URL: ${{ steps.deploy.outputs.service_url }}"
