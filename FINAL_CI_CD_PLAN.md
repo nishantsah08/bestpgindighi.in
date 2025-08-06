@@ -1,3 +1,27 @@
+# Final CI/CD Implementation Plan
+
+**Date:** Wednesday, August 6, 2025
+
+## 1. Objective
+
+This document provides the final, consolidated, and validated specification for a professional-grade CI/CD pipeline. It incorporates best practices for testing, security (OIDC), and deployment safety (canaries).
+
+---
+
+## 2. Verified Prerequisites
+
+*   All GCP setup (APIs, GAR repository, IAM) has been completed as per previous reports.
+*   The necessary GitHub secrets for OIDC (`GCP_WIF_PROVIDER`, `GCP_CI_SA`) have been created.
+
+---
+
+## 3. Final, Consolidated Workflow
+
+This workflow represents the best-of-breed solution, combining automated testing with secure, canary-based deployments. It has been corrected for all known syntax errors.
+
+This should be placed in `.github/workflows/cloud-run.yml`.
+
+```yaml
 name: CI/CD • Cloud Run (walking-skeleton)
 
 on:
@@ -88,3 +112,10 @@ jobs:
           gcloud run services describe ${{ env.SERVICE }} \
             --region ${{ env.REGION }} \
             --format='value(status.url)'
+```
+
+---
+
+## 4. Request to the Expert
+
+This report contains the final, consolidated workflow. It has been syntactically corrected and incorporates best practices for testing and deployment. Please perform a final review of this implementation plan.
