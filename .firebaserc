@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "pg-business-ai-prod"
-  }
+  },
+  "targets": {
+    "pg-business-ai-prod": {
+      "hosting": {
+        "public_website": [
+          "bestpg-public"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

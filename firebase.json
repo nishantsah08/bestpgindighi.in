@@ -66,6 +66,14 @@
       }
     ],
     "rewrites": [
+      { "source": "/", "destination": "/index.html" },
+      { "source": "/rooms-and-pricing", "destination": "/rooms.html" },
+      { "source": "/facilities", "destination": "/facilities.html" },
+      { "source": "/location-and-contact", "destination": "/contact.html" },
+      { "source": "/boys-hostel-dighi", "destination": "/boys-hostel-dighi.html" },
+      { "source": "/ait-student-housing", "destination": "/ait-student-housing.html" },
+      { "source": "/tcl-employee-accommodation", "destination": "/tcl-employee-accommodation.html" },
+      { "source": "/student-housing", "destination": "/student-housing.html" },
       { "source": "**", "destination": "/404.html" }
     ]
   }

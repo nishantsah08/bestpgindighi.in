@@ -30,6 +30,7 @@ header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap; /* Allow header items to wrap on small screens */
 }
 
 header .logo {
@@ -40,11 +41,12 @@ header .logo {
 
 header nav ul {
     list-style: none;
+    display: flex; /* Use flexbox for navigation */
+    flex-wrap: wrap; /* Allow nav items to wrap */
 }
 
 header nav ul li {
-    display: inline;
-    margin-left: 20px;
+    margin: 5px 10px;
 }
 
 header nav ul li a {
@@ -53,40 +55,78 @@ header nav ul li a {
     font-weight: 700;
 }
 
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #005A9C;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu li a {
+    color: #FFFFFF;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #004080;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
 /* Hero Section */
 .hero {
     background-color: #FFFFFF;
     text-align: center;
-    padding: 80px 0;
+    padding: 40px 0;
     margin-bottom: 20px;
 }
 
 .hero h1 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 48px;
+    font-size: 28px; /* Mobile-first font size */
     color: #005A9C;
     margin-bottom: 20px;
 }
 
 .hero p {
-    font-size: 18px;
+    font-size: 16px; /* Mobile-first font size */
     margin-bottom: 30px;
 }
 
-.hero-image {
-    max-width: 80%;
+/* Images - Mobile First */
+img {
+    max-width: 100%;
     height: auto;
-    margin: 20px auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
 }
 
 .btn-primary {
     background-color: #FF7F00;
     color: #FFFFFF;
-    padding: 12px 25px;
+    padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
     font-weight: 700;
+    font-size: 16px;
     transition: background-color 0.3s ease;
+    display: inline-block; /* Ensure button respects margins */
 }
 
 .btn-primary:hover {
@@ -96,21 +136,21 @@ header nav ul li a {
 /* Features Section */
 .features {
     background-color: #FFFFFF;
-    padding: 60px 0;
+    padding: 40px 0;
     text-align: center;
     margin-bottom: 20px;
 }
 
 .features h2 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 36px;
+    font-size: 30px; /* Mobile-first font size */
     color: #005A9C;
     margin-bottom: 40px;
 }
 
 .feature-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: 1fr; /* Single column for mobile */
     gap: 30px;
 }
 
@@ -123,7 +163,7 @@ header nav ul li a {
 
 .feature-item h3 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 24px;
+    font-size: 22px;
     color: #005A9C;
     margin-bottom: 15px;
 }
@@ -132,34 +172,49 @@ header nav ul li a {
     font-size: 16px;
 }
 
-/* Image Styling */
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto; /* Center images */
-    border-radius: 8px; /* Consistent border radius */
+/* Rooms & Facilities - Mobile First */
+.accommodation-option,
+.facility-item {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.room-image {
-    width: 100%; /* Ensure images fill their container */
-    height: 200px; /* Fixed height for consistency */
-    object-fit: cover; /* Cover the area, crop if necessary */
+.accommodation-option h3,
+.facility-item h2 {
+    font-size: 24px;
+    color: #005A9C;
     margin-bottom: 15px;
 }
 
-.facility-image {
-    width: 100%;
-    height: 180px; /* Adjust height as needed */
-    object-fit: cover;
+.accommodation-option p,
+.facility-item p {
+    font-size: 16px;
+    line-height: 1.7;
     margin-bottom: 15px;
 }
 
-.contact-image {
-    max-width: 100%;
-    height: 250px; /* Adjust height as needed */
-    object-fit: cover;
-    margin-bottom: 20px;
+.accommodation-option ul,
+.facility-item ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+.accommodation-option ul li,
+.facility-item ul li {
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.accommodation-option ul li i,
+.facility-item ul li i {
+    color: #005A9C;
+    margin-right: 10px;
 }
 
 /* Footer */
@@ -170,36 +225,100 @@ footer {
     padding: 20px 0;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    header .container {
-        flex-direction: column;
-    }
+.social-media a {
+    color: #FFFFFF;
+    margin: 0 10px;
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
 
-    header nav ul li {
-        margin: 0 10px;
-    }
+.social-media a:hover {
+    color: #FF7F00;
+}
 
+.content-section {
+    padding-bottom: 60px;
+}
+
+.call-to-action {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.contact-links {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn-contact {
+    display: inline-block;
+    padding: 12px 25px;
+    margin: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+.btn-contact.whatsapp {
+    background-color: #25D366;
+}
+
+.btn-contact.whatsapp:hover {
+    background-color: #1DA851;
+}
+
+.btn-contact {
+    background-color: #007BFF;
+}
+
+.btn-contact:hover {
+    background-color: #0056b3;
+}
+
+.map-container iframe {
+    width: 100%;
+    aspect-ratio: 4 / 3; /* Maintain a 4:3 aspect ratio */
+    border: 0;
+}
+
+/* --- Desktop Styles (Progressive Enhancement) --- */
+@media (min-width: 768px) {
     .hero h1 {
-        font-size: 36px;
+        font-size: 48px; /* Larger font for desktop */
+    }
+
+    .hero p {
+        font-size: 18px;
     }
 
     .features h2 {
-        font-size: 30px;
-    }
-}
-
-@media (max-width: 480px) {
-    header nav ul li {
-        display: block;
-        margin: 10px 0;
-    }
-
-    .hero h1 {
-        font-size: 28px;
+        font-size: 36px;
     }
 
     .feature-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Multi-column for desktop */
+    }
+
+    .accommodation-option,
+    .facility-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Two columns for desktop */
+        gap: 40px;
+        align-items: center;
+    }
+
+    .room-image,
+    .facility-image {
+        max-width: 600px; /* Larger images for desktop */
+    }
+}
+
+@media (max-width: 768px) {
+    .btn-contact {
+        display: block; /* Stack buttons vertically */
+        width: 80%; /* Adjust width as needed */
+        margin: 10px auto; /* Center the buttons */
     }
 }
