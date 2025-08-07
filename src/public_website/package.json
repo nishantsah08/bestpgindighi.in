@@ -1,0 +1,15 @@
+{
+  "name": "public-website-e2e",
+  "version": "1.0.0",
+  "description": "End-to-end tests for the public website using Playwright.",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@playwright/test": "^1.54.2"
+  }
+}

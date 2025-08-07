@@ -1,10 +1,72 @@
 {
   "hosting": {
     "public": "src/public_website",
+    "site": "bestpg-public",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "headers": [
+      {
+        "source": "**/*.@(js|css|png|jpg|jpeg|gif|svg|webp|ico|woff|woff2|ttf|otf)",
+        "headers": [
+          { "key": "Cache-Control", "value": "public,max-age=31536000,immutable" }
+        ]
+      },
+      {
+        "source": "**/*.html",
+        "headers": [
+          { "key": "Cache-Control", "value": "no-cache" }
+        ]
+      }
+    ],
+    "redirects": [
+      {
+        "source": "/index.html",
+        "destination": "/",
+        "type": 301
+      },
+      {
+        "source": "/rooms.html",
+        "destination": "/rooms-and-pricing",
+        "type": 301
+      },
+      {
+        "source": "/facilities.html",
+        "destination": "/facilities",
+        "type": 301
+      },
+      {
+        "source": "/contact.html",
+        "destination": "/location-and-contact",
+        "type": 301
+      },
+      {
+        "source": "/boys-hostel-dighi.html",
+        "destination": "/boys-hostel-dighi",
+        "type": 301
+      },
+      {
+        "source": "/ait-student-housing.html",
+        "destination": "/ait-student-housing",
+        "type": 301
+      },
+      {
+        "source": "/tcl-employee-accommodation.html",
+        "destination": "/tcl-employee-accommodation",
+        "type": 301
+      },
+      {
+        "source": "/student-housing.html",
+        "destination": "/student-housing",
+        "type": 301
+      }
+    ],
+    "rewrites": [
+      { "source": "**", "destination": "/404.html" }
     ]
   }
 }
