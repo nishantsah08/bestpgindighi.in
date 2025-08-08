@@ -1,15 +1,17 @@
 {
   "projects": {
-    "default": "pg-business-ai-prod"
+    "default": "fir-bestpg"
   },
   "targets": {
-    "pg-business-ai-prod": {
+    "fir-bestpg": {
       "hosting": {
-        "public_website": [
-          "bestpg-public"
+        "public_html_production": [
+          "fir-bestpg-production-public"
+        ],
+        "development": [
+          "fir-bestpg-development-public"
         ]
       }
     }
-  },
-  "etags": {}
+  }
 }
