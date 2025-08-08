@@ -309,6 +309,7 @@ footer {
         align-items: center;
     }
 
+    .hero-image,
     .room-image,
     .facility-image {
         max-width: 600px; /* Larger images for desktop */

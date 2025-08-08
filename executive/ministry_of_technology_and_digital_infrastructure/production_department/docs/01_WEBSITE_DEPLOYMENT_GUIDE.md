@@ -1,6 +1,6 @@
 # Public Website Deployment Guide
 
-This document outlines the standard operating procedure for deploying the public-facing website to both the development and production environments.
+This document outlines the standard operating procedure for deploying the public-facing website to both the development and production environments using the provided shell scripts.
 
 ## 1. Environment Overview
 
