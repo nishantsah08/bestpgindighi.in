@@ -11,7 +11,14 @@ The project uses two distinct Firebase Hosting sites:
     -   **URL:** `https://fir-bestpg-development-public.web.app`
 -   **Production:** The live, public-facing website.
     -   **Site ID:** `fir-bestpg-production-public`
-    -   **URL:** `https://www.bestpgindighi.in`
+    -   **URL:** `https://bestpgindighi.in`
+
+## 1.5. Domain and Redirect Strategy
+
+To ensure a consistent and SEO-friendly web presence, the following strategy has been implemented:
+
+-   **Canonical Domain:** The official, canonical domain for the website is **`bestpgindighi.in`** (the "naked" or "root" domain).
+-   **WWW Redirect:** All traffic to the `www.bestpgindighi.in` subdomain is automatically and permanently (301) redirected to the canonical `bestpgindighi.in` domain. This is configured in the `firebase.json` file.
 
 ## 2. Deployment Scripts
 

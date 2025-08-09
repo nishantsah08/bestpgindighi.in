@@ -23,7 +23,7 @@ if [ "$entered_password" == "$CORRECT_PASSWORD" ]; then
         echo "Pinging Google to update the sitemap..."
         
         # Use curl to send a GET request to Google's ping service
-        curl -s "http://www.google.com/ping?sitemap=https://www.bestpgindighi.in/sitemap.xml"
+        curl -s "http://www.google.com/ping?sitemap=https://bestpgindighi.in/sitemap.xml"
         
         echo "Sitemap ping sent. The live site is updated at https://www.bestpgindighi.in"
     else
