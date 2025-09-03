@@ -16,8 +16,18 @@ async function request<T>(method: Method, path: string, body?: any): Promise<T> 
     body: body ? JSON.stringify(body) : undefined,
   });
   if (!res.ok) {
-    const text = await res.text();
-    throw new Error(text || `Request failed: ${res.status}`);
+    let msg = `Request failed: ${res.status}`;
+    try {
+      const err = await res.json();
+      if (err?.detail) {
+        const d = typeof err.detail === 'string' ? { message: err.detail } : err.detail;
+        msg = d.message || msg;
+        if (d.code) msg += ` (code: ${d.code})`;
+      }
+    } catch (_) {
+      // ignore
+    }
+    throw new Error(msg);
   }
   return (await res.json()) as T;
 }
@@ -29,6 +39,7 @@ export interface Property {
   property_name: string;
   address: Address;
   status: PropertyStatus;
+  photo_thumb_url?: string;
   unit_types?: string[] | null;
   created_at: string;
 }
@@ -57,4 +68,18 @@ export const api = {
   patchUnit: (propertyId: string, unitId: string, patch: Partial<{ status: 'Operational' | 'Non Operational' }>) =>
     request<Unit>('PATCH', `/v1/properties/${propertyId}/units/${unitId}`, patch),
   deleteUnit: (propertyId: string, unitId: string) => request<{ ok: boolean }>('DELETE', `/v1/properties/${propertyId}/units/${unitId}`),
+  uploadPropertyPhoto: async (propertyId: string, file: File) => {
+    const url = `${API_BASE}/v1/properties/${propertyId}/photo`;
+    const fd = new FormData();
+    fd.append('file', file);
+    const headers: Record<string, string> = {};
+    if (API_TOKEN) headers['Authorization'] = `Bearer ${API_TOKEN}`;
+    const res = await fetch(url, { method: 'POST', body: fd, headers });
+    if (!res.ok) {
+      let msg = 'Photo upload failed';
+      try { const e = await res.json(); msg = e?.detail?.message || msg; } catch {}
+      throw new Error(msg);
+    }
+    return res.json() as Promise<{ photo_thumb_url: string }>;
+  },
 };

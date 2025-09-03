@@ -244,12 +244,24 @@ export default function App() {
                   <td>
                     <button
                       data-testid={`toggle-status-${p.id}`}
-                      onClick={async () => {
+                      onClick={() => {
                         const next = p.status === 'Operational' ? 'Non Operational' : 'Operational';
-                        await api.patchProperty(p.id, { status: next });
-                        reload();
+                        setConfirm({
+                          open: true,
+                          title: next === 'Non Operational' ? 'Disable Changes?' : 'Enable Changes?',
+                          body: next === 'Non Operational' ? `No changes will be allowed or queued while '${p.property_name}' is in Non-Operational mode.` : `Changes will be re-enabled for this property and its units.`,
+                          onConfirm: async () => { await api.patchProperty(p.id, { status: next }); reload(); },
+                        });
                       }}
                     >{p.status === 'Operational' ? 'Set Non‑Operational' : 'Set Operational'}</button>
+                    &nbsp;
+                    <button onClick={() => { const input = document.getElementById(`upload-${p.id}`) as HTMLInputElement; if (input) input.click(); }}>Upload Photo</button>
+                    <input id={`upload-${p.id}`} type="file" accept="image/*" style={{ display: 'none' }} onChange={async (e) => {
+                      const file = e.target.files?.[0];
+                      if (!file) return;
+                      setUploadingId(p.id);
+                      try { await api.uploadPropertyPhoto(p.id, file); } catch (e) { alert((e as any).message); } finally { setUploadingId(null); reload(); }
+                    }} />
                     &nbsp;
                     <button onClick={() => setExpanded(expanded === p.id ? null : p.id)}>
                       {expanded === p.id ? 'Hide Units' : 'Show Units'}
@@ -261,6 +273,25 @@ export default function App() {
                 {expanded === p.id && (
                   <tr>
                     <td colSpan={4}>
+function ConfirmModal({ open, title, body, onConfirm, onClose }: { open: boolean; title: string; body: string; onConfirm: () => void; onClose: () => void }) {
+  if (!open) return null;
+  return (
+    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ background: '#fff', padding: 16, borderRadius: 8, width: 400 }}>
+        <h4 style={{ marginTop: 0 }}>{title}</h4>
+        <p>{body}</p>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
+          <button onClick={onClose}>Cancel</button>
+          <button onClick={() => { onConfirm(); onClose(); }} style={{ background: '#dc2626', color: '#fff', padding: '4px 10px', borderRadius: 6 }}>Confirm</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+  const [confirm, setConfirm] = useState<{ open: boolean; title: string; body: string; onConfirm: () => void }>({ open: false, title: '', body: '', onConfirm: () => {} });
+  const [uploadingId, setUploadingId] = useState<string | null>(null);
+  const fileInputs: Record<string, HTMLInputElement | null> = {} as any;
                       <UnitsManager property={p} />
                     </td>
                   </tr>
@@ -270,6 +301,7 @@ export default function App() {
           </tbody>
         </table>
       )}
+      <ConfirmModal open={confirm.open} title={confirm.title} body={confirm.body} onConfirm={confirm.onConfirm} onClose={() => setConfirm({ ...confirm, open: false })} />
     </div>
   );
 }

@@ -1,11 +1,12 @@
 from datetime import datetime
 from typing import List, Optional
 
-from fastapi import APIRouter, Depends, Header, HTTPException, Query, UploadFile, File
+from fastapi import APIRouter, Depends, Header, HTTPException, Query, UploadFile, File, Request
 from google.cloud import firestore  # type: ignore
 
 from ...config import get_settings
 from ...firestore.client import get_client
+from ...common.audit import write_audit
 from ...models.property_schemas import (
     PropertyCreate,
     PropertyOut,
@@ -67,7 +68,7 @@ def _ensure_property_operational(db: firestore.Client, property_id: str) -> dict
 
 
 @router.post("/properties", response_model=PropertyOut, dependencies=[Depends(require_auth)])
-def create_property(payload: PropertyCreate) -> PropertyOut:
+def create_property(payload: PropertyCreate, request: Request) -> PropertyOut:
     db = get_client()
     data = payload.dict()
     # Global uniqueness on property_name (case-insensitive, trimmed)
@@ -87,6 +88,20 @@ def create_property(payload: PropertyCreate) -> PropertyOut:
     snap = doc_ref.get()
     saved = snap.to_dict() or {}
     created_at = saved.get("created_at") or datetime.utcnow()
+    # audit (best-effort)
+    try:
+        write_audit(
+            db,
+            action="create",
+            target_type="property",
+            target_id=doc_ref.id,
+            before=None,
+            after={"property": payload.dict()},
+            ip=(request.client.host if request and request.client else None),
+            user_agent=(request.headers.get("user-agent") if request else None),
+        )
+    except Exception:
+        pass
     return PropertyOut(id=doc_ref.id, created_at=created_at, **payload.dict())
 
 
@@ -140,7 +155,7 @@ def get_property(property_id: str) -> PropertyOut:
 
 
 @router.patch("/properties/{property_id}", response_model=PropertyOut, dependencies=[Depends(require_auth)])
-def update_property(property_id: str, patch: PropertyPatch) -> PropertyOut:
+def update_property(property_id: str, patch: PropertyPatch, request: Request) -> PropertyOut:
     db = get_client()
     doc_ref = db.collection("properties").document(property_id)
     snap = doc_ref.get()
@@ -171,9 +186,23 @@ def update_property(property_id: str, patch: PropertyPatch) -> PropertyOut:
             status=d.get("status"),
             created_at=d.get("created_at", datetime.utcnow()),
         )
+    before = current
     doc_ref.update(update)
     snap = doc_ref.get()
     d = snap.to_dict() or {}
+    try:
+        write_audit(
+            db,
+            action="update",
+            target_type="property",
+            target_id=property_id,
+            before=before,
+            after=update,
+            ip=(request.client.host if request and request.client else None),
+            user_agent=(request.headers.get("user-agent") if request else None),
+        )
+    except Exception:
+        pass
     return PropertyOut(
         id=snap.id,
         property_name=d.get("property_name"),
@@ -185,7 +214,7 @@ def update_property(property_id: str, patch: PropertyPatch) -> PropertyOut:
 
 
 @router.delete("/properties/{property_id}")
-def delete_property(property_id: str, _: bool = Depends(require_auth)):
+def delete_property(property_id: str, _: bool = Depends(require_auth), request: Request = None):
     db = get_client()
     prop_ref = db.collection("properties").document(property_id)
     if not prop_ref.get().exists:
@@ -198,12 +227,26 @@ def delete_property(property_id: str, _: bool = Depends(require_auth)):
             "target": {"type": "property", "id": property_id},
             "suggested_action": "delete_units_first",
         })
+    before = prop_ref.get().to_dict() or {}
     prop_ref.delete()
+    try:
+        write_audit(
+            db,
+            action="delete",
+            target_type="property",
+            target_id=property_id,
+            before=before,
+            after=None,
+            ip=(request.client.host if request and request.client else None),
+            user_agent=(request.headers.get("user-agent") if request else None),
+        )
+    except Exception:
+        pass
     return {"ok": True}
 
 
 @router.post("/properties/{property_id}/units", response_model=UnitOut, dependencies=[Depends(require_auth)])
-def create_unit(property_id: str, payload: UnitCreate) -> UnitOut:
+def create_unit(property_id: str, payload: UnitCreate, request: Request) -> UnitOut:
     db = get_client()
     _ensure_property_operational(db, property_id)
     data = payload.dict()
@@ -224,6 +267,20 @@ def create_unit(property_id: str, payload: UnitCreate) -> UnitOut:
     snap = doc_ref.get()
     saved = snap.to_dict() or {}
     created_at = saved.get("created_at") or datetime.utcnow()
+    try:
+        write_audit(
+            db,
+            action="create",
+            target_type="unit",
+            target_id=doc_ref.id,
+            parent_property_id=property_id,
+            before=None,
+            after={"unit": payload.dict()},
+            ip=(request.client.host if request and request.client else None),
+            user_agent=(request.headers.get("user-agent") if request else None),
+        )
+    except Exception:
+        pass
     return UnitOut(id=doc_ref.id, property_id=property_id, created_at=created_at, **payload.dict())
 
 
@@ -249,7 +306,7 @@ def list_units(property_id: str) -> List[UnitOut]:
 
 
 @router.patch("/properties/{property_id}/units/{unit_id}", response_model=UnitOut, dependencies=[Depends(require_auth)])
-def update_unit(property_id: str, unit_id: str, patch: UnitPatch) -> UnitOut:
+def update_unit(property_id: str, unit_id: str, patch: UnitPatch, request: Request) -> UnitOut:
     db = get_client()
     _ensure_property_operational(db, property_id)
     ref = db.collection("properties").document(property_id).collection("units").document(unit_id)
@@ -264,9 +321,24 @@ def update_unit(property_id: str, unit_id: str, patch: UnitPatch) -> UnitOut:
             raise HTTPException(status_code=400, detail={"code": "UNIT_EDIT_NOT_ALLOWED", "message": "Units cannot be edited; only status can be changed."})
         if current.get("status") == "Non Operational" and update.get("status") is None:
             raise HTTPException(status_code=423, detail={"code": "UNIT_LOCKED_NON_OPERATIONAL", "message": "Unit is Non-Operational; only status change is allowed", "target": {"type": "unit", "id": unit_id}})
+        before = current
         ref.update(update)
         snap = ref.get()
     d = snap.to_dict() or {}
+    try:
+        write_audit(
+            db,
+            action="update",
+            target_type="unit",
+            target_id=unit_id,
+            parent_property_id=property_id,
+            before=before if 'before' in locals() else None,
+            after=update,
+            ip=(request.client.host if request and request.client else None),
+            user_agent=(request.headers.get("user-agent") if request else None),
+        )
+    except Exception:
+        pass
     return UnitOut(
         id=unit_id,
         property_id=property_id,
@@ -278,7 +350,7 @@ def update_unit(property_id: str, unit_id: str, patch: UnitPatch) -> UnitOut:
 
 
 @router.delete("/properties/{property_id}/units/{unit_id}", dependencies=[Depends(require_auth)])
-def delete_unit(property_id: str, unit_id: str):
+def delete_unit(property_id: str, unit_id: str, request: Request = None):
     db = get_client()
     _ensure_property_operational(db, property_id)
     ref = db.collection("properties").document(property_id).collection("units").document(unit_id)
@@ -293,12 +365,27 @@ def delete_unit(property_id: str, unit_id: str):
         batch.delete(beds_ref.document(bed_doc.id))
         deleted_beds += 1
     batch.commit()
+    before = snap.to_dict() or {}
     ref.delete()
+    try:
+        write_audit(
+            db,
+            action="delete",
+            target_type="unit",
+            target_id=unit_id,
+            parent_property_id=property_id,
+            before=before,
+            after=None,
+            ip=(request.client.host if request and request.client else None),
+            user_agent=(request.headers.get("user-agent") if request else None),
+        )
+    except Exception:
+        pass
     return {"ok": True, "deletedBeds": deleted_beds}
 
 
 @router.post("/properties/{property_id}/photo", dependencies=[Depends(require_auth)])
-async def upload_property_photo(property_id: str, file: UploadFile = File(...)):
+async def upload_property_photo(property_id: str, file: UploadFile = File(...), request: Request = None):
     settings = get_settings()
     if not settings.public_assets_bucket:
         raise HTTPException(status_code=500, detail={"code": "MISSING_BUCKET", "message": "Public assets bucket is not configured"})
@@ -326,6 +413,19 @@ async def upload_property_photo(property_id: str, file: UploadFile = File(...)):
     blob.make_public()
     photo_url = blob.public_url
     db.collection("properties").document(property_id).set({"photo_thumb_url": photo_url}, merge=True)
+    try:
+        write_audit(
+            get_client(),
+            action="upload",
+            target_type="property_photo",
+            target_id=property_id,
+            before=None,
+            after={"photo_thumb_url": photo_url},
+            ip=(request.client.host if request and request.client else None),
+            user_agent=(request.headers.get("user-agent") if request else None),
+        )
+    except Exception:
+        pass
     return {"photo_thumb_url": photo_url}
 
 
