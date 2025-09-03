@@ -44,3 +44,15 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Internal Portal – Properties Module Quickstart
+
+- Set environment in `.env.development.local`:
+  - `REACT_APP_API_BASE=https://<your-cloud-run-backend-url>`
+  - `REACT_APP_API_TOKEN=<your-api-token>`
+- Run the portal: `npm start` (opens http://localhost:3000)
+- Use the Properties screen to add/toggle/delete properties and manage units.
+
+### End-to-end check
+- Install browsers: `npx playwright install`
+- Run tests: `npm run test:e2e` (set `E2E_BASE_URL` to the portal URL if different from http://localhost:3000)
