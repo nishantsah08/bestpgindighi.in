@@ -55,6 +55,22 @@ function DeleteConfirm({ label, onConfirm }: { label: string; onConfirm: () => v
   );
 }
 
+function ConfirmModal({ open, title, body, onConfirm, onClose }: { open: boolean; title: string; body: string; onConfirm: () => void; onClose: () => void }) {
+  if (!open) return null;
+  return (
+    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ background: '#fff', padding: 16, borderRadius: 8, width: 400 }}>
+        <h4 style={{ marginTop: 0 }}>{title}</h4>
+        <p>{body}</p>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
+          <button onClick={onClose}>Cancel</button>
+          <button onClick={() => { onConfirm(); onClose(); }} style={{ background: '#dc2626', color: '#fff', padding: '4px 10px', borderRadius: 6 }}>Confirm</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function UnitsManager({ property }: { property: Property }) {
   const [units, setUnits] = useState<Unit[]>([]);
   const [loading, setLoading] = useState(false);
@@ -156,6 +172,8 @@ export default function App() {
   const [localities, setLocalities] = useState<string[]>([]);
   const [pinErr, setPinErr] = useState<string | null>(null);
   const [expanded, setExpanded] = useState<string | null>(null);
+  const [confirm, setConfirm] = useState<{ open: boolean; title: string; body: string; onConfirm: () => void }>({ open: false, title: '', body: '', onConfirm: () => {} });
+  const [uploadingId, setUploadingId] = useState<string | null>(null);
   const propsData = useMemo(() => data || [], [data]);
 
   return (
@@ -273,25 +291,6 @@ export default function App() {
                 {expanded === p.id && (
                   <tr>
                     <td colSpan={4}>
-function ConfirmModal({ open, title, body, onConfirm, onClose }: { open: boolean; title: string; body: string; onConfirm: () => void; onClose: () => void }) {
-  if (!open) return null;
-  return (
-    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <div style={{ background: '#fff', padding: 16, borderRadius: 8, width: 400 }}>
-        <h4 style={{ marginTop: 0 }}>{title}</h4>
-        <p>{body}</p>
-        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
-          <button onClick={onClose}>Cancel</button>
-          <button onClick={() => { onConfirm(); onClose(); }} style={{ background: '#dc2626', color: '#fff', padding: '4px 10px', borderRadius: 6 }}>Confirm</button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-  const [confirm, setConfirm] = useState<{ open: boolean; title: string; body: string; onConfirm: () => void }>({ open: false, title: '', body: '', onConfirm: () => {} });
-  const [uploadingId, setUploadingId] = useState<string | null>(null);
-  const fileInputs: Record<string, HTMLInputElement | null> = {} as any;
                       <UnitsManager property={p} />
                     </td>
                   </tr>
