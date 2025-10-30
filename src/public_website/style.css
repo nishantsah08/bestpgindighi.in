@@ -217,6 +217,82 @@ img {
     margin-right: 10px;
 }
 
+.info-block {
+    background-color: #FFFFFF;
+    margin-top: 30px;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.info-block h2 {
+    font-size: 24px;
+    color: #005A9C;
+    margin-bottom: 15px;
+}
+
+.info-block p,
+.info-block li {
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.info-block ol {
+    margin: 15px 0 0 20px;
+}
+
+.info-block ol li {
+    margin-bottom: 10px;
+}
+
+.quick-facts {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding-left: 0;
+    margin: 0;
+}
+
+.quick-facts li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.quick-facts i {
+    color: #FF7F00;
+    margin-top: 4px;
+}
+
+.faq-section {
+    margin-top: 30px;
+}
+
+.faq-section details {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    padding: 18px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.faq-section details summary {
+    font-weight: 700;
+    color: #005A9C;
+    cursor: pointer;
+    outline: none;
+}
+
+.faq-section details[open] summary {
+    margin-bottom: 10px;
+}
+
+.faq-section p {
+    margin: 0;
+    line-height: 1.7;
+}
+
 /* Footer */
 footer {
     background-color: #005A9C;
@@ -299,6 +375,14 @@ footer {
 
     .feature-grid {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Multi-column for desktop */
+    }
+
+    .info-block {
+        padding: 30px;
+    }
+
+    .quick-facts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .accommodation-option,
